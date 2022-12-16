@@ -35,7 +35,8 @@ Each neuron receives input from other neurons, processes that information, and p
 \\
 \\
 \begin{figure}[htb]
-    \includegraphics[width=1\textwidth]{pics/neuralnetwork.jpg}
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/neuralnetwork.jpg}
     \caption{Complex neural network}
 \end{figure}
 \\
@@ -46,6 +47,14 @@ The specific details of how a neural network works can vary depending on its arc
 \subsection{Solving methods}
 There are three basic methods for solving problems: search-, knowledge-, and algorithmic methods. Every method involves searching through a space of possible solutions whilst optimizing a pre-defined evaluation function, that can lead to the following "Combinatorial explosion". The methods can range from simplex hill climbing via alpha-beta pruning techniques to knowledge "chunking". 
 Example: the chess endgame of king and three pawns versus king and three pawns requires an explicit table of half a billion moves and a run-time of ten quadrillion years to evaluate all possibilities. The success of the CMU "chunker" program which uses chess domain knowledge chunks is that it reduces this run-time to about one minute.
+\\
+\\
+\\
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/combiexplo.png}
+    \caption{Combinatorial explosion} 
+\end{figure}
 
 \section{How does face tracking work?}
 \setauthor{Romeo Bhuiyan}
