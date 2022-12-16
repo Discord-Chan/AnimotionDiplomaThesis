@@ -1,15 +1,25 @@
 \section{What is artificial intelligence?}
 \setauthor{Romeo Bhuiyan}
-The concept of AI has a long history that dates back to ancient times, when people first tried to build machines that could mimic human abilities. In the modern era, the term "AI" was first coined in 1956 by computer scientist John McCarthy, who defined it as "the science and engineering of making intelligent machines."
+The concept of AI has a long history that dates back to ancient times, when people first tried to build machines that could mimic human abilities. In the modern era, the term "AI" was first coined in 1956 by computer scientist John McCarthy, who defined it as \textit{the science and engineering of making intelligent machines} \footnote{johnmcCarthy:1956}.
+% \cite[the science and engineering of making intelligent machines]{johnmcCarthy:1956} .
 \\
 \\
-These machines are designed to be able to perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and understanding natural language. AI can be applied to a wide range of fields, from healthcare and finance to education and transportation, with the goal of making systems more efficient and effective. AI can be classified into two broad categories: narrow or weak AI, which is designed to perform a specific task, and general or strong AI, which has the ability to perform any intellectual task that a human being can perform.
+Today, these machines are designed to be able to perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and understanding natural language. AI can be applied to a wide range of fields, from healthcare and finance to education and transportation, with the goal of making systems more efficiently and effectively. AI can be classified into two broad categories: narrow or weak AI, which is designed to perform a specific task, and general or strong AI, which has the ability to perform any intellectual task that a human being can perform.
 
 \section{Philosophy of artificial intelligence}
 \setauthor{Christioph Lasinger}
 
 \section{The future of artificial intelligence}
 \setauthor{Romeo Bhuiyan}
+The future of AI is difficult to predict with certainty, but it is likely that AI will continue to advance and become increasingly integrated into our daily lives. AI has the potential to revolutionize many industries, from healthcare and transportation to education and finance. It could also have a major impact on the job market, with some jobs being automated by AI and other jobs being created to support the technology. However, it is important to consider the potential drawbacks of AI and ensure that it is developed and used ethically. Overall, the future of AI seems promising, but it is important to approach it with caution and consideration. As the future of AI is very likely to lie somewhere between a very positive one (extreme optimism) and a very negative one (extreme pessimism), it makes sense to analyze those two specifically.
+\\
+\\
+An extremely pessimistic future of AI in the world would involve the technology being used in ways that are harmful to humanity. In this scenario, AI could be used to create weapons of mass destruction, or to control and manipulate people for nefarious purposes. It could also be used to create a surveillance state, where people's every move is monitored and tracked. Additionally, the widespread use of AI could lead to widespread job loss and economic instability, as many jobs are automated and replaced by machines. In a worst-case scenario, the development of AI could even lead to a global conflict over control of the technology.
+\\
+\\
+An extremely optimistic future would entail an AI with highly advanced and integrated technology that is able to solve many of the world's most pressing problems. In this scenario, AI would be used to improve healthcare, reduce poverty and inequality, and address climate change. It would also be used to make transportation faster, safer, and more efficient, and to improve education by providing personalized learning experiences for students. Moreover, AI could be used to help us better understand and protect the natural world, and to explore the universe. Overall, this extremely optimistic future of AI would involve the technology being used to enhance and improve human life in countless ways.
+
+
 
 \section{How does a neural network work?}
 \setauthor{Romeo Bhuiyan}
@@ -20,13 +30,16 @@ Each neuron receives input from other neurons, processes that information, and p
 \\
 \\
 \\
-\includegraphics[width=1\textwidth]{pics/neuralnetwork.jpg}
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{pics/neuralnetwork.jpg}
+    \caption{Complex neural network}
+\end{figure}
 \\
 \\
 \\
 The specific details of how a neural network works can vary depending on its architecture and the type of problem it is being used to solve. But in general, a neural network is able to learn from data by adjusting the strength of the connections between its neurons, these connections being called weights, based on the input it receives. Over time, the network is able to improve its predictions by adjusting these weights in a way that minimizes errors between the network's output and the correct output.
 
-\subsection{Solving Methods}
+\subsection{Solving methods}
 There are three basic methods for solving problems: search-, knowledge-, and algorithmic methods. Every method involves searching through a space of possible solutions whilst optimizing a pre-defined evaluation function, that can lead to the following "Combinatorial explosion". The methods can range from simplex hill climbing via alpha-beta pruning techniques to knowledge "chunking". 
 Example: the chess endgame of king and three pawns versus king and three pawns requires an explicit table of half a billion moves and a run-time of ten quadrillion years to evaluate all possibilities. The success of the CMU "chunker" program which uses chess domain knowledge chunks is that it reduces this run-time to about one minute.
 
@@ -39,8 +52,16 @@ To track a face, the system first detects the face in the video feed from the ca
 \\
 \\
 The resulting data can be used for a variety of purposes, such as enabling facial recognition (to identify who the person is), animating virtual characters, or controlling a user interface.
-
-\includegraphics[width=1\textwidth]{pics/bhuiyanfracetracking.png}
+\\
+\\
+\\
+\begin{figure}[htb]
+    \includegraphics[width=1\textwidth]{pics/bhuiyanfracetracking.png}
+    \caption{Face tracking experiment done by Romeo Bhuiyan}
+\end{figure}
+\\
+\\
+\\
 
 % Hier kommt noch unser versuch damit hin
 
