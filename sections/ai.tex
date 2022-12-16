@@ -53,17 +53,12 @@ To track a face, the system first detects the face in the video feed from the ca
 \\
 The resulting data can be used for a variety of purposes, such as enabling facial recognition (to identify who the person is), animating virtual characters, or controlling a user interface.
 \\
-\\
-\\
 \begin{figure}[htb]
-    \includegraphics[width=1\textwidth]{pics/bhuiyanfracetracking.png}
+    \centering
+    \includegraphics[width=0.8\textwidth]{pics/bhuiyanfracetracking.png}
     \caption{Face tracking experiment done by Romeo Bhuiyan}
 \end{figure}
-\\
-\\
-\\
 
-% Hier kommt noch unser versuch damit hin
 
 \section{How does body tracking work?}
 \setauthor{Romeo Bhuiyan}
@@ -74,6 +69,20 @@ To track a body, the algorithm first detects the presence of a body in the video
 \\
 \\
 In addition to tracking the location of the body, some algorithms can also track other features, such as body movements or gestures. This allows them to be used for a variety of applications, such as video surveillance, virtual reality, gaming, human-computer interaction, and fitness tracking.
+
+\section{Comparison between MediaPipe and TensorFlow.js}
+\setauthor{Romeo Bhuiyan}
+In this case face tracking was needed in order to get a virtual model animated. The two libraries MediaPipe and TensorFlow.js were tested in python to decide which one is better suited for our purpose. It is difficult to say which approach is "better" for face, hand, and body tracking in the browser, as it will depend on the specific requirements and constraints of one's project. Both MediaPipe and TensorFlow.js are powerful tools that can be used to perform these tracking tasks, but they have different strengths and limitations.
+\\
+\\
+MediaPipe is a library developed by Google that is specifically designed for real-time multimedia processing tasks, such as hand and face tracking. It is written in C++ with some Python bindings and can be used to build cross-platform pipelines for performing various computer vision and machine learning tasks. MediaPipe is optimized for low-latency, real-time processing and is used to build applications that run on a variety of platforms, including the browser.
+\\
+\\
+In contrast, TensorFlow.js is a JavaScript library for training and deploying machine learning models in the browser. It is based on the TensorFlow library, a popular machine learning library developed by Google. TensorFlow.js allows you to build and train machine learning models using JavaScript, and it can be used to perform a variety of tasks, including image and text classification, time series forecasting, and natural language processing.
+\\
+\\
+Both MediaPipe and TensorFlow.js are able to handle face and hand tracking in the browser, but they have different trade-offs and may be better suited for different types of projects. MediaPipe is optimized for real-time processing and is good for building applications that require low latency, such as augmented reality or interactive applications. However, TensorFlow.js is a general-purpose machine learning library that is suited for building machine learning models and deploying them in the browser, but it may not be as efficient for real-time processing as MediaPipe. Thinking that in the future more content will likely be added to the project, we have decided to use MediaPipe as our real-time multimedia library solution.
+
 
 \section{Performance}
 \setauthor{Romeo Bhuiyan}
