@@ -1,7 +1,25 @@
 
 
-
-
+\section{Comparison of 3D rendering technologies}
+\setauthor{Romeo Bhuiyan}
+In order to display a virtual model on a canvas, a 3D rendering technology was required. Two libraries, 
+GLTFLoader and WebGL, were evaluated using JavaScript to determine the best fit for the task at hand. 
+The choice between the two ultimately depends on the specific needs and limitations of the project. 
+Both GLTFLoader and WebGL are effective tools for rendering, but each have their own 
+unique strengths and weaknesses.
+\\
+\\
+\textbf{WebGL} is designed to work seamlessly with other web technologies such as HTML, CSS, and JavaScript, 
+making it easy to integrate 3D graphics into web pages. It allows developers to create a wide range 
+of interactive 3D applications and visualizations, including games, scientific 
+simulations, data visualizations, and more.
+One of the key features of WebGL is its ability to take full advantage of the GPU 
+(graphics processing unit) on the user's device. This allows WebGL applications to 
+run smoothly and efficiently, even on devices with limited resources. Additionally, WebGL provides 
+a high level of compatibility across different browsers and devices, making it a widely accessible technology.
+WebGL is supported by most modern web browsers, including Chrome, Firefox, Safari, and Edge. 
+This means that developers can create WebGL applications that can be easily accessed by 
+users on a wide range of devices and platforms.
 
 \section{Calculation of the virtual reality model} 
 \setauthor{Romeo Bhuiyan}
@@ -13,15 +31,24 @@ using a device such as a VR headset or a mouse and keyboard. The inputs from the
 user are then captured by the website and sent to the server. The server then 
 uses these inputs to update the VR model's position and orientation in real-time. 
 \\
+\\
 Once the VR model has been updated, it is then rendered, and the new frame is 
 sent back to the user's device for display. This process repeats as the user 
 continues to interact with the VR model. 
-To achieve this, various technologies are needed such as GLTFLoader \cite{GLTFLoader} from the THREE 
+To achieve this, various technologies are needed such as GLTFLoader\cite{GLTFLoader} from the THREE\cite{threejs}
 libraries for rendering the VR model in the browser, WebSockets for real-time 
 communication between the client and server, and a physics engine to simulate 
-the movement and interactions of the VR model.
-
-
-\subsection{}
-{Romeo Bhuiyan}
-
+the movement and interactions of the VR model. 
+\\
+\\
+\subsection{Blendshape}
+\setauthor{Romeo Bhuiyan}
+Blendshape is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
+It works by creating a set of "target" shapes for a 3D model, each representing a different expression or shape, 
+and then using a set of weights or "blend" values to interpolate between these target shapes, creating a 
+smooth transition between them. This allows animators to create a wide range of expressive characters with a 
+limited number of 3D models. Blendshapes are commonly used in animation, film and game industry.
+\\
+\\
+\subsection{Determining facial expressions using Blendshape techniques}
+\setauthor{Romeo Bhuiyan}
