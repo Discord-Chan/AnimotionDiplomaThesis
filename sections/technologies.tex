@@ -1,5 +1,51 @@
-
-
+\section{Three.js}
+\setauthor{Romeo Bhuiyan}
+\textbf{Three.js} is a JavaScript library that allows for the creation of interactive 3D graphics in the web 
+browser. It is designed to work seamlessly with WebGL, which is a web-based 3D graphics API that allows 
+developers to access the hardware-accelerated graphics capabilities of a user's computer. Three.js 
+makes it possible to create rich 3D experiences with JavaScript and HTML, without the need for any plugins or downloads.
+With Three.js, developers can create a wide variety of 3D scenes and animations, including but not limited to: 
+realistic environments with dynamic lighting and shadows, complex 3D models and animations, interactive 3D 
+games and simulations, and virtual reality (VR) and augmented reality (AR) experiences.
+\\
+\\
+The library provides a large number of powerful features and abstractions that simplify 
+the process of creating 3D graphics. It includes a number of built-in shapes, such as cubes, 
+spheres, and cylinders, as well as more complex shapes that can be constructed from the 
+vertices and faces of custom 3D models. Three.js also includes a number of materials that 
+allow for realistic shading and texturing of 3D objects, as well as lights and cameras 
+that can be positioned and manipulated to achieve the desired lighting and perspective effects.
+Another important aspect of Three.js is its support for keyframe animations. This allows
+ developers to animate objects over time, creating smooth transitions and movements. 
+ The library also provides support for physics simulations, making it possible to 
+ create complex and interactive 3D experiences that respond to user input.
+\\
+\\
+\subsection{Three-vrm.js}
+\setauthor{Romeo Bhuiyan}
+\textbf{Three-vrm.js} is a JavaScript library that provides support for rendering 
+and manipulating VRM (Virtual Reality Model) characters in web-based environments. 
+It is built on top of Three.js, a widely-used library for creating 3D graphics and 
+animations in web browsers.
+Three-vrm.js offers a set of tools and APIs for working with VRM models, allowing 
+developers to easily import, manipulate and animate VRM characters in their web-based 
+projects. This includes support for importing VRM files, as well as manipulating and animating 
+individual bones, rigging, morph targets, and materials of the characters as shown below in the figure \ref{fig:threevrmdebug}.
+In addition to basic VRM functionality, three-vrm.js also includes a set of VRM-specific 
+features and extensions. For example, it provides support for VRM's humanoids, which define 
+the structure of a VRM character and allow for easy animation of the character. It also includes 
+support for VRM's blend shapes, which are used to manipulate the shape of the character's 
+face and expressions.
+\\
+\\
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pics/threevrmdebug.PNG}
+    \caption{Three-vrm.js debug mode}
+    \label{fig:threevrmdebug}
+\end{figure}
+\\
+\\
 \section{Comparison of 3D rendering technologies}
 \setauthor{Romeo Bhuiyan}
 In order to display a virtual model on a canvas, a 3D rendering technology was required. Two libraries, 
@@ -66,6 +112,7 @@ to work with 3D models on the web, GLTFLoader is the best choice as seen below i
 \end{figure}
 \\
 \\
+\newpage
 \section{Calculation of the virtual reality model} 
 \setauthor{Romeo Bhuiyan}
 Controlling a VRM on a website involves a complex process that involves 
@@ -89,8 +136,8 @@ the movement and interactions of the VR model.
 \subsection{Blendshape}
 \setauthor{Romeo Bhuiyan}
 Blendshape is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
-It works by creating a set of "target" shapes for a 3D model, each representing a different expression or shape, 
-and then using a set of weights or "blend" values to interpolate between these target shapes, creating a 
+It works by creating a set of \emph{target} shapes for a 3D model, each representing a different expression or shape, 
+and then using a set of weights or \emph{blend} values to interpolate between these target shapes, creating a 
 smooth transition between them. This allows animators to create a wide range of expressive characters with a 
 limited number of 3D models. Blendshapes are commonly used in animation, film and game industry.
 \\
@@ -112,7 +159,7 @@ animation smooth. It's also used in physics simulations, game development,
 and other fields where the smooth transition of values is needed.
 \\
 \\
-\subsection{Determining facial expressions using Blendshape techniques}
+\subsection{Determining mouth expressions}
 \setauthor{Romeo Bhuiyan}
 
 \begin{lstlisting}[language=Python,caption=Shape of mouth,label=lst:shapeOfMouth]
@@ -122,11 +169,11 @@ and other fields where the smooth transition of values is needed.
         Blendshape.getValue(PresetName[shape]), 0.5))
 
 \end{lstlisting}
-This pseudocode \ref{lst:shapeOfMouth} is a loop that iterates over an array containing the shapes "I", "A", "E", "O", "U". 
+This pseudocode \ref{lst:shapeOfMouth} is a loop that iterates over an array containing the shapes \texttt{A, E, I, O, U}. 
 The purpose of the loop is to blend the shape of a rigged face's mouth with a preset value of a 
 Blendshape object for each of these shapes. The loop starts by setting the value of the Blendshape 
-object to a blended value between the shape of the rigged face's mouth (riggedFace.mouth.shape[shape]) 
-and the current value of the Blendshape object (Blendshape.getValue(PresetName[shape])). 
+object to a blended value between the shape of the rigged face's mouth \texttt{(riggedFace.mouth.shape[shape])}
+and the current value of the Blendshape object \texttt{(Blendshape.getValue(PresetName[shape]))}. 
 The blend is done using the lerp function, which stands for linear interpolation. 
 This function takes three arguments: the start value, the end value, and the weight of blending. 
 In this case, the weight is set to 0.5, resulting in an even blend between the two values.
@@ -135,6 +182,8 @@ as the key. This process is repeated for each shape in the array, allowing the d
 easily blend the shape of the rigged face's mouth with preset values for multiple shapes.
 \\
 \\
+\subsection{Blinking eyes}
+\setauthor{Romeo Bhuiyan}
 \begin{lstlisting}[language=Python,caption=Blinking of the eyes,label=lst:blinking]
     riggedFace.eye.l = lerp(clamp(1 - riggedFace.eye.l, 0, 1), Blendshape.getValue(PresetName.Blink), 0.5)
     riggedFace.eye.r = lerp(clamp(1 - riggedFace.eye.r, 0, 1), Blendshape.getValue(PresetName.Blink), 0.5)
@@ -142,33 +191,159 @@ easily blend the shape of the rigged face's mouth with preset values for multipl
     Blendshape.setValue(PresetName.Blink, riggedFace.eye.l)
 
 \end{lstlisting}
-%insert text
+This pseudocode \ref{lst:blinking} is a code block that performs blinking animation on a VRM model. 
+The code uses the Lerp function, the clamp function, and the stabilizeBlink function 
+to animate the eyes of the rigged face.
+\\
+\\
+The first two lines of the code use the Lerp function to blend the current value of the left and right eye shapes 
+\texttt{(riggedFace.eye.l and riggedFace.eye.r)} with a preset Blink value from the Blendshape object. The Lerp 
+function takes the clamp of the inversed eye shape values \texttt{(1 - riggedFace.eye.l and 1 - riggedFace.eye.r)}, 
+which clamps the values to between 0 and 1, and the preset Blink value, which is obtained using \texttt{Blendshape.getValue(PresetName.Blink)}. 
+The weight of the blend is set to 0.5, resulting in an even blend between the two values.
+\\
+\\
+The third line of the code stabilizes the blinking animation of the eyes by calling 
+the stabilizeBlink function from the \texttt{Kalidokit.Face} module. This function takes the 
+current eye shape \texttt{(riggedFace.eye)} and the head's y position \texttt{(riggedFace.head.y)}  as arguments 
+and returns a stabilized eye shape.
+\\
+\\
+Finally, the fourth line of the code sets the Blink value of the Blendshape object to the 
+stabilized left eye shape \texttt{(riggedFace.eye.l)}. This will result in a smooth and stable blinking  
+of the eyes on the VRM model.
+\\
+\\
+In summary, this pseudocode is a code block that animates the eyes of a VRM model by 
+blending the current eye shape with a preset Blink value, stabilizing the blinking animation, 
+and updating the Blink value of the Blendshape object. The code uses the Lerp function, the clamp 
+function, and the stabilizeBlink function to create a smooth and stable blinking animation on the VRM model.
+\\
+\\
+\subsection{Positioning the model}
+\setauthor{Romeo Bhuiyan}
 
-%\begin{lstlisting}[language=Python,caption=Position of the model,label=lst:position]
-%    function rigPosition(name, position={x:0, y:0, z:0}, dampener=1, lerpAmount=0.3) {
-%        if (currentVrm is not defined) {
-%          return;
-%        }
-%        Part = currentVrm.humanoid.getBoneNode(name from THREE.VRMSchema.HumanoidBoneName);
-%        if (Part is not defined) {
-%          return;
-%        }
-%        vector = new THREE.Vector3(position.x * dampener, position.y * dampener, position.z * dampener);
-%        Part.position.lerp(vector, lerpAmount);
-%    }
-%      
-%      oldLookTarget = new THREE.Euler();
-%      function rigFace(riggedFace) {
-%        if (currentVrm is not defined) {
-%          return;
-%        }
-%        rigRotation("Neck", riggedFace.head, 0.7);
-%      
-%        Blendshape = currentVrm.blendShapeProxy;
-%        PresetName = THREE.VRMSchema.BlendShapePresetName;
-%    }
-%      
-%
-%\end{lstlisting}
-%text
+\begin{lstlisting}[language=Python,caption=Position of the model,label=lst:position]
+    function rigPosition(name, position={x:0, y:0, z:0}, dampener=1, lerpAmount=0.3) {
+        if (currentVrm is not defined) {
+          return;
+        }
+        Part = currentVrm.humanoid.getBoneNode(name from THREE.VRMSchema.HumanoidBoneName);
+        if (Part is not defined) {
+          return;
+        }
+        vector = new THREE.Vector3(position.x * dampener, position.y * dampener, position.z * dampener);
+        Part.position.lerp(vector, lerpAmount);
+    }
+      
+      oldLookTarget = new THREE.Euler();
+      function rigFace(riggedFace) {
+        if (currentVrm is not defined) {
+          return;
+        }
+        rigRotation("Neck", riggedFace.head, 0.7);
+      
+        Blendshape = currentVrm.blendShapeProxy;
+        PresetName = THREE.VRMSchema.BlendShapePresetName;
+    }
+      
 
+\end{lstlisting}
+This pseudocode \ref{lst:position} is a code block that positions a VRM model according to a set of defined parameters. 
+The code block consists of two functions: rigPosition and rigFace.
+\\
+\\
+The \textbf{rigPosition function} takes three arguments: name, position, dampener, and lerpAmount. The name argument is the name 
+of the part of the VRM model that needs to be positioned, the position argument is an object with x, y, and z properties 
+that represent the desired position of the part, the dampener argument scales the position values, and the lerpAmount 
+argument is the weight of the blend between the current position and the desired position.
+The function starts by checking if the currentVrm is defined, and if it's not, the function returns without executing further code. 
+If currentVrm is defined, the code uses the \texttt{humanoid.getBoneNode} method to retrieve the part specified by the name argument. 
+If the part is not defined, the function returns without executing further code.
+If the part is defined, the code creates a new \texttt{THREE.Vector3} object with the desired position 
+values (scaled by the dampener argument), and the Part.position property is blended towards the 
+desired position using the lerp method. The weight of the blend is set by the lerpAmount argument.
+\\
+\\
+The \textbf{rigFace function} takes one argument: riggedFace, which represents the face of the VRM model. The function starts 
+by checking if the \emph{currentVrm} is defined and if it's not, the function returns without executing further code.
+If \emph{currentVrm} is defined, the function calls the rigRotation method and passes two arguments: \emph{Neck} and \emph{riggedFace.head}, 
+with a third optional argument of 0.7. This rotates the neck of the VRM model according to the head position.
+The function also defines the Blendshape variable and assigns it to the \texttt{blendShapeProxy} property of the \emph{currentVrm} object. 
+The \texttt{PresetName} variable is set to the \texttt{BlendShapePresetName} property from the \texttt{THREE.VRMSchema} object.
+\\
+\\
+\subsection{Animating the body}
+\setauthor{Romeo Bhuiyan}
+\begin{lstlisting}[language=Python,caption=Animating the rest of the body,label=lst:restbody]
+    if (pose2DLandmarks && pose3DLandmarks) {
+    riggedPose = solvePose(pose3DLandmarks, pose2DLandmarks, "mediapipe", videoElement);
+    rotate("Hips", riggedPose.Hips.rotation, 0.7);
+    position("Hips", -riggedPose.Hips.position.x, riggedPose.Hips.position.y + 1, -riggedPose.Hips.position.z, 1, 0.07);
+
+    rotate("Chest", riggedPose.Spine, 0.25, 0.3);
+    rotate("Spine", riggedPose.Spine, 0.45, 0.3);
+
+    rotate("RightUpperArm", riggedPose.RightUpperArm, 1, 0.3);
+    rotate("RightLowerArm", riggedPose.RightLowerArm, 1, 0.3);
+    rotate("LeftUpperArm", riggedPose.LeftUpperArm, 1, 0.3);
+    rotate("LeftLowerArm", riggedPose.LeftLowerArm, 1, 0.3);
+
+    rotate("LeftUpperLeg", riggedPose.LeftUpperLeg, 1, 0.3);
+    rotate("LeftLowerLeg", riggedPose.LeftLowerLeg, 1, 0.3);
+    rotate("RightUpperLeg", riggedPose.RightUpperLeg, 1, 0.3);
+    rotate("RightLowerLeg", riggedPose.RightLowerLeg, 1, 0.3);
+}
+
+\end{lstlisting}
+The pseudocode ,\ref{lst:restbody} you have posted describes an animation process for a VRM body. 
+The code checks if the \emph{pose2DLandmarks} and \emph{pose3DLandmarks} are available. If they are both available, 
+the code calculates the rigged pose using the function \texttt{solvePose} with the \emph{pose3DLandmarks}, \emph{pose2DLandmarks}, 
+\emph{mediapipe}, and \emph{videoElement} as input parameters. The function \texttt{solvePose} returns the rigged pose, which 
+is then stored in the variable \texttt{riggedPose}.
+The code then rotates and positions various body parts of the VRM model based on the values obtained from the 
+rigged pose. For example, the hips are rotated based on the value of \texttt{riggedPose.Hips.rotation} with a weight 
+of 0.7, and their position is changed to \texttt{x: -riggedPose.Hips.position.x, y: riggedPose.Hips.position.y + 1, z: 
+-riggedPose.Hips.position.z} with a weight of 1 and a smoothing factor of 0.07. Similar operations are performed 
+for the chest, spine, arms, and legs.
+The rotation and position of each body part is performed using two separate functions: \texttt{rotate} and 
+\texttt{position}. The first parameter of each function specifies the name of the body part to be animated, 
+while the remaining parameters specify the values used for rotation or position, weight, and smoothing factor.
+In this way, the VRM model's body is animated according to the solved pose information.
+\\
+\\
+\subsection{Animation of both hands}
+\setauthor{Romeo Bhuiyan}
+\begin{lstlisting}[language=Python,caption=Animating the left hand,label=lst:hands]
+    if (leftHandLandmarks) {
+        # Obtain the rotation information of the left hand
+        riggedLeftHand = Hand.solve(leftHandLandmarks, "Left");
+      
+        # Apply the rotation to the left hand rig
+        rigRotation("LeftHand", {
+          z: riggedLeftHand.LeftWrist.z,
+          y: riggedLeftHand.LeftWrist.y,
+          x: riggedLeftHand.LeftWrist.x,
+        });
+      
+        # Apply the rotation to each of the finger bones
+        rigRotation("LeftRingProximal", riggedLeftHand.LeftRingProximal);
+        rigRotation("LeftRingIntermediate", riggedLeftHand.LeftRingIntermediate);
+        rigRotation("LeftRingDistal", riggedLeftHand.LeftRingDistal);
+        rigRotation("LeftIndexProximal", riggedLeftHand.LeftIndexProximal);
+        rigRotation("LeftIndexIntermediate", riggedLeftHand.LeftIndexIntermediate);
+        rigRotation("LeftIndexDistal", riggedLeftHand.LeftIndexDistal);
+      }
+\end{lstlisting}
+The provided pseudocode \ref{lst:hands} animates the left (same for the right) hand of a VRM character. 
+It starts by checking if the left hand landmarks have been detected. 
+If they have, the code then calculates the rotations of the left hand by 
+using the \texttt{Hand.solve} function, which takes in the left hand landmarks and the string \texttt{Left}.
+The resulting rotations are then applied to the left hand rig and each of the finger 
+bones using the \texttt{rigRotation} function. For the left hand rig, the function is called with 
+the string \texttt{LeftHand} and the rotation values for the x, y, and z axes, obtained from the 
+\texttt{riggedLeftHand} object.
+Similarly, the rotations of each finger bone are applied by calling the \texttt{rigRotation} function 
+with the names of the bones, such as \texttt{LeftRingProximal},\texttt{LeftRingIntermediate}, and \texttt{LeftRingDistal}, 
+and the corresponding rotation values obtained from the \texttt{riggedLeftHand} object. The same process is 
+repeated for each of the other finger bones.
