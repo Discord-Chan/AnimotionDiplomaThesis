@@ -46,6 +46,65 @@ face and expressions.
 \end{figure}
 \\
 \\
+\section{Decision between Webframeworks}
+\setauthor{Christoph Lasinger}
+
+\subsection{Angular}
+\setauthor{Christoph Lasinger}
+SPA stands for Single-Page application and is a type of web application that dynamically rewrites the 
+current webpage instead of entirely reloading, i.e., requesting and displaying data from the server, it. 
+The main benefits of an SPA are a more responsive user experience and avoiding the delay of having to wait 
+for a website to load. Angular, the next version of the discontinued AngularJS, is a framework for such 
+applications and is maintained and released by Google  in 2016.
+\\
+\\
+Angular is a free and open-source project, meaning that the copyright owner, in this case the company Google,
+gives anyone the right to distribute, modify and study the software for any purpose. Open-source software is 
+however not the same as public-domain software as it still possesses a copyright, just a very open one, hence its name. 
+One big advantage of such software over closed-source software is that anyone in the world can find bugs and make 
+improvements for it, free of charge for the actual project-owner. Moreover, even if the publisher decides to no longer 
+provide support and update their software, it can still be adapted and improved by its users. Amazingly, it can be seen 
+in practise that this concept works and users really do improve open-source projects not only for their benefit but for 
+that of others as well. For those reasons, Animotion too is an open-source project. \ref{Opensource}
+%write more concretely about Angular
+\\
+\\
+\subsection{React}
+\setauthor{Christoph Lasinger}
+Like Angular, React also is an open-source SPA-Framework, maintained and released by Meta (then Facebook) in 2013.
+The easiest way to set up a React project is to use the officially supported command “create-react-app” 
+(similar command for Next.js: create next-app) as it offers a modern build setup and is already preconfigured. 
+Optionally, further parameters can be used to customize the project, for example “—template typescript” to use TypeScript 
+instead of JavaScript. After the project is created, it can immediately be started and viewed on localhost using either 
+“npm start” or “yarn start”, depending on the package manager that is used. For development the command “npm run dev” is 
+also very useful, as the website is immediately refreshed after saving any changes to the code. \ref{create-react}
+% (is run dev also available to react or just nextjs?)
+\\
+\\
+\subsection{Next.js}
+\setauthor{Christoph Lasinger}
+% next.js
+\subsection{Next.js}
+\setauthor{Christoph Lasinger}
+Sass stands for syntactically awesome style sheets and is a stylesheet language that compiles into CSS (Cascading Style Sheets). 
+It extends CSS by quite a few features such as functions, variables, nested loops, mixins, etc. As a result, Sass enables 
+stylesheets to be organized more easily and for design to be shared within and across projects. 
+\\
+\\
+For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, 
+Sass makes it possible to store the colour code in a variable and access it using its more human-readable name.
+Another useful feature of Sass not mentioned before is inheritance, an example of which can be seen in the following code snippet.
+\\
+\\
+% insert sass code snippet here
+Through the “extend” keyword CSS properties of one selector can be passed over to another selector which then automatically has those 
+same properties set to the same values, thus inheriting them. In this example, legal_notice_text is merely a variant of the 
+default_text and should therefore be in the same colour, font, and alignment. However, as legal_notice_text is of not much 
+importance to the average user of the website, it should be rather small and take up little space. Because of the usage of 
+inheritance, the code becomes more readable and easier to write and understand. \ref{SassInheritance}
+\\
+\\
+
 \section{Comparison of 3D rendering technologies}
 \setauthor{Romeo Bhuiyan}
 In order to display a virtual model on a canvas, a 3D rendering technology was required. Two libraries, 
@@ -91,7 +150,7 @@ and also the files are smaller in size, making it a great choice for loading 3D 
 \\
 \\
 \subsection{Conclusion}
-n conclusion, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
+In conclusion, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
 offers several advantages over WebGL. One of the main benefits of using GLTFLoader is 
 its ability to handle the loading and parsing of GLTF (GL Transmission Format) files, 
 which are a widely-used format for 3D models. This eliminates the need for developers 
