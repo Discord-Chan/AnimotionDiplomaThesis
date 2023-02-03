@@ -16,9 +16,9 @@ vertices and faces of custom 3D models. Three.js also includes a number of mater
 allow for realistic shading and texturing of 3D objects, as well as lights and cameras 
 that can be positioned and manipulated to achieve the desired lighting and perspective effects.
 Another important aspect of Three.js is its support for keyframe animations. This allows
- developers to animate objects over time, creating smooth transitions and movements. 
- The library also provides support for physics simulations, making it possible to 
- create complex and interactive 3D experiences that respond to user input.
+developers to animate objects over time, creating smooth transitions and movements. 
+The library also provides support for physics simulations, making it possible to 
+create complex and interactive 3D experiences that respond to user input.
 \\
 \\
 \subsection{Three-vrm.js}
@@ -48,14 +48,27 @@ face and expressions.
 \\
 \section{Decision between Webframeworks}
 \setauthor{Christoph Lasinger}
-
+The decision to use a web framework at all and not simply vanilla HTML, CSS and JavaScript came from a multitude of reasons.
+For example all the ways they provide assistance while developing, such as providing a file structure in which to neatly 
+organize a project, a prebuilt routing system, a template-project that can serve as starting point, an option to debug a 
+project and many more. As a result, a great amount of both time and effort can be saved, that can then in turn be spent on 
+those particular parts of the project that are actually important.
+\\
+\\
+Another reason to use web frameworks that has less to do with development, but more with working as a software engineer in 
+the real world, is that for a lot of jobs experience in working with certain frameworks is certainly very useful, if not 
+even required. The following graph shows a breakdown of about 650 000 job offerings on websites like Linkedin, 
+Dice and Glassdoor by the required framework. \cite{WebframeworkJobs}
+% insert image here
+\\
+\\
 \subsection{Angular}
 \setauthor{Christoph Lasinger}
 SPA stands for Single-Page application and is a type of web application that dynamically rewrites the 
 current webpage instead of entirely reloading, i.e., requesting and displaying data from the server, it. 
 The main benefits of an SPA are a more responsive user experience and avoiding the delay of having to wait 
 for a website to load. Angular, the next version of the discontinued AngularJS, is a framework for such 
-applications and is maintained and released by Google  in 2016.
+applications and is maintained and released by Google in 2016.
 \\
 \\
 Angular is a free and open-source project, meaning that the copyright owner, in this case the company Google,
@@ -66,7 +79,22 @@ improvements for it, free of charge for the actual project-owner. Moreover, even
 provide support and update their software, it can still be adapted and improved by its users. Amazingly, it can be seen 
 in practise that this concept works and users really do improve open-source projects not only for their benefit but for 
 that of others as well. For those reasons, Animotion too is an open-source project.\cite{Opensource}
-%write more concretely about Angular
+\\
+\\
+Concretely, Angular is a web framework, built on Typescript, a high-level, object-oriented programming language that is 
+a superset of JavaScript, that can be used to build from small projects to enterprise-grade web applications. It has a 
+large library-collection that covers a wide array of features and offers an equally large number of developer tools for 
+testing, updating and maintaining one's code. Moreover, Angular is component-based, meaning that an application consists 
+of several building blocks (components), whereas each one defines one part of the user interface and any behaviour associated 
+with it. Because these components are reusable and effectively modularize the application, it becomes easier to develop and 
+test and makes the code more readable. This effect is especially noticeable in large-scale projects. \cite{AngularDescription}
+\\
+\\
+The Angular CLI, which stands for command-line interface, plays a big part in developing as it is used to efficiently and 
+conveniently create (ng new), build (ng build), and test (ng test) Angular applications. It is also used to add new libraries 
+(ng add) when needed. However, the most important command when developing is ng serve, as it starts the application on 
+localhost and automatically rebuilds it and reloads the website if any changes to the source code occur, which makes 
+developing quite convenient. \cite{AngularCLI}
 \\
 \\
 \subsection{React}
@@ -78,12 +106,14 @@ Optionally, further parameters can be used to customize the project, for example
 instead of JavaScript. After the project is created, it can immediately be started and viewed on localhost using either 
 "npm start" or "yarn start", depending on the package manager that is used. For development the command "npm run dev" is 
 also very useful, as the website is immediately refreshed after saving any changes to the code. \cite{create-react}
-% (is run dev also available to react or just nextjs?)
 \\
 \\
 \subsection{Next.js}
 \setauthor{Christoph Lasinger}
-Hier werden noch Sachen eingefügt!
+Next.js is a React framework, meaning that, while React provides functions and features to build user interface elements
+as a JavaScript library, Next.js handles the configuration and tooling that React needs. Additionally, Next.js provides
+new features, structures, and optimizations. These additional features include data fetching, integrating, routing,
+and so on. \cite{NextjsDescription}
 \\
 \\
 \subsection{Sass}
