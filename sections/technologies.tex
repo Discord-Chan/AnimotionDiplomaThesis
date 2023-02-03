@@ -86,7 +86,7 @@ also very useful, as the website is immediately refreshed after saving any chang
 Hier werden noch Sachen eingefügt!
 \\
 \\
-\subsection{Next.js}
+\subsection{Sass}
 \setauthor{Christoph Lasinger}
 Sass stands for syntactically awesome style sheets and is a stylesheet language that compiles into CSS (Cascading Style Sheets). 
 It extends CSS by quite a few features such as functions, variables, nested loops, mixins, etc. As a result, Sass enables 
@@ -100,11 +100,6 @@ same properties set to the same values, thus inheriting them. In this example, l
 default-text and should therefore be in the same colour, font, and alignment. However, as legal-notice-text is of not much 
 importance to the average user of the website, it should be rather small and take up little space. Because of the usage of 
 inheritance, the code becomes more readable and easier to write and understand. \cite{SassInheritance}
-\\
-\\
-\section{Object interaction with OrbitControls}
-\author{Romeo Bhuiyan}
-Orbit Controls
 \\
 \\
 \section{Comparison of 3D rendering technologies}
@@ -171,9 +166,154 @@ to work with 3D models on the web, GLTFLoader is the best choice as seen below i
     \caption{Loading the model with the help of GLTFLoader}
     \label{fig:gltfloader}
 \end{figure}
-\\
-\\
 \newpage
+\section{Object interaction with OrbitControls}
+\author{Romeo Bhuiyan}
+\texttt{Orbit-Controls.js} is a JavaScript library used for controlling camera rotations 
+and movements in 3D graphics applications. This library provides an easy-to-use 
+interface for controlling the camera in a 3D environment, and is commonly used in 
+interactive 3D web applications and other 3D visualizations.
+
+The library works by allowing the user to control the camera through mouse 
+and touch inputs, such as panning, zooming, and rotating the camera around a 
+certain point in the 3D space. It uses the Three.js library, which is a popular 
+library for creating 3D graphics in the browser, as a base.
+
+Orbit-Controls.js makes it easy to interact with 3D scenes and view them from different 
+perspectives. It provides a simple way to navigate and explore 3D environments, making it a 
+useful tool for a wide range of applications, including scientific simulations, product visualization, architecture, and more.
+
+To use \texttt{Orbit-Controls.js}, you need to include the library in your HTML file, and then 
+create an instance of the OrbitControls class. You will also need to pass in a Three.js 
+camera object, as well as a Three.js renderer. The library will then take care of the rest, 
+allowing you to control the camera using mouse and touch inputs.
+\\
+\\
+\subsection{Azimuth- and polar angle}
+\setauthor{Romeo Bhuiyan}
+The Azimuth angle and the Polar angle are two important concepts in 3D graphics and visualization. 
+In the context of orbit-controls.js, they are used to control the camera's rotation and position in 3D space.
+
+The Azimuth angle refers to the angle between a reference plane and the position of the camera in 
+the x-z plane. This angle determines the camera's horizontal rotation and the direction it is facing. 
+In orbit-controls.js, the Azimuth angle is controlled by moving the mouse horizontally.
+
+The Polar angle, on the other hand, refers to the angle between the position of the camera and the 
+positive y-axis. It determines the camera's vertical rotation and the height of the camera relative 
+to the scene. In orbit-controls.js, the Polar angle is controlled by moving the mouse vertically.
+
+By controlling both the Azimuth and Polar angles, the orbit-controls.js library allows the user to 
+change the position and orientation of the camera in 3D space. This is especially useful for interactive 
+3D visualizations, where the user needs to be able to explore the scene from different perspectives.
+
+Orbit-controls.js is often used in conjunction with WebGL and Three.js, which are libraries for creating 
+3D graphics and animations in the browser. The combination of these technologies makes it possible to create 
+interactive 3D visualizations that can run in a web browser, without the need for additional software or plugins.
+\\
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/orbitcontrols.png}
+  \caption{Azimuth and Polar angle}
+  \label{fig:orbitcontrols}
+\end{figure}
+\newpage
+\section{Screen capture technology}
+\setauthor{Romeo Bhuiyan}
+Screen recording is an important aspect in the world of VRM programs. 
+Screen recording allows for the capture of all the visual and audio elements that are displayed 
+on a computer screen. The recorded content can then be shared, edited, and distributed for various 
+purposes. In the context of Animotion, screen recording can serve several important functions.
+
+First and foremost, screen recording can be used to document and showcase the functionality and 
+capabilities of the VRM Model program. This can include recording the different animations, movements, 
+and interactions that are possible within the program. This type of recording can be used to demonstrate 
+the program's features to potential users, stakeholders, or clients, and can help to generate interest 
+and engagement with the VRM Model program.
+
+Screen recording can also be used to provide support and training to users of this kind of program. 
+By recording step-by-step instructions or tutorials, users can learn how to use the program effectively, 
+even if they have no prior experience or knowledge. Additionally, if users encounter any issues or 
+difficulties while using the VRM Model program, a screen recording can be created to assist in resolving 
+the problem and provide a visual representation of the issue at hand.
+
+Screen recording can also be used to document bugs or other technical issues that arise during the use 
+of the VRM Model program. By capturing the screen and audio output, developers and technical support 
+teams can more easily diagnose and resolve any problems that may occur.
+Lastly, screen recording can be used for creative purposes, such as creating animations or special 
+effects using the VRM Model program. By capturing and manipulating the recordings, users can explore 
+new ways to use and interact with the VRM Model program, and create new and unique content that 
+can be shared and enjoyed by others.
+\\
+\\
+\subsection{RecordRTC}
+\setauthor{Romeo Bhuiyan}
+\texttt{RTCRecord.js} is a JavaScript library that allows users to perform real-time communication (RTC) 
+recording in the web browser. It uses the WebRTC API, which is a standardized way of enabling 
+real-time communication capabilities in web browsers, to capture audio and video data from a 
+user's microphone and webcam. The captured data can then be saved as a video file for future use.
+
+One of the main use cases for \texttt{RTCRecord.js} is for screen recording in web-based applications, 
+such as video conferencing and online collaboration tools. This allows users to record their 
+screen activity, audio, and webcam footage in real-time, without the need for any additional 
+software. The recorded videos can then be used for training purposes, for documentation, 
+or for sharing information with others.
+
+Another use case for \texttt{RTCRecord.js} is for creating educational content, such as tutorials 
+and screencasts. With RTCRecord.js, users can easily record their screen and webcam footage, 
+and share their knowledge with others in a visually engaging way. \cite{rtcrecord}
+\\
+\\
+\subsection{FFmpeg}
+\setauthor{Romeo Bhuiyan}
+FFmpeg is an open-source software library for audio, video and image processing. 
+The library can be used to encode, decode, transcode, mux, demux, stream, filter and play various 
+multimedia files. It is written in the C programming language and is commonly used on a variety of 
+operating systems including Windows, macOS, and Linux.
+
+\texttt{FFmpeg.min.js} is a JavaScript implementation of FFmpeg, which can be used for client-side video 
+processing in web applications. It provides a way for web developers to perform various multimedia 
+operations in real-time within a web browser. With ffmpeg.min.js, developers can leverage the 
+functionality of FFmpeg in their web applications, including video compression, resizing, cropping, and transcoding.
+
+The library can be used for a range of purposes, including creating video editing tools, video 
+compression utilities, and real-time video processing applications. With the rise of cloud computing, 
+ffmpeg.min.js can be used to perform video processing operations in real-time on a server, without requiring 
+the user to have FFmpeg installed on their local machine. This can save both time and resources, and provide 
+a convenient solution for web developers looking to incorporate video processing capabilities into their applications. \cite{ffmpeg}
+\\
+\\
+\subsection{WebM video format for web-based applications}
+\setauthor{Romeo Bhuiyan}
+The WebM video format is an open, royalty-free, and high-quality video compression format 
+that has been specifically designed for the web. This format was developed by Google and 
+the WebM Project, a community of developers and industry partners, with the goal of 
+providing an alternative to proprietary video formats, such as H.264 and MPEG-4. 
+The WebM format is based on the VP8 video codec and the Vorbis audio codec, 
+which are both open-source and can be freely used without licensing fees.
+
+One of the key benefits of the WebM format is its high-quality video compression, 
+which provides visually lossless video playback without sacrificing file size. 
+This makes WebM an ideal choice for multimedia applications that require 
+high-quality video playback, such as video conferencing, video on demand, and live streaming. The format 
+is also highly scalable and can be used on a wide range of devices, from desktop computers to mobile 
+devices, ensuring compatibility across platforms.
+
+Another important advantage of the WebM format is its compatibility with HTML5. The format is 
+natively supported by most modern browsers, including Google Chrome, Mozilla Firefox, and Opera, 
+and can be easily embedded into web pages without the need for additional plugins or software. 
+This makes it an ideal choice for web-based video applications, as it eliminates the need for 
+users to download and install additional software or plugins.
+
+In addition to its compatibility and high-quality video compression, the WebM format also has 
+a small file size, making it an ideal choice for applications that require fast loading times, 
+such as online video platforms and websites. The format is also highly customizable, and developers 
+can use the WebM SDK to modify and extend the format to meet their specific needs.
+Another key benefit of the WebM format is its ability to support a wide range of video and audio 
+codecs, including VP9, Opus, and VP10, making it a flexible choice for applications that require 
+support for multiple codecs. The format also supports high dynamic range (HDR) video, providing 
+users with a superior viewing experience with enhanced color and brightness. \cite{webm}
+\\
+\\
 \section{Calculation of the virtual reality model} 
 \setauthor{Romeo Bhuiyan}
 Controlling a VRM on a website involves a complex process that involves 
