@@ -123,8 +123,21 @@ It extends CSS by quite a few features such as functions, variables, nested loop
 stylesheets to be organized more easily and for design to be shared within and across projects. 
 For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, 
 Sass makes it possible to store the colour code in a variable and access it using its more human-readable name.
-Another useful feature of Sass not mentioned before is inheritance, an example of which can be seen in the following code snippet.
-% insert sass code snippet here
+Another useful feature of Sass not mentioned before is inheritance, an example of which can be seen in the following code snippet\ref{lst:sass}.
+
+\begin{lstlisting}[language=Python,caption=Textstyling in Sass,label=lst:sass]
+  .default_text{
+    text-align: center;
+    color: white;
+    font-family: Prototype;
+  }
+
+  .legal_notice_text{
+    @extend .default_text;
+    font-size: 0.5em;
+  }
+\end{lstlisting}
+
 Through the "extend" keyword CSS properties of one selector can be passed over to another selector which then automatically has those 
 same properties set to the same values, thus inheriting them. In this example, legal-notice-text is merely a variant of the 
 default-text and should therefore be in the same colour, font, and alignment. However, as legal-notice-text is of not much 
@@ -153,7 +166,7 @@ run smoothly and efficiently, even on devices with limited resources. Additional
 a high level of compatibility across different browsers and devices, making it a widely accessible technology.
 WebGL is supported by most modern web browsers, including Chrome, Firefox, Safari, and Edge. 
 This means that developers can create WebGL applications that can be easily accessed by 
-users on a wide range of devices and platforms.
+users on a wide range of devices and platforms. \cite{WebGL}
 \\
 \\
 \subsection{GLTFLoader}
@@ -173,7 +186,7 @@ displaying 3D models on the web. By using a standardized file format and a dedic
 developers can focus on creating the logic and functionality of their application, rather than 
 spending time on complex parsing and loading tasks.
 Additionally, GLTF is a highly efficient format, which means that it can be loaded faster, 
-and also the files are smaller in size, making it a great choice for loading 3D models on the web.
+and also the files are smaller in size, making it a great choice for loading 3D models on the web. \cite{GLTFLoader}
 \\
 \\
 \subsection{Conclusion}
@@ -216,7 +229,7 @@ useful tool for a wide range of applications, including scientific simulations, 
 To use \texttt{Orbit-Controls.js}, you need to include the library in your HTML file, and then 
 create an instance of the OrbitControls class. You will also need to pass in a Three.js 
 camera object, as well as a Three.js renderer. The library will then take care of the rest, 
-allowing you to control the camera using mouse and touch inputs.
+allowing you to control the camera using mouse and touch inputs. \cite{orbitcontrols}
 \\
 \\
 \subsection{Azimuth- and polar angle}
