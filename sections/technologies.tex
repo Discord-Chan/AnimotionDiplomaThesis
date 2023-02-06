@@ -99,7 +99,31 @@ developing quite convenient. \cite{AngularCLI}
 \\
 \subsection{React}
 \setauthor{Christoph Lasinger}
-Like Angular, React also is an open-source SPA-Framework, maintained and released by Meta (then Facebook) in 2013.
+Like Angular, React also is an open-source SPA-Framework, released by Meta (then Facebook) in 2013 and maintained by
+Meta and a community of developers. Although the main focus of React lies on the component system and its DOM, it also 
+has a large ecosystem of libraries surrounding it, making React quite flexible.
+% one more sentence?
+\\
+\\
+As mentioned before, among the most notable features of React is its virtual DOM (Document Object Model), a type of 
+data structure that represents a webpage making it possible to only update certain parts of it that have changed. 
+This provides a major performance boost but does not create extra effort for the developer as they can still write 
+code as if the entire page is re-rendered on each refresh.
+\\
+\\
+React JSX, where JSX stands for JavaScript XML, which in turn stands for Extensible Markup Language, is a combination
+of HTML and JavaScript. It plays a big part in React as JSX is the return type of all components. The following 
+code snippet serves of an example.
+% insert code snippet
+This exported function called About is, besides any imports that occur above it, practically the only code that makes 
+up a so-called page, which exactly translate to a webpage, i.e., what comes up after visiting an URL. This function 
+that shares its name with the file, a JavaScript file to be exact, merely consists of one long return statement that 
+contains multiple HTML elements making up the webpage. \cite{ReactJSX}
+The empty opening and closing tags at the beginning and end of the statement is the short syntax for a fragment, a 
+feature in React that acts as a container and allows returning multiple child elements in a return statement 
+without adding additional nodes to the DOM. \cite{}
+\\
+\\
 The easiest way to set up a React project is to use the officially supported command "create-react-app" 
 (similar command for Next.js: create next-app) as it offers a modern build setup and is already preconfigured. 
 Optionally, further parameters can be used to customize the project, for example "—template typescript" to use TypeScript 
@@ -120,9 +144,13 @@ and so on. \cite{NextjsDescription}
 \setauthor{Christoph Lasinger}
 Sass stands for syntactically awesome style sheets and is a stylesheet language that compiles into CSS (Cascading Style Sheets). 
 It extends CSS by quite a few features such as functions, variables, nested loops, mixins, etc. As a result, Sass enables 
-stylesheets to be organized more easily and for design to be shared within and across projects. 
+stylesheets to be organized more easily and for design to be shared within and across projects.
+\\
+\\
 For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, 
 Sass makes it possible to store the colour code in a variable and access it using its more human-readable name.
+\\
+\\
 Another useful feature of Sass not mentioned before is inheritance, an example of which can be seen in the following code snippet\ref{lst:sass}.
 
 \begin{lstlisting}[language=Python,caption=Textstyling in Sass,label=lst:sass]
