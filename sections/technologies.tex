@@ -143,8 +143,28 @@ and that it defines a method called render. \cite{ReactComponentProps} \cite{Rea
 \setauthor{Christoph Lasinger}
 React JSX, where JSX stands for JavaScript XML, which in turn stands for Extensible Markup Language, is a combination
 of HTML and JavaScript. It plays a big part in React as JSX is the return type of all components. The following 
-code snippet serves of an example.
-% insert code snippet
+code snippet serves of an example\ref{lst:react}.
+
+\begin{lstlisting}[language=Python,caption=Example of a react component,label=lst:react]
+  export default function About() {
+  return (
+    <>
+    <button className="back-button" onClick={() => { GoTo("/"); }}>
+      <p>back to menu</p>
+    </button>
+    <h1 id="main-headline" className="glitch" data-text="Community">Community</h1>
+    <p className="community-text">
+        Welcome to the community of Animotion! <br />
+        Here you can join our official discord server and get to know new people. <br />
+        You can also upload your own music and dance videos. <br />
+        If you need help our 24/7 support is always here for you.
+    </p>
+    <iframe className="discord-iframe" src="https://discord.com/widget?id=1035647726634934382&theme=dark" allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </>
+  )
+}
+\end{lstlisting}
+
 This exported function called About is, besides any imports that occur above it, practically the only code that makes 
 up a so-called page, which exactly translate to a webpage, i.e., what comes up after visiting an URL. This function 
 that shares its name with the file, a JavaScript file to be exact, merely consists of one long return statement that 
@@ -310,7 +330,7 @@ Through the "extend" keyword CSS properties of one selector can be passed over t
 same properties set to the same values, thus inheriting them. In this example, legal-notice-text is merely a variant of the 
 default-text and should therefore be in the same colour, font, and alignment. However, as legal-notice-text is of not much 
 importance to the average user of the website, it should be rather small and take up little space. Because of the usage of 
-inheritance, the code becomes more readable and easier to write and understand. \cite{SassInheritance}
+inheritance, the code becomes more readable and easier to write and understand. \cite{SassFeatures}
 \\
 \\
 \subsection{Partials}
@@ -382,7 +402,7 @@ and also the files are smaller in size, making it a great choice for loading 3D 
 \\
 \\
 \subsection{Conclusion}
-In conclusion, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
+\textbf{In conclusion}, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
 offers several advantages over WebGL. One of the main benefits of using GLTFLoader is 
 its ability to handle the loading and parsing of GLTF (GL Transmission Format) files, 
 which are a widely-used format for 3D models. This eliminates the need for developers 
@@ -404,7 +424,7 @@ to work with 3D models on the web, GLTFLoader is the best choice as seen below i
 \newpage
 \section{Object interaction with OrbitControls}
 \author{Romeo Bhuiyan}
-\texttt{Orbit-Controls.js} is a JavaScript library used for controlling camera rotations 
+\textbf{Orbit-Controls.js} is a JavaScript library used for controlling camera rotations 
 and movements in 3D graphics applications. This library provides an easy-to-use 
 interface for controlling the camera in a 3D environment, and is commonly used in 
 interactive 3D web applications and other 3D visualizations.
@@ -418,7 +438,7 @@ Orbit-Controls.js makes it easy to interact with 3D scenes and view them from di
 perspectives. It provides a simple way to navigate and explore 3D environments, making it a 
 useful tool for a wide range of applications, including scientific simulations, product visualization, architecture, and more.
 
-To use \texttt{Orbit-Controls.js}, you need to include the library in your HTML file, and then 
+To use Orbit-Controls.js, you need to include the library in your HTML file, and then 
 create an instance of the OrbitControls class. You will also need to pass in a Three.js 
 camera object, as well as a Three.js renderer. The library will then take care of the rest, 
 allowing you to control the camera using mouse and touch inputs. \cite{orbitcontrols}
@@ -426,7 +446,7 @@ allowing you to control the camera using mouse and touch inputs. \cite{orbitcont
 \\
 \subsection{Azimuth- and polar angle}
 \setauthor{Romeo Bhuiyan}
-The Azimuth angle and the Polar angle are two important concepts in 3D graphics and visualization. 
+The \textbf{Azimuth angle and the Polar angle} are two important concepts in 3D graphics and visualization. 
 In the context of orbit-controls.js, they are used to control the camera's rotation and position in 3D space.
 
 The Azimuth angle refers to the angle between a reference plane and the position of the camera in 
@@ -455,7 +475,7 @@ interactive 3D visualizations that can run in a web browser, without the need fo
 
 \section{Camera utilization using camera utils}
 \setauthor{Romeo Bhuiyan}
-The camera utils.js library is a JavaScript-based tool for controlling camera behavior in web-based applications. 
+The \textbf{camera utils.js} library is a JavaScript-based tool for controlling camera behavior in web-based applications. 
 This library provides a set of functions and utilities that simplify the process of integrating camera functionality 
 into a web application. By leveraging the camera utils.js library, developers can add camera-based features to 
 their web applications with ease and efficiency.
@@ -476,9 +496,9 @@ camera performance. For example, the library implements a number of techniques t
 smooth camera movement, even when processing large amounts of data in real-time.
 \\
 \\
-\section{drawing utils}
+\section{Drawing utils}
 \setauthor{Romeo Bhuiyan}
-"drawing utils.js" is a JavaScript library designed to simplify and streamline the process of 
+\textbf{drawing utils.js} is a JavaScript library designed to simplify and streamline the process of 
 creating and rendering graphics within a web-based environment. The library provides a set of utility 
 functions that enable developers to quickly and easily implement common graphical tasks such as 
 creating 2D shapes, generating text, and creating animations.
@@ -535,25 +555,25 @@ can be shared and enjoyed by others.
 \\
 \subsection{RecordRTC}
 \setauthor{Romeo Bhuiyan}
-\texttt{RTCRecord.js} is a JavaScript library that allows users to perform real-time communication (RTC) 
+\textbf{RTCRecord.js} is a JavaScript library that allows users to perform real-time communication (RTC) 
 recording in the web browser. It uses the WebRTC API, which is a standardized way of enabling 
 real-time communication capabilities in web browsers, to capture audio and video data from a 
 user's microphone and webcam. The captured data can then be saved as a video file for future use.
 
-One of the main use cases for \texttt{RTCRecord.js} is for screen recording in web-based applications, 
+One of the main use cases for RTCRecord.js is for screen recording in web-based applications, 
 such as video conferencing and online collaboration tools. This allows users to record their 
 screen activity, audio, and webcam footage in real-time, without the need for any additional 
 software. The recorded videos can then be used for training purposes, for documentation, 
 or for sharing information with others.
 
-Another use case for \texttt{RTCRecord.js} is for creating educational content, such as tutorials 
+Another use case for RTCRecord.js is for creating educational content, such as tutorials 
 and screencasts. With RTCRecord.js, users can easily record their screen and webcam footage, 
 and share their knowledge with others in a visually engaging way. \cite{rtcrecord}
 \\
 \\
 \subsection{FFmpeg}
 \setauthor{Romeo Bhuiyan}
-FFmpeg is an open-source software library for audio, video and image processing. 
+\textbf{FFmpeg} is an open-source software library for audio, video and image processing. 
 The library can be used to encode, decode, transcode, mux, demux, stream, filter and play various 
 multimedia files. It is written in the C programming language and is commonly used on a variety of 
 operating systems including Windows, macOS, and Linux.
@@ -572,7 +592,7 @@ a convenient solution for web developers looking to incorporate video processing
 \\
 \subsection{WebM video format for web-based applications}
 \setauthor{Romeo Bhuiyan}
-The WebM video format is an open, royalty-free, and high-quality video compression format 
+The \textbf{WebM video format} is an open, royalty-free, and high-quality video compression format 
 that has been specifically designed for the web. This format was developed by Google and 
 the WebM Project, a community of developers and industry partners, with the goal of 
 providing an alternative to proprietary video formats, such as H.264 and MPEG-4. 
@@ -624,7 +644,7 @@ the movement and interactions of the VR model.
 \\
 \subsection{Blendshape}
 \setauthor{Romeo Bhuiyan}
-Blendshape is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
+\textbf{Blendshape} is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
 It works by creating a set of \emph{target} shapes for a 3D model, each representing a different expression or shape, 
 and then using a set of weights or \emph{blend} values to interpolate between these target shapes, creating a 
 smooth transition between them. This allows animators to create a wide range of expressive characters with a 
@@ -633,7 +653,7 @@ limited number of 3D models. Blendshapes are commonly used in animation, film an
 \\
 \subsection{Lerp}
 \setauthor{Romeo Bhuiyan}
-The Lerp function, short for Linear Interpolation, is a mathematical function that is 
+The \textbf{Lerp} function, short for Linear Interpolation, is a mathematical function that is 
 used to smoothly blend between two values. The function takes three arguments: a start value, 
 an end value, and a weight. The weight is a value between 0 and 1 that represents the proportion 
 of the blend between the start and end values.
