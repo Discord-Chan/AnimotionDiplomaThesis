@@ -75,7 +75,7 @@ SPA stands for Single-Page application and is a type of web application that dyn
 current webpage instead of entirely reloading, i.e., requesting and displaying data from the server, it. 
 The main benefits of an SPA are a more responsive user experience and avoiding the delay of having to wait 
 for a website to load. Angular, the next version of the discontinued AngularJS, is a framework for such 
-applications and is maintained and released by Google in 2016.
+applications and is maintained and released by Google in 2016. \cite{RoadToReact}
 \\
 \\
 \subsection{Open-source project}
@@ -136,7 +136,7 @@ more commonly as they provide more features. In general, React components work l
 arbitrary inputs, props to be exact, and return UI elements that are displayed on the website. When creating 
 such a class the minimum requirements are that it extends the base component class React.Component, though it 
 also possible to define one's own base class it is strongly discouraged in the official documentation of React,
-and that it defines a method called render.
+and that it defines a method called render. \cite{ReactComponentProps} \cite{ReactComponent}
 \\
 \\
 \subsection{React JSX}
@@ -178,10 +178,11 @@ in forums, and so on.
 
 Another difference to consider when choosing one over the other is their respective programming language. While Angular is built
 on TypeScript, React is a JavaScript library, so previous experience with one or the other, in case of TypeScript probably
-more so the lack of experience, might influence the decision.
+more so the lack of experience, might influence the decision. \cite{AngularReactComparison}
 
 While Animotion started out as an Angular project, after a short period of time we decided to use React instead, because it 
-is easier to learn and more popular as well, as can be seen in the graph below.
+is easier to learn and more popular as well, as can be seen in the graph below that shows the amount of searches for their 
+respective npm packages in the past two years on the npm trends website. \cite{AngularReactPopularity}
 \\
 \\
 \begin{figure}[htb]
@@ -221,7 +222,7 @@ rendering, which generates the HTML code anew each time a request is made. Next.
 techniques or both in combination, where most pages are statically generated, and others are rendered on the server. In its official
 documentation Next.js recommends the usage of static generation over SSR because of its better overall performance. However, server-side
 rendering might be necessary in some cases, for example when some data that is fetched from an API and displayed on the website needs
-to be frequently updated.
+to be frequently updated. \cite{NextjsPages}
 \\
 \\
 \subsection{Data fetching}
@@ -239,7 +240,7 @@ website, client-side rendering can be useful when SEO is not of importance, and 
 For implementing this strategy Next.js offers the React hook library SWR, which stands for stale-while-revalidate, a cache invalidation strategy
 of HTTP. Next.js strongly encourages developers to use it in its documentation, as it handles focus tracking, caching, revalidation, etc. The
 other method of data fetching is ISR, which stands for Incremental Static Regeneration and allows developers to statically generate pages on a
-per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function.
+per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function. \cite{NextjsDataFetching}
 \\
 \\
 \subsection{Code splitting}
@@ -248,10 +249,10 @@ Another feature of Next.js is called code splitting, which is the process of spl
 required by each entry point, an entry point usually being a page. This is done in order to be able to only load the code required to run the one
 page that is being viewed at the time, reducing the initial load time of the website as a result. It is to note that any code shared between pages
 is split into separate bundles in order to have everything available that is needed to load a page. Additionally, Next.js makes it possible to
-pre-load the code of pages that users commonly navigate to next, further improving user experience.
+pre-load the code of pages that users commonly navigate to next, further improving user experience. \cite{NextjsCodeSplitting}
 \\
 \\
-\subsection{Code splitting}
+\subsection{Image optimization}
 \setauthor{Christoph Lasinger}
 When it comes to performance Next.js offers a special Image component that extends the default image HTML element and should be used instead of
 it as it has several advantages. For one, because of its performance optimizations and improved Core Web Vitals, metrics provided by Google that
@@ -259,7 +260,7 @@ measure end-user page experience, using Image components improves SEO. These opt
 size, resizing them on-demand if it is needed, and in modern formats, providing visual stability i.e., preventing the layout from shifting unexpectedly
 and potentially causing errors, only actually loading the image if it can be seen by the user, etc. The actual images can be either stored locally
 or loaded remotely and if there is an image on page that is especially important, perhaps very big or noticeable if absent, it can be given priority
-when being loaded.
+when being loaded. \cite{NextjsImageOptimization}
 \\
 \\
 \subsection{Conclusion}
@@ -278,14 +279,14 @@ filename ends in .scss. It is a superset of CSS, meaning that all CSS code is al
 and is a bit more unusual i.e., sort of like the programming language Python it abandons the typical structure of curly braces and semicolons used in CSS
 to separate and organize lines of code in favour of simple indents and newlines. However, apart from the different styling elements used, both syntaxes
 are the same in all other aspects, including the features they provide. Since SCSS is a superset of CSS, one can simply write CSS code for the most part
-and use any SCSS feature when it seems useful, which makes Sass very easy to learn and adopt.
+and use any SCSS feature when it seems useful, which makes Sass very easy to learn and adopt. \cite{SassFeatures}
 \\
 \\
 \subsection{Variables}
 \setauthor{Christoph Lasinger}
 For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, Sass makes it possible
 to store the colour code in a variable and access it using its more human-readable name. This feature can be very useful when for example working with brand
-colours or main themes, as in those cases it is important to consistently use the exact same colour each time.
+colours or main themes, as in those cases it is important to consistently use the exact same colour each time. \cite{SassFeatures}
 \\
 \\
 \subsection{Inheritance}
@@ -317,7 +318,7 @@ inheritance, the code becomes more readable and easier to write and understand. 
 When working on a very large project with a lot of different people file management and organization can become quite difficult. In
 these cases the partials feature of Sass can be of great use. It allows the separation of one big Sass file into multiple smaller ones,
 thus modularizing it. These smaller files usually have names ending in \emph{(underscore)partials.scss}, where the underscore marks the file as one
-that is not to be converted to a CSS file, and can be used in any other Sass files with the usage of the @use rule.
+that is not to be converted to a CSS file, and can be used in any other Sass files with the usage of the @use rule. \cite{SassFeatures}
 \\
 \\
 \subsection{Nesting}
@@ -326,14 +327,14 @@ Other, smaller features of Sass include nesting, where multiple CSS selectors ca
 clear visual hierarchy like in HTML, and the ability to use mathematical operators when for example calculating the width of a HTML
 element, making the CSS more readable and the thought process behind certain values clearer, than simply using a specific number, like
 575 pixels. There are also so-called mixins, basically reusable CSS selectors that can be customized in a specific instance by passing it
-variables as parameters, that can be created using the @mixin rule and used with the @include rule.
+variables as parameters, that can be created using the @mixin rule and used with the @include rule. \cite{SassFeatures}
 \\
 \\
-\subsection{Nesting}
+\subsection{Conclusion}
 \setauthor{Christoph Lasinger}
 Overall, Sass has many useful features that in some cases can make a very big difference in terms of readability, level of organization and
 convenience when writing CSS with no real downsides. Since Next.js has built-in support for Sass it is very simple to install and use right
-away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion.
+away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion. \cite{NextjsCSSSupport}
 \\
 \\
 \section{Comparison of 3D rendering technologies}
