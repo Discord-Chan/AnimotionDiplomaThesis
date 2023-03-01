@@ -58,7 +58,7 @@ those particular parts of the project that are actually important.
 Another reason to use web frameworks that has less to do with development, but more with working as a software engineer in 
 the real world, is that for a lot of jobs experience in working with certain frameworks is certainly very useful, if not 
 even required. The following graph \ref{fig:WebframeworkJobs} shows a breakdown of about 650 000 job offerings on websites like Linkedin, 
-Dice and Glassdoor by the required framework. \cite{WebframeworkJobs}
+Dice and Glassdoor by the required framework \cite{WebframeworkJobs}.
 \\
 \\
 \begin{figure}[htb]
@@ -75,7 +75,7 @@ SPA stands for Single-Page application and is a type of web application that dyn
 current webpage instead of entirely reloading, i.e., requesting and displaying data from the server, it. 
 The main benefits of an SPA are a more responsive user experience and avoiding the delay of having to wait 
 for a website to load. Angular, the next version of the discontinued AngularJS, is a framework for such 
-applications and is maintained and released by Google in 2016. \cite{RoadToReact}
+applications and is maintained and released by Google in 2016 \cite{RoadToReact}.
 \\
 \\
 \subsection{Open-source project}
@@ -87,7 +87,7 @@ One big advantage of such software over closed-source software is that anyone in
 improvements for it, free of charge for the actual project-owner. Moreover, even if the publisher decides to no longer 
 provide support and update their software, it can still be adapted and improved by its users. Amazingly, it can be seen 
 in practise that this concept works and users really do improve open-source projects not only for their benefit but for 
-that of others as well. For those reasons, Animotion too is an open-source project.\cite{Opensource}
+that of others as well. For those reasons, Animotion too is an open-source project \cite{Opensource}.
 \\
 \\
 \subsection{Explanation of Angular}
@@ -98,7 +98,7 @@ large library-collection that covers a wide array of features and offers an equa
 testing, updating and maintaining one's code. Moreover, Angular is component-based, meaning that an application consists 
 of several building blocks (components), whereas each one defines one part of the user interface and any behaviour associated 
 with it. Because these components are reusable and effectively modularize the application, it becomes easier to develop and 
-test and makes the code more readable. This effect is especially noticeable in large-scale projects. \cite{AngularDescription}
+test and makes the code more readable. This effect is especially noticeable in large-scale projects \cite{AngularDescription}.
 \\
 \\
 \subsection{Anuglar CLI}
@@ -107,7 +107,7 @@ The Angular CLI, which stands for command-line interface, plays a big part in de
 conveniently create (ng new), build (ng build), and test (ng test) Angular applications. It is also used to add new libraries 
 (ng add) when needed. However, the most important command when developing is ng serve, as it starts the application on 
 localhost and automatically rebuilds it and reloads the website if any changes to the source code occur, which makes 
-developing quite convenient. \cite{AngularCLI}
+developing quite convenient \cite{AngularCLI}.
 \\
 \\
 \section{React}
@@ -136,14 +136,14 @@ more commonly as they provide more features. In general, React components work l
 arbitrary inputs, props to be exact, and return UI elements that are displayed on the website. When creating 
 such a class the minimum requirements are that it extends the base component class React.Component, though it 
 also possible to define one's own base class it is strongly discouraged in the official documentation of React,
-and that it defines a method called render. \cite{ReactComponentProps} \cite{ReactComponent}
+and that it defines a method called render \cite{ReactComponentProps} \cite{ReactComponent}.
 \\
 \\
 \subsection{React JSX}
 \setauthor{Christoph Lasinger}
 React JSX, where JSX stands for JavaScript XML, which in turn stands for Extensible Markup Language, is a combination
 of HTML and JavaScript. It plays a big part in React as JSX is the return type of all components. The following 
-code snippet serves of an example\ref{lst:react}.
+code snippet serves of an example \ref{lst:react}.
 
 \begin{lstlisting}[language=Python,caption=Example of a react component,label=lst:react]
   export default function About() {
@@ -168,10 +168,10 @@ code snippet serves of an example\ref{lst:react}.
 This exported function called About is, besides any imports that occur above it, practically the only code that makes 
 up a so-called page, which exactly translate to a webpage, i.e., what comes up after visiting an URL. This function 
 that shares its name with the file, a JavaScript file to be exact, merely consists of one long return statement that 
-contains multiple HTML elements making up the webpage. \cite{ReactJSX}
+contains multiple HTML elements making up the webpage \cite{ReactJSX}.
 The empty opening and closing tags at the beginning and end of the statement is the short syntax for a fragment, a 
 feature in React that acts as a container and allows returning multiple child elements in a return statement 
-without adding additional nodes to the DOM. \cite{ReactFragments}
+without adding additional nodes to the DOM \cite{ReactFragments}.
 \\
 \\
 \subsection{Create-react-app}
@@ -181,7 +181,7 @@ The easiest way to set up a React project is to use the officially supported com
 Optionally, further parameters can be used to customize the project, for example \emph{—template typescript} to use TypeScript 
 instead of JavaScript. After the project is created, it can immediately be started and viewed on localhost using either 
 \emph{npm start} or \emph{yarn start}, depending on the package manager that is used. For development the command \emph{npm run dev} is 
-also very useful, as the website is immediately refreshed after saving any changes to the code. \cite{create-react}
+also very useful, as the website is immediately refreshed after saving any changes to the code \cite{create-react}.
 \\
 \\
 \subsection{Comparison between Angular and React}
@@ -198,11 +198,11 @@ in forums, and so on.
 
 Another difference to consider when choosing one over the other is their respective programming language. While Angular is built
 on TypeScript, React is a JavaScript library, so previous experience with one or the other, in case of TypeScript probably
-more so the lack of experience, might influence the decision. \cite{AngularReactComparison}
+more so the lack of experience, might influence the decision \cite{AngularReactComparison}.
 
 While Animotion started out as an Angular project, after a short period of time we decided to use React instead, because it 
 is easier to learn and more popular as well, as can be seen in the graph below that shows the amount of searches for their 
-respective npm packages in the past two years on the npm trends website. \cite{AngularReactPopularity}
+respective npm packages in the past two years on the npm trends website \cite{AngularReactPopularity}.
 \\
 \\
 \begin{figure}[htb]
@@ -223,7 +223,7 @@ for our project as it not likely to expand and therefore need for resources in t
 Next.js is a React framework, meaning that, while React provides functions and features to build user interface elements
 as a JavaScript library, Next.js handles the configuration and tooling that React needs. Additionally, Next.js provides
 new features, structures, and optimizations. These additional features include data fetching, integrating, routing,
-and so on. \cite{NextjsDescription}
+and so on \cite{NextjsDescription}.
 \\
 \\
 \subsection{Pages}
@@ -242,7 +242,7 @@ rendering, which generates the HTML code anew each time a request is made. Next.
 techniques or both in combination, where most pages are statically generated, and others are rendered on the server. In its official
 documentation Next.js recommends the usage of static generation over SSR because of its better overall performance. However, server-side
 rendering might be necessary in some cases, for example when some data that is fetched from an API and displayed on the website needs
-to be frequently updated. \cite{NextjsPages}
+to be frequently updated \cite{NextjsPages}.
 \\
 \\
 \subsection{Data fetching}
@@ -260,7 +260,7 @@ website, client-side rendering can be useful when SEO is not of importance, and 
 For implementing this strategy Next.js offers the React hook library SWR, which stands for stale-while-revalidate, a cache invalidation strategy
 of HTTP. Next.js strongly encourages developers to use it in its documentation, as it handles focus tracking, caching, revalidation, etc. The
 other method of data fetching is ISR, which stands for Incremental Static Regeneration and allows developers to statically generate pages on a
-per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function. \cite{NextjsDataFetching}
+per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function \cite{NextjsDataFetching}.
 \\
 \\
 \subsection{Code splitting}
@@ -269,7 +269,7 @@ Another feature of Next.js is called code splitting, which is the process of spl
 required by each entry point, an entry point usually being a page. This is done in order to be able to only load the code required to run the one
 page that is being viewed at the time, reducing the initial load time of the website as a result. It is to note that any code shared between pages
 is split into separate bundles in order to have everything available that is needed to load a page. Additionally, Next.js makes it possible to
-pre-load the code of pages that users commonly navigate to next, further improving user experience. \cite{NextjsCodeSplitting}
+pre-load the code of pages that users commonly navigate to next, further improving user experience \cite{NextjsCodeSplitting}.
 \\
 \\
 \subsection{Image optimization}
@@ -280,7 +280,7 @@ measure end-user page experience, using Image components improves SEO. These opt
 size, resizing them on-demand if it is needed, and in modern formats, providing visual stability i.e., preventing the layout from shifting unexpectedly
 and potentially causing errors, only actually loading the image if it can be seen by the user, etc. The actual images can be either stored locally
 or loaded remotely and if there is an image on page that is especially important, perhaps very big or noticeable if absent, it can be given priority
-when being loaded. \cite{NextjsImageOptimization}
+when being loaded \cite{NextjsImageOptimization}.
 \\
 \\
 \subsection{Conclusion}
@@ -299,19 +299,19 @@ filename ends in .scss. It is a superset of CSS, meaning that all CSS code is al
 and is a bit more unusual i.e., sort of like the programming language Python it abandons the typical structure of curly braces and semicolons used in CSS
 to separate and organize lines of code in favour of simple indents and newlines. However, apart from the different styling elements used, both syntaxes
 are the same in all other aspects, including the features they provide. Since SCSS is a superset of CSS, one can simply write CSS code for the most part
-and use any SCSS feature when it seems useful, which makes Sass very easy to learn and adopt. \cite{SassFeatures}
+and use any SCSS feature when it seems useful, which makes Sass very easy to learn and adopt \cite{SassFeatures}.
 \\
 \\
 \subsection{Variables}
 \setauthor{Christoph Lasinger}
 For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, Sass makes it possible
 to store the colour code in a variable and access it using its more human-readable name. This feature can be very useful when for example working with brand
-colours or main themes, as in those cases it is important to consistently use the exact same colour each time. \cite{SassFeatures}
+colours or main themes, as in those cases it is important to consistently use the exact same colour each time \cite{SassFeatures}.
 \\
 \\
 \subsection{Inheritance}
 \setauthor{Christoph Lasinger}
-Another useful feature of Sass is inheritance, an example of which can be seen in the following code snippet.\ref{lst:sass}
+Another useful feature of Sass is inheritance, an example of which can be seen in the following code snippet \ref{lst:sass}.
 
 \begin{lstlisting}[language=Python,caption=Textstyling in Sass,label=lst:sass]
   .default_text{
@@ -330,15 +330,15 @@ Through the \emph{extend} keyword CSS properties of one selector can be passed o
 same properties set to the same values, thus inheriting them. In this example, legal-notice-text is merely a variant of the 
 default-text and should therefore be of the same colour, font, and alignment. However, as legal-notice-text is of not much 
 importance to the average user of the website, it should be rather small and take up little space. Because of the usage of 
-inheritance, the code becomes more readable and easier to write and understand. \cite{SassFeatures}
+inheritance, the code becomes more readable and easier to write and understand \cite{SassFeatures}.
 \\
 \\
 \subsection{Partials}
 \setauthor{Christoph Lasinger}
 When working on a very large project with a lot of different people file management and organization can become quite difficult. In
 these cases the partials feature of Sass can be of great use. It allows the separation of one big Sass file into multiple smaller ones,
-thus modularizing it. These smaller files usually have names ending in \emph{(underscore)partials.scss}, where the underscore marks the file as one
-that is not to be converted to a CSS file, and can be used in any other Sass files with the usage of the @use rule. \cite{SassFeatures}
+thus modularizing it. These smaller files usually have names ending in \emph{(\_partials.scss}, where the underscore marks the file as one
+that is not to be converted to a CSS file, and can be used in any other Sass files with the usage of the @use rule \cite{SassFeatures}.
 \\
 \\
 \subsection{Nesting}
@@ -347,14 +347,14 @@ Other, smaller features of Sass include nesting, where multiple CSS selectors ca
 clear visual hierarchy like in HTML, and the ability to use mathematical operators when for example calculating the width of a HTML
 element, making the CSS more readable and the thought process behind certain values clearer, than simply using a specific number, like
 575 pixels. There are also so-called mixins, basically reusable CSS selectors that can be customized in a specific instance by passing it
-variables as parameters, that can be created using the @mixin rule and used with the @include rule. \cite{SassFeatures}
+variables as parameters, that can be created using the @mixin rule and used with the @include rule \cite{SassFeatures}.
 \\
 \\
 \subsection{Conclusion}
 \setauthor{Christoph Lasinger}
 Overall, Sass has many useful features that in some cases can make a very big difference in terms of readability, level of organization and
 convenience when writing CSS with no real downsides. Since Next.js has built-in support for Sass it is very simple to install and use right
-away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion. \cite{NextjsCSSSupport}
+away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion \cite{NextjsCSSSupport}.
 \\
 \\
 \section{Comparison of 3D rendering technologies}
