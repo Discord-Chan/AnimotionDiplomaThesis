@@ -1,14 +1,13 @@
-\section{Three.js}
+\section{Interactive 3D graphics with Three.js}
 \setauthor{Romeo Bhuiyan}
-\textbf{Three.js} is a JavaScript library that allows for the creation of interactive 3D graphics in the web 
+\textbf{Three.js}\cite{threejs} is a JavaScript library that allows for the creation of interactive 3D graphics in the web 
 browser. It is designed to work seamlessly with WebGL, which is a web-based 3D graphics API that allows 
 developers to access the hardware-accelerated graphics capabilities of a user's computer. Three.js 
 makes it possible to create rich 3D experiences with JavaScript and HTML, without the need for any plugins or downloads.
 With Three.js, developers can create a wide variety of 3D scenes and animations, including but not limited to: 
 realistic environments with dynamic lighting and shadows, complex 3D models and animations, interactive 3D 
 games and simulations, and virtual reality (VR) and augmented reality (AR) experiences.
-\\
-\\
+
 The library provides a large number of powerful features and abstractions that simplify 
 the process of creating 3D graphics. It includes a number of built-in shapes, such as cubes, 
 spheres, and cylinders, as well as more complex shapes that can be constructed from the 
@@ -19,9 +18,8 @@ Another important aspect of Three.js is its support for keyframe animations. Thi
 developers to animate objects over time, creating smooth transitions and movements. 
 The library also provides support for physics simulations, making it possible to 
 create complex and interactive 3D experiences that respond to user input.
-\\
-\\
-\subsection{Three-vrm.js}
+
+\subsection{Rendering and manipulating VRM}
 \setauthor{Romeo Bhuiyan}
 \textbf{Three-vrm.js} is a JavaScript library that provides support for rendering 
 and manipulating VRM (Virtual Reality Model) characters in web-based environments. 
@@ -37,14 +35,12 @@ the structure of a VRM character and allow for easy animation of the character. 
 support for VRM's blend shapes, which are used to manipulate the shape of the character's 
 face and expressions.
 \\
-\\
 \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\textwidth]{pics/threevrmdebug.PNG}
     \caption{Three-vrm.js debug mode}
     \label{fig:threevrmdebug}
 \end{figure}
-\\
 \\
 \section{Decision between web frameworks}
 \setauthor{Christoph Lasinger}
@@ -53,13 +49,11 @@ For example, all the ways they provide assistance while developing, such as prov
 organize a project, a prebuilt routing system, a template-project that can serve as starting point, an option to debug a 
 project and many more. As a result, a great amount of both time and effort can be saved, that can then in turn be spent on 
 those particular parts of the project that are actually important.
-\\
-\\
+
 Another reason to use web frameworks that has less to do with development, but more with working as a software engineer in 
 the real world, is that for a lot of jobs experience in working with certain frameworks is certainly very useful, if not 
 even required. The following graph \ref{fig:WebframeworkJobs} shows a breakdown of about 650 000 job offerings on websites like Linkedin, 
 Dice and Glassdoor by the required framework. \cite{WebframeworkJobs}
-\\
 \\
 \begin{figure}[htb]
   \centering
@@ -68,7 +62,6 @@ Dice and Glassdoor by the required framework. \cite{WebframeworkJobs}
   \label{fig:WebframeworkJobs}
 \end{figure}
 \\
-\\
 \section{Angular}
 \setauthor{Christoph Lasinger}
 SPA stands for Single-Page application and is a type of web application that dynamically rewrites the 
@@ -76,8 +69,7 @@ current webpage instead of entirely reloading, i.e., requesting and displaying d
 The main benefits of an SPA are a more responsive user experience and avoiding the delay of having to wait 
 for a website to load. Angular, the next version of the discontinued AngularJS, is a framework for such 
 applications and is maintained and released by Google in 2016. \cite{RoadToReact}
-\\
-\\
+
 \subsection{Open-source project}
 \setauthor{Christoph Lasinger}
 Angular is a free and open-source project, meaning that the copyright owner, in this case the company Google,
@@ -88,8 +80,7 @@ improvements for it, free of charge for the actual project-owner. Moreover, even
 provide support and update their software, it can still be adapted and improved by its users. Amazingly, it can be seen 
 in practise that this concept works and users really do improve open-source projects not only for their benefit but for 
 that of others as well. For those reasons, Animotion too is an open-source project.\cite{Opensource}
-\\
-\\
+
 \subsection{Explanation of Angular}
 \setauthor{Christoph Lasinger}
 Concretely, Angular is a web framework, built on Typescript, a high-level, object-oriented programming language that is 
@@ -99,8 +90,7 @@ testing, updating and maintaining one's code. Moreover, Angular is component-bas
 of several building blocks (components), whereas each one defines one part of the user interface and any behaviour associated 
 with it. Because these components are reusable and effectively modularize the application, it becomes easier to develop and 
 test and makes the code more readable. This effect is especially noticeable in large-scale projects. \cite{AngularDescription}
-\\
-\\
+
 \subsection{Anuglar CLI}
 \setauthor{Christoph Lasinger}
 The Angular CLI, which stands for command-line interface, plays a big part in developing as it is used to efficiently and 
@@ -108,24 +98,21 @@ conveniently create (ng new), build (ng build), and test (ng test) Angular appli
 (ng add) when needed. However, the most important command when developing is ng serve, as it starts the application on 
 localhost and automatically rebuilds it and reloads the website if any changes to the source code occur, which makes 
 developing quite convenient. \cite{AngularCLI}
-\\
-\\
+
 \section{React}
 \setauthor{Christoph Lasinger}
 Like Angular, React also is an open-source SPA-Framework, released by Meta (then Facebook) in 2013 and maintained by
 Meta and a community of developers. Although the main focus of React lies on the component system and its DOM, it also 
 has a large ecosystem of libraries surrounding it, making React quite flexible.
 % one more sentence?
-\\
-\\
+
 \subsection{Virtual DOM}
 \setauthor{Christoph Lasinger}
 As mentioned before, among the most notable features of React is its virtual DOM (Document Object Model), a type of 
 data structure that represents a webpage making it possible to only update certain parts of it that have changed. 
 This provides a major performance boost but does not create extra effort for the developer as they can still write 
 code as if the entire page is re-rendered on each refresh.
-\\
-\\
+
 \subsection{Components}
 \setauthor{Christoph Lasinger}
 As React is a component-based framework, the feature of components is one of its main concepts. Concretely, they
@@ -137,8 +124,7 @@ arbitrary inputs, props to be exact, and return UI elements that are displayed o
 such a class the minimum requirements are that it extends the base component class React.Component, though it 
 also possible to define one's own base class it is strongly discouraged in the official documentation of React,
 and that it defines a method called render. \cite{ReactComponentProps} \cite{ReactComponent}
-\\
-\\
+
 \subsection{React JSX}
 \setauthor{Christoph Lasinger}
 React JSX, where JSX stands for JavaScript XML, which in turn stands for Extensible Markup Language, is a combination
@@ -172,8 +158,7 @@ contains multiple HTML elements making up the webpage. \cite{ReactJSX}
 The empty opening and closing tags at the beginning and end of the statement is the short syntax for a fragment, a 
 feature in React that acts as a container and allows returning multiple child elements in a return statement 
 without adding additional nodes to the DOM. \cite{ReactFragments}
-\\
-\\
+
 \subsection{Create-react-app}
 \setauthor{Christoph Lasinger}
 The easiest way to set up a React project is to use the officially supported command \emph{create-react-app}
@@ -182,8 +167,7 @@ Optionally, further parameters can be used to customize the project, for example
 instead of JavaScript. After the project is created, it can immediately be started and viewed on localhost using either 
 \emph{npm start} or \emph{yarn start}, depending on the package manager that is used. For development the command \emph{npm run dev} is 
 also very useful, as the website is immediately refreshed after saving any changes to the code. \cite{create-react}
-\\
-\\
+
 \subsection{Comparison between Angular and React}
 \setauthor{Christoph Lasinger}
 In many regards React is similar to Angular, as they are both popular, component-based, open-source web frameworks. However, one 
@@ -204,7 +188,6 @@ While Animotion started out as an Angular project, after a short period of time 
 is easier to learn and more popular as well, as can be seen in the graph below that shows the amount of searches for their 
 respective npm packages in the past two years on the npm trends website. \cite{AngularReactPopularity}
 \\
-\\
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.9\textwidth]{pics/webframeworkpop.png}
@@ -212,20 +195,17 @@ respective npm packages in the past two years on the npm trends website. \cite{A
   \label{fig:webpop}
 \end{figure}
 \\
-\\
 Moreover, while we had some previous experience with JavaScript, we had never worked with TypeScript before, which made the attempt 
 to understand Angular even more difficult than it needed to be. The comparatively better scalability of Angular was also not needed
 for our project as it not likely to expand and therefore need for resources in the future.
-\\
-\\
+
 \section{Next.js}
 \setauthor{Christoph Lasinger}
 Next.js is a React framework, meaning that, while React provides functions and features to build user interface elements
 as a JavaScript library, Next.js handles the configuration and tooling that React needs. Additionally, Next.js provides
 new features, structures, and optimizations. These additional features include data fetching, integrating, routing,
 and so on. \cite{NextjsDescription}
-\\
-\\
+
 \subsection{Pages}
 \setauthor{Christoph Lasinger}
 One feature of Next.js that one will notice immediately is the representation of a webpage in JavaScript (or TypeScript) files as
@@ -243,8 +223,7 @@ techniques or both in combination, where most pages are statically generated, an
 documentation Next.js recommends the usage of static generation over SSR because of its better overall performance. However, server-side
 rendering might be necessary in some cases, for example when some data that is fetched from an API and displayed on the website needs
 to be frequently updated. \cite{NextjsPages}
-\\
-\\
+
 \subsection{Data fetching}
 \setauthor{Christoph Lasinger}
 When developing a website, it is quite common to need to frequently fetch data from a remote source in order to update whatever is displayed
@@ -261,8 +240,7 @@ For implementing this strategy Next.js offers the React hook library SWR, which 
 of HTTP. Next.js strongly encourages developers to use it in its documentation, as it handles focus tracking, caching, revalidation, etc. The
 other method of data fetching is ISR, which stands for Incremental Static Regeneration and allows developers to statically generate pages on a
 per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function. \cite{NextjsDataFetching}
-\\
-\\
+
 \subsection{Code splitting}
 \setauthor{Christoph Lasinger}
 Another feature of Next.js is called code splitting, which is the process of splitting the bundle of an application into multiple smaller parts
@@ -270,8 +248,7 @@ required by each entry point, an entry point usually being a page. This is done 
 page that is being viewed at the time, reducing the initial load time of the website as a result. It is to note that any code shared between pages
 is split into separate bundles in order to have everything available that is needed to load a page. Additionally, Next.js makes it possible to
 pre-load the code of pages that users commonly navigate to next, further improving user experience. \cite{NextjsCodeSplitting}
-\\
-\\
+
 \subsection{Image optimization}
 \setauthor{Christoph Lasinger}
 When it comes to performance Next.js offers a special Image component that extends the default image HTML element and should be used instead of
@@ -281,15 +258,13 @@ size, resizing them on-demand if it is needed, and in modern formats, providing 
 and potentially causing errors, only actually loading the image if it can be seen by the user, etc. The actual images can be either stored locally
 or loaded remotely and if there is an image on page that is especially important, perhaps very big or noticeable if absent, it can be given priority
 when being loaded. \cite{NextjsImageOptimization}
-\\
-\\
+
 \subsection{Conclusion}
 \setauthor{Christoph Lasinger}
 After starting out with Angular and then switching to React, we ultimately decided to use Next.js for a number of reasons. For example, the built-in
 routing system, very easy setup through the create-next-app command, aforementioned features that increase performance, the simplicity of its
 file structure, namely all pages being in one folder, and so forth. Especially the gentleness of its learning curve had a big influence on the decision.
-\\
-\\
+
 \section{Sass}
 \setauthor{Christoph Lasinger}
 Sass stands for syntactically awesome style sheets and is a stylesheet language that compiles into CSS (Cascading Style Sheets). It extends CSS by quite
@@ -300,15 +275,13 @@ and is a bit more unusual i.e., sort of like the programming language Python it 
 to separate and organize lines of code in favour of simple indents and newlines. However, apart from the different styling elements used, both syntaxes
 are the same in all other aspects, including the features they provide. Since SCSS is a superset of CSS, one can simply write CSS code for the most part
 and use any SCSS feature when it seems useful, which makes Sass very easy to learn and adopt. \cite{SassFeatures}
-\\
-\\
+
 \subsection{Variables}
 \setauthor{Christoph Lasinger}
 For example, instead of copying the hexadecimal value representing a colour for each and every element and possibly making mistakes, Sass makes it possible
 to store the colour code in a variable and access it using its more human-readable name. This feature can be very useful when for example working with brand
 colours or main themes, as in those cases it is important to consistently use the exact same colour each time. \cite{SassFeatures}
-\\
-\\
+
 \subsection{Inheritance}
 \setauthor{Christoph Lasinger}
 Another useful feature of Sass is inheritance, an example of which can be seen in the following code snippet.\ref{lst:sass}
@@ -331,16 +304,14 @@ same properties set to the same values, thus inheriting them. In this example, l
 default-text and should therefore be of the same colour, font, and alignment. However, as legal-notice-text is of not much 
 importance to the average user of the website, it should be rather small and take up little space. Because of the usage of 
 inheritance, the code becomes more readable and easier to write and understand. \cite{SassFeatures}
-\\
-\\
+
 \subsection{Partials}
 \setauthor{Christoph Lasinger}
 When working on a very large project with a lot of different people file management and organization can become quite difficult. In
 these cases the partials feature of Sass can be of great use. It allows the separation of one big Sass file into multiple smaller ones,
 thus modularizing it. These smaller files usually have names ending in \emph{(underscore)partials.scss}, where the underscore marks the file as one
 that is not to be converted to a CSS file, and can be used in any other Sass files with the usage of the @use rule. \cite{SassFeatures}
-\\
-\\
+
 \subsection{Nesting}
 \setauthor{Christoph Lasinger}
 Other, smaller features of Sass include nesting, where multiple CSS selectors can be written under one, overarching selector creating a
@@ -348,15 +319,13 @@ clear visual hierarchy like in HTML, and the ability to use mathematical operato
 element, making the CSS more readable and the thought process behind certain values clearer, than simply using a specific number, like
 575 pixels. There are also so-called mixins, basically reusable CSS selectors that can be customized in a specific instance by passing it
 variables as parameters, that can be created using the @mixin rule and used with the @include rule. \cite{SassFeatures}
-\\
-\\
+
 \subsection{Conclusion}
 \setauthor{Christoph Lasinger}
 Overall, Sass has many useful features that in some cases can make a very big difference in terms of readability, level of organization and
 convenience when writing CSS with no real downsides. Since Next.js has built-in support for Sass it is very simple to install and use right
 away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion. \cite{NextjsCSSSupport}
-\\
-\\
+
 \section{Comparison of 3D rendering technologies}
 \setauthor{Romeo Bhuiyan}
 In order to display a virtual model on a canvas, a 3D rendering technology was required. Two libraries, 
@@ -364,8 +333,7 @@ GLTFLoader and WebGL, were evaluated using JavaScript to determine the best fit 
 The choice between the two ultimately depends on the specific needs and limitations of the project. 
 Both GLTFLoader and WebGL are effective tools for rendering, but each have their own 
 unique strengths and weaknesses.
-\\
-\\
+
 \subsection{WebGL}
 \setauthor{Romeo Bhuiyan}
 \textbf{WebGL} is designed to work seamlessly with other web technologies such as HTML, CSS, and JavaScript, 
@@ -379,8 +347,7 @@ a high level of compatibility across different browsers and devices, making it a
 WebGL is supported by most modern web browsers, including Chrome, Firefox, Safari, and Edge. 
 This means that developers can create WebGL applications that can be easily accessed by 
 users on a wide range of devices and platforms. \cite{WebGL}
-\\
-\\
+
 \subsection{GLTFLoader}
 \setauthor{Romeo Bhuiyan}
 \textbf{GLTFLoader} is a JavaScript library that allows developers to load and parse 3D models in the GLTF 
@@ -399,10 +366,9 @@ developers can focus on creating the logic and functionality of their applicatio
 spending time on complex parsing and loading tasks.
 Additionally, GLTF is a highly efficient format, which means that it can be loaded faster, 
 and also the files are smaller in size, making it a great choice for loading 3D models on the web. \cite{GLTFLoader}
-\\
-\\
+
 \subsection{Conclusion}
-\textbf{In conclusion}, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
+In conclusion, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
 offers several advantages over WebGL. One of the main benefits of using GLTFLoader is 
 its ability to handle the loading and parsing of GLTF (GL Transmission Format) files, 
 which are a widely-used format for 3D models. This eliminates the need for developers 
@@ -413,7 +379,6 @@ than having to create them from scratch. Furthermore, GLTFLoader also supports v
 features such as animations, cameras, lights and many more which can be easily integrated 
 with web pages. Therefore, it is more efficient and convenient for the purpose of Animotion 
 to work with 3D models on the web, GLTFLoader is the best choice as seen below in the figure. \ref{fig:gltfloader}
-\\
 \\
 \begin{figure}[htb]
     \centering
