@@ -655,6 +655,7 @@ smooth transition between them. This allows animators to create a wide range of 
 limited number of 3D models. Blendshapes are commonly used in animation, film and game industry.
 
 \subsection{Lerp}
+\label{sec:lerp}
 \setauthor{Romeo Bhuiyan}
 The \textbf{Lerp} function, short for Linear Interpolation, is a mathematical function that is 
 used to smoothly blend between two values. The function takes three arguments: a start value, 
@@ -707,13 +708,13 @@ been directly measured, but falls within a range of values for which measurement
         Blendshape.getValue(PresetName[shape]), 0.5))
 
 \end{lstlisting}
-This pseudocode \ref{lst:shapeOfMouth} is a loop that iterates over an array containing the shapes \texttt{A, E, I, O, U}. 
+As shown in the listing \ref{lst:shapeOfMouth}, this pseudocode is a loop that iterates over an array containing the shapes \texttt{A, E, I, O, U}. 
 The purpose of the loop is to blend the shape of a rigged face's mouth with a preset value of a 
 Blendshape object for each of these shapes. The loop starts by setting the value of the Blendshape 
 object to a blended value between the shape of the rigged face's mouth \texttt{(riggedFace.mouth.shape[shape])}
 and the current value of the Blendshape object \texttt{(Blendshape.getValue(PresetName[shape]))}. 
-The blend is done using the lerp function, which stands for linear interpolation. 
-This function takes three arguments: the start value, the end value, and the weight of blending. 
+The blend is done using the lerp function, mentioned in above \ref{sec:lerp}. 
+Quickly summarized, this function takes three arguments: the start value, the end value, and the weight of blending. 
 In this case, the weight is set to 0.5, resulting in an even blend between the two values.
 Once the blended value is calculated, it is set to the Blendshape object using the PresetName 
 as the key. This process is repeated for each shape in the array, allowing the developer to 
