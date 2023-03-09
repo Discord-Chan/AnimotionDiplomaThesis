@@ -98,7 +98,7 @@ test and makes the code more readable. This effect is especially noticeable in l
 The Angular CLI, which stands for command-line interface, plays a big part in developing as it is used to efficiently and 
 conveniently create, build, and test Angular applications by using the commands \texttt{ng new}, \texttt{ng build}
 and \texttt{ng test} respectively. It can also be used to add new libraries through \texttt{ng add}
-when needed. However, the most important command when developing is ng serve, as it starts the application on 
+when needed. However, the most important command when developing is ng serve, as it starts the application on
 localhost and automatically rebuilds it and reloads the website if any changes to the source code occur, which makes 
 developing more convenient \cite{AngularCLI}.
 \\
@@ -421,12 +421,12 @@ Orbit-Controls.js makes it easy to interact with 3D scenes and view them from di
 perspectives. It provides a simple way to navigate and explore 3D environments, making it a 
 useful tool for a wide range of applications, including scientific simulations, product visualization, architecture, and more.
 
-To use Orbit-Controls.js, you need to include the library in your HTML file, and then 
-create an instance of the OrbitControls class. You will also need to pass in a Three.js 
-camera object, as well as a Three.js renderer. The library will then take care of the rest, 
-allowing you to control the camera using mouse and touch inputs. \cite{orbitcontrols}
-\\
-\\
+The Orbit-Controls.js is a JavaScript library that enables user interactivity in 3D scenes built with Three.js. 
+In order to use the library, it is necessary to include it in the HTML file and create an instance of the 
+OrbitControls class. A Three.js camera object and a renderer also need to be passed as parameters. Once initialized, 
+the library will handle user inputs from mouse and touch, allowing for smooth camera control in the 3D scene. 
+This feature makes Orbit-Controls.js a valuable tool for creating interactive and engaging web applications with Three.js. \cite{orbitcontrols}
+
 \subsection{Azimuth- and polar angle}
 \setauthor{Romeo Bhuiyan}
 The \textbf{Azimuth angle and the Polar angle} are two important concepts in 3D graphics and visualization. 
@@ -435,14 +435,43 @@ In the context of orbit-controls.js, they are used to control the camera's rotat
 The Azimuth angle refers to the angle between a reference plane and the position of the camera in 
 the x-z plane. This angle determines the camera's horizontal rotation and the direction it is facing. 
 In orbit-controls.js, the Azimuth angle is controlled by moving the mouse horizontally.
+The equation is given by: \ref{eqn:azimuth}
+\begin{equation}
+  \label{eqn:azimuth}
+	azimuth = atan2(sin(\theta), cos(\theta)*sin(\phi) - tan(\phi)*cos(\theta))
+\end{equation}
+where theta represents the angle of inclination, measured from the horizontal, and phi represents the angle 
+of rotation around the vertical axis, measured from the north.
+
+The equation involves several trigonometric functions, including sin, cos, and tan, which describe the various 
+components of the angle of inclination and rotation. The atan2 function is used to calculate the angle between 
+the positive x-axis and the point (sin(theta), expression in parentheses) in the Cartesian plane.
+
+The azimuth angle is an important parameter in many applications, including navigation, surveying, and satellite communications. 
+It provides a convenient way to describe the direction of an object or location relative to true north, 
+and can be used to determine the angle of elevation and other important parameters.
 
 The Polar angle, on the other hand, refers to the angle between the position of the camera and the 
 positive y-axis. It determines the camera's vertical rotation and the height of the camera relative 
 to the scene. In orbit-controls.js, the Polar angle is controlled by moving the mouse vertically.
+The polar angle, denoted by theta, is an angular coordinate system used in two-dimensional space to locate 
+a point using a distance (r) and an angle (theta) measured from a fixed reference point.
+
+It is the angle between the positive x-axis and the line segment 
+joining the origin and the point (r, theta). The angle theta is measured in a counterclockwise direction 
+from the positive x-axis, ranging from 0 to 2pi radians (or 0 to 360 degrees). The equation is: \ref{eqn:polar}
+\begin{equation}
+  \label{eqn:polar}
+  \theta = arctan(y/x)
+\end{equation}
+where (x,y) are the Cartesian coordinates of a point in the plane. This equation finds the angle between the positive x-axis 
+and the line segment connecting the origin and the point (x, y).
+It is important to note that this formula works only when x is positive. If x is negative, 
+then we must add or subtract pi radians (180 degrees) to the result, depending on the sign of y, to find the correct angle.
 
 By controlling both the Azimuth and Polar angles, the orbit-controls.js library allows the user to 
 change the position and orientation of the camera in 3D space. This is especially useful for interactive 
-3D visualizations, where the user needs to be able to explore the scene from different perspectives.
+3D visualizations, where the user needs to be able to explore the scene from different perspectives, as shown below in the figure. \ref{fig:orbitcontrols}
 
 Orbit-controls.js is often used in conjunction with WebGL and Three.js, which are libraries for creating 
 3D graphics and animations in the browser. The combination of these technologies makes it possible to create 
@@ -452,9 +481,9 @@ interactive 3D visualizations that can run in a web browser, without the need fo
   \centering
   \includegraphics[width=0.5\textwidth]{pics/orbitcontrols.png}
   \caption{Azimuth and Polar angle}
+  \cite{angles}
   \label{fig:orbitcontrols}
 \end{figure}
-\newpage
 
 \section{Camera utilization using camera utils}
 \setauthor{Romeo Bhuiyan}
@@ -477,8 +506,7 @@ In addition to providing a simple and intuitive interface for controlling camera
 library also offers a number of performance and optimization optimizations that help to ensure smooth and fast 
 camera performance. For example, the library implements a number of techniques to reduce latency and ensure 
 smooth camera movement, even when processing large amounts of data in real-time.
-\\
-\\
+
 \section{Drawing utils}
 \setauthor{Romeo Bhuiyan}
 \textbf{drawing utils.js} is a JavaScript library designed to simplify and streamline the process of 
@@ -506,8 +534,7 @@ animations and 3D shapes, that are critical to the functioning and visual appeal
 of the VRM model. The library also provides a range of performance optimization 
 features, such as caching and the ability to work with multiple GPUs, 
 that can help to ensure that the VRM model runs smoothly and efficiently, even in demanding environments.
-\\
-\\
+
 \section{Screen capture technology}
 \setauthor{Romeo Bhuiyan}
 Screen recording is an important aspect in the world of VRM programs. 
@@ -534,8 +561,7 @@ Lastly, screen recording can be used for creative purposes, such as creating ani
 effects using the VRM Model program. By capturing and manipulating the recordings, users can explore 
 new ways to use and interact with the VRM Model program, and create new and unique content that 
 can be shared and enjoyed by others.
-\\
-\\
+
 \subsection{RecordRTC}
 \setauthor{Romeo Bhuiyan}
 \textbf{RTCRecord.js} is a JavaScript library that allows users to perform real-time communication (RTC) 
@@ -552,8 +578,7 @@ or for sharing information with others.
 Another use case for RTCRecord.js is for creating educational content, such as tutorials 
 and screencasts. With RTCRecord.js, users can easily record their screen and webcam footage, 
 and share their knowledge with others in a visually engaging way. \cite{rtcrecord}
-\\
-\\
+
 \subsection{FFmpeg}
 \setauthor{Romeo Bhuiyan}
 \textbf{FFmpeg} is an open-source software library for audio, video and image processing. 
@@ -571,8 +596,7 @@ compression utilities, and real-time video processing applications. With the ris
 ffmpeg.min.js can be used to perform video processing operations in real-time on a server, without requiring 
 the user to have FFmpeg installed on their local machine. This can save both time and resources, and provide 
 a convenient solution for web developers looking to incorporate video processing capabilities into their applications. \cite{ffmpeg}
-\\
-\\
+
 \subsection{WebM video format for web-based applications}
 \setauthor{Romeo Bhuiyan}
 The \textbf{WebM video format} is an open, royalty-free, and high-quality video compression format 
@@ -603,8 +627,7 @@ Another key benefit of the WebM format is its ability to support a wide range of
 codecs, including VP9, Opus, and VP10, making it a flexible choice for applications that require 
 support for multiple codecs. The format also supports high dynamic range (HDR) video, providing 
 users with a superior viewing experience with enhanced color and brightness. \cite{webm}
-\\
-\\
+
 \section{Calculation of the virtual reality model} 
 \setauthor{Romeo Bhuiyan}
 Controlling a VRM on a website involves a complex process that involves 
@@ -614,17 +637,15 @@ The first step in this process is for the user to interact with the VR model
 using a device such as a VR headset or a mouse and keyboard. The inputs from the 
 user are then captured by the website and sent to the server. The server then 
 uses these inputs to update the VR model's position and orientation in real-time. 
-\\
-\\
+
 Once the VR model has been updated, it is then rendered, and the new frame is 
 sent back to the user's device for display. This process repeats as the user 
 continues to interact with the VR model. 
-To achieve this, various technologies are needed such as GLTFLoader\cite{GLTFLoader} from the THREE\cite{threejs}
+To achieve this, various technologies are needed such as GLTFLoader from the three
 libraries for rendering the VR model in the browser, WebSockets for real-time 
 communication between the client and server, and a physics engine to simulate 
 the movement and interactions of the VR model. 
-\\
-\\
+
 \subsection{Blendshape}
 \setauthor{Romeo Bhuiyan}
 \textbf{Blendshape} is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
@@ -632,8 +653,7 @@ It works by creating a set of \emph{target} shapes for a 3D model, each represen
 and then using a set of weights or \emph{blend} values to interpolate between these target shapes, creating a 
 smooth transition between them. This allows animators to create a wide range of expressive characters with a 
 limited number of 3D models. Blendshapes are commonly used in animation, film and game industry.
-\\
-\\
+
 \subsection{Lerp}
 \setauthor{Romeo Bhuiyan}
 The \textbf{Lerp} function, short for Linear Interpolation, is a mathematical function that is 
@@ -649,8 +669,34 @@ In the context of computer graphics, Lerp function is widely used for
 interpolating values such as position, rotation, and color, to make the 
 animation smooth. It's also used in physics simulations, game development, 
 and other fields where the smooth transition of values is needed.
-\\
-\\
+
+Mathematically explained the linear interpolation, or simply interpolation, 
+is a technique used to estimate values between two known data points. In other words, given two data points, 
+interpolation allows us to estimate the value of a function at any point between those two data points.
+The formula for linear interpolation is given by: \ref{eqn:lerp}
+\begin{equation}
+  \label{eqn:lerp}
+	y = y1 + (x - x1) * (y2 - y1) / (x2 - x1)
+\end{equation}
+This formula is used to estimate a value between two known values on a straight line. It requires the following variables: y, 
+which represents the estimated value; y1, the value of the dependent variable (y-axis) at the first known point (x1, y1); y2, 
+the value of the dependent variable at the second known point (x2, y2); x, the value of the independent variable (x-axis) 
+at which to estimate the value of y; x1, the value of the independent variable at the first known point; and x2, the value 
+of the independent variable at the second known point.
+
+The linear interpolation formula calculates the value of y by first determining the slope of the line connecting the two 
+known points (y1, x1) and (y2, x2), and then extrapolating from that slope to estimate the value of y at the point x. 
+This method is commonly used in scientific research when estimating the value of a variable at a point where it has not 
+been directly measured, but falls within a range of values for which measurements have been made.
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.4\textwidth]{pics/lerp.png}
+  \caption{The blue line connecting the two red points is referred to as the linear interpolant, and it is used to estimate the value of y at a given x using linear interpolation.}
+  \cite{angles}
+  \label{fig:lerp}
+\end{figure}
+
 \subsection{Determining mouth expressions}
 \setauthor{Romeo Bhuiyan}
 
@@ -672,8 +718,7 @@ In this case, the weight is set to 0.5, resulting in an even blend between the t
 Once the blended value is calculated, it is set to the Blendshape object using the PresetName 
 as the key. This process is repeated for each shape in the array, allowing the developer to 
 easily blend the shape of the rigged face's mouth with preset values for multiple shapes.
-\\
-\\
+
 \subsection{Blinking eyes}
 \setauthor{Romeo Bhuiyan}
 \begin{lstlisting}[language=Python,caption=Blinking of the eyes,label=lst:blinking]
@@ -686,32 +731,27 @@ easily blend the shape of the rigged face's mouth with preset values for multipl
 This pseudocode \ref{lst:blinking} is a code block that performs blinking animation on a VRM model. 
 The code uses the Lerp function, the clamp function, and the stabilizeBlink function 
 to animate the eyes of the rigged face.
-\\
-\\
+
 The first two lines of the code use the Lerp function to blend the current value of the left and right eye shapes 
 \texttt{(riggedFace.eye.l and riggedFace.eye.r)} with a preset Blink value from the Blendshape object. The Lerp 
 function takes the clamp of the inversed eye shape values \texttt{(1 - riggedFace.eye.l and 1 - riggedFace.eye.r)}, 
 which clamps the values to between 0 and 1, and the preset Blink value, which is obtained using \texttt{Blendshape.getValue(PresetName.Blink)}. 
 The weight of the blend is set to 0.5, resulting in an even blend between the two values.
-\\
-\\
+
 The third line of the code stabilizes the blinking animation of the eyes by calling 
 the stabilizeBlink function from the \texttt{Kalidokit.Face} module. This function takes the 
 current eye shape \texttt{(riggedFace.eye)} and the head's y position \texttt{(riggedFace.head.y)}  as arguments 
 and returns a stabilized eye shape.
-\\
-\\
+
 Finally, the fourth line of the code sets the Blink value of the Blendshape object to the 
 stabilized left eye shape \texttt{(riggedFace.eye.l)}. This will result in a smooth and stable blinking  
 of the eyes on the VRM model.
-\\
-\\
+
 In summary, this pseudocode is a code block that animates the eyes of a VRM model by 
 blending the current eye shape with a preset Blink value, stabilizing the blinking animation, 
 and updating the Blink value of the Blendshape object. The code uses the Lerp function, the clamp 
 function, and the stabilizeBlink function to create a smooth and stable blinking animation on the VRM model.
-\\
-\\
+
 \subsection{Positioning the model}
 \setauthor{Romeo Bhuiyan}
 
@@ -743,8 +783,7 @@ function, and the stabilizeBlink function to create a smooth and stable blinking
 \end{lstlisting}
 This pseudocode \ref{lst:position} is a code block that positions a VRM model according to a set of defined parameters. 
 The code block consists of two functions: rigPosition and rigFace.
-\\
-\\
+
 The \textbf{rigPosition function} takes three arguments: name, position, dampener, and lerpAmount. The name argument is the name 
 of the part of the VRM model that needs to be positioned, the position argument is an object with x, y, and z properties 
 that represent the desired position of the part, the dampener argument scales the position values, and the lerpAmount 
@@ -755,16 +794,14 @@ If the part is not defined, the function returns without executing further code.
 If the part is defined, the code creates a new \texttt{THREE.Vector3} object with the desired position 
 values (scaled by the dampener argument), and the Part.position property is blended towards the 
 desired position using the lerp method. The weight of the blend is set by the lerpAmount argument.
-\\
-\\
+
 The \textbf{rigFace function} takes one argument: riggedFace, which represents the face of the VRM model. The function starts 
 by checking if the \emph{currentVrm} is defined and if it's not, the function returns without executing further code.
 If \emph{currentVrm} is defined, the function calls the rigRotation method and passes two arguments: \emph{Neck} and \emph{riggedFace.head}, 
 with a third optional argument of 0.7. This rotates the neck of the VRM model according to the head position.
 The function also defines the Blendshape variable and assigns it to the \texttt{blendShapeProxy} property of the \emph{currentVrm} object. 
 The \texttt{PresetName} variable is set to the \texttt{BlendShapePresetName} property from the \texttt{THREE.VRMSchema} object.
-\\
-\\
+
 \subsection{Animating the body}
 \setauthor{Romeo Bhuiyan}
 \begin{lstlisting}[language=Python,caption=Animating the rest of the body,label=lst:restbody]
@@ -802,8 +839,7 @@ The rotation and position of each body part is performed using two separate func
 \texttt{position}. The first parameter of each function specifies the name of the body part to be animated, 
 while the remaining parameters specify the values used for rotation or position, weight, and smoothing factor.
 In this way, the VRM model's body is animated according to the solved pose information.
-\\
-\\
+
 \subsection{Animation of both hands}
 \setauthor{Romeo Bhuiyan}
 \begin{lstlisting}[language=Python,caption=Animating the left hand,label=lst:hands]
