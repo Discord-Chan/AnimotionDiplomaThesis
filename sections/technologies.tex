@@ -729,7 +729,7 @@ easily blend the shape of the rigged face's mouth with preset values for multipl
     Blendshape.setValue(PresetName.Blink, riggedFace.eye.l)
 
 \end{lstlisting}
-This pseudocode \ref{lst:blinking} is a code block that performs blinking animation on a VRM model. 
+The pseudocode \ref{lst:blinking} shown above is a code block that performs blinking animation on a VRM model. 
 The code uses the Lerp function, the clamp function, and the stabilizeBlink function 
 to animate the eyes of the rigged face.
 
@@ -748,7 +748,7 @@ Finally, the fourth line of the code sets the Blink value of the Blendshape obje
 stabilized left eye shape \texttt{(riggedFace.eye.l)}. This will result in a smooth and stable blinking  
 of the eyes on the VRM model.
 
-In summary, this pseudocode is a code block that animates the eyes of a VRM model by 
+In summary, this listing is a code block that animates the eyes of a VRM model by 
 blending the current eye shape with a preset Blink value, stabilizing the blinking animation, 
 and updating the Blink value of the Blendshape object. The code uses the Lerp function, the clamp 
 function, and the stabilizeBlink function to create a smooth and stable blinking animation on the VRM model.
@@ -782,7 +782,7 @@ function, and the stabilizeBlink function to create a smooth and stable blinking
       
 
 \end{lstlisting}
-This pseudocode \ref{lst:position} is a code block that positions a VRM model according to a set of defined parameters. 
+The pseudocode \ref{lst:position} about positioning is a code block that positions a VRM model according to a set of defined parameters. 
 The code block consists of two functions: rigPosition and rigFace.
 
 The \textbf{rigPosition function} takes three arguments: name, position, dampener, and lerpAmount. The name argument is the name 
@@ -826,10 +826,10 @@ The \texttt{PresetName} variable is set to the \texttt{BlendShapePresetName} pro
 }
 
 \end{lstlisting}
-The pseudocode ,\ref{lst:restbody} you have posted describes an animation process for a VRM body. 
+The listing \ref{lst:restbody} shown above, describes an animation process for a VRM body. 
 The code checks if the \emph{pose2DLandmarks} and \emph{pose3DLandmarks} are available. If they are both available, 
-the code calculates the rigged pose using the function \texttt{solvePose} with the \emph{pose3DLandmarks}, \emph{pose2DLandmarks}, 
-\emph{mediapipe}, and \emph{videoElement} as input parameters. The function \texttt{solvePose} returns the rigged pose, which 
+the code calculates the rigged pose using the function \texttt{solvePose} with the \texttt{pose3DLandmarks}, \texttt{pose2DLandmarks}, 
+\texttt{mediapipe}, and \texttt{videoElement} as input parameters. The function \texttt{solvePose} returns the rigged pose, which 
 is then stored in the variable \texttt{riggedPose}.
 The code then rotates and positions various body parts of the VRM model based on the values obtained from the 
 rigged pose. For example, the hips are rotated based on the value of \texttt{riggedPose.Hips.rotation} with a weight 
