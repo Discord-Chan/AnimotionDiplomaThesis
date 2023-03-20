@@ -124,7 +124,8 @@ allow the UI of a website to be split up into many reusable, independent parts,
 for example a button, an input form, a dialog, and so on. In the programming language of React, JavaScript,
 components can be either implemented through functions, so-called function components, or classes, which is done 
 more commonly as they provide more features. In general, React components work like a function, they are handed 
-arbitrary inputs, props to be exact, and return UI elements that are displayed on the website. When creating 
+arbitrary inputs which are called props in the terminology used by React
+and return UI elements that are displayed on the website. When creating 
 such a class the minimum requirements are that it extends the base component class React.Component, though it 
 also possible to define one's own base class it is strongly discouraged in the official documentation of React,
 and that it defines a method called render \cite{ReactComponentProps} \cite{ReactComponent}.
@@ -165,7 +166,7 @@ feature in React that acts as a container and allows returning multiple child el
 without adding additional nodes to the DOM \cite{ReactFragments}.
 \\
 \\
-\subsection{Create-react-app}
+\subsection{Creating an Angular project}
 \setauthor{Christoph Lasinger}
 The easiest way to set up a React project is to use the officially supported command \emph{create-react-app}
 (a similar command exists for Next.js, namely \emph{create next-app}) as it offers a modern build setup and is already preconfigured. 
@@ -192,12 +193,13 @@ on TypeScript, React is a JavaScript library, so previous experience with one or
 more so the lack of experience, might influence the decision \cite{AngularReactComparison}.
 
 While Animotion started out as an Angular project, after a short period of time we decided to use React instead, because it 
-is easier to learn and more popular as well, as can be seen in the graph below that shows the amount of searches for their 
-respective npm packages in the past two years on the npm trends website \cite{AngularReactPopularity}.
+is easier to learn and more popular as well, as can be seen in figure \ref{fig:webpop} below. This graph shows the amount of 
+searches for the npm packages of Angular represented in blue and React represented in orange in the past two years on
+the npm trends website \cite{AngularReactPopularity}.
 \\
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=0.9\textwidth]{pics/webframeworkpop.png}
+  \includegraphics[width=1\textwidth]{pics/WebframeworkPopularity.png}
   \caption{Popularity of Web Frameworks}
   \label{fig:webpop}
 \end{figure}
@@ -223,10 +225,15 @@ have certain behaviours built into them from the moment of their creation.
 For example, by default every page is pre-rendered, meaning that the HTML code of a webpage and as little JavaScript code as possible
 that is required to perform its functions is generated in advance, instead of it having to be built from the JavaScript source code by
 the client. This results in better performance and improves SEO, which stands for Search Engine Optimization and describes the process
-of improving one's website in order to increase its visibility to search engines (e.g., Google). In terms of implementing pre-rendering
-Next.js offers two general approaches. They are static generation, which generates the HTML code for a webpage once when it is built
-and reuses it when responding to any request after that, and server-side rendering, SSR for short and also referred to as dynamic
-rendering, which generates the HTML code anew each time a request is made. Next.js offers the option to use either one of these pre-rendering
+of improving one's website in order to increase its visibility to search engines (e.g., Google).
+
+In terms of implementing pre-rendering Next.js offers two general approaches: 
+\begin{itemize}
+  \item Static generation, which generates the HTML code for a webpage once when it is built and reuses it when responding to any request after that
+  \item Server-side rendering, SSR for short and also referred to as dynamic rendering, which generates the HTML code anew each time a request is made
+\end{itemize}
+
+Next.js offers the option to use either one of these pre-rendering
 techniques or both in combination, where most pages are statically generated, and others are rendered on the server. In its official
 documentation Next.js recommends the usage of static generation over SSR because of its better overall performance. However, server-side
 rendering might be necessary in some cases, for example when some data that is fetched from an API and displayed on the website needs
@@ -281,7 +288,7 @@ file structure, namely all pages being in one folder, and so forth. Especially t
 \setauthor{Christoph Lasinger}
 Sass stands for syntactically awesome style sheets and is a stylesheet language that compiles into CSS (Cascading Style Sheets). It extends CSS by a number
 of features such as functions, variables, nested loops, mixins, etc. As a result, Sass enables stylesheets to be organized more easily and for design
-to be shared within and across projects. There are two syntaxes i.e., versions of Sass, the most commonly used one being the SCSS syntax, where the
+to be shared within and across projects. There are two syntactic variants i.e., versions of Sass, the most commonly used one being the SCSS syntax, where the
 filename ends in .scss. It is a superset of CSS, meaning that all CSS code is also valid SCSS code. The other version of Sass is called the Sass syntax
 and is a bit more unusual i.e., sort of like the programming language Python it abandons the typical structure of curly braces and semicolons used in CSS
 to separate and organize lines of code in favour of simple indents and newlines. However, apart from the different styling elements used, both syntaxes
