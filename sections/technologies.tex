@@ -87,7 +87,7 @@ of several building blocks (components), whereas each one defines one part of th
 with it. Because these components are reusable and effectively modularize the application, it becomes easier to develop and 
 test and makes the code more readable. This effect is especially noticeable in large-scale projects \cite{AngularDescription}.
 \\
-The Angular CLI, which stands for command-line interface, plays a big part in development as it is used to efficiently and 
+The Angular \gls{cli} plays a big part in development as it is used to efficiently and 
 conveniently create, build, and test Angular applications by using the commands \texttt{ng new}, \texttt{ng build}
 and \texttt{ng test} respectively. It can also be used to add new libraries through \texttt{ng add}
 when needed. However, the most important command when developing is ng serve, as it starts the application on
@@ -123,7 +123,7 @@ and that it defines a method called render \cite{ReactComponentProps} \cite{Reac
 \\
 \subsection{React JSX}
 \setauthor{Christoph Lasinger}
-React JSX, where JSX stands for JavaScript XML, which in turn stands for Extensible Markup Language, is a combination
+React JSX is an abbreviation of JavaScript XML and a combination
 of HTML and JavaScript. It plays a big part in React as JSX is the return type of all components. The following 
 code snippet shown in listing \ref{lst:react} serves of an example.
 
@@ -211,7 +211,7 @@ have certain behaviours built into them from the moment of their creation.
 
 For example, by default every page is pre-rendered, meaning that the HTML code of a webpage and as little JavaScript code as possible
 that is required to perform its functions is generated in advance, instead of it having to be built from the JavaScript source code by
-the client. This results in better performance and improves SEO, which stands for Search Engine Optimization and describes the process
+the client. This results in better performance and improves SEO, which means Search Engine Optimization and describes the process
 of improving one's website in order to increase its visibility to search engines (e.g., Google).
 
 In terms of implementing pre-rendering Next.js offers two general approaches: 
@@ -238,9 +238,9 @@ In contrast to server-side rendering, Next.js also offers the
 option of client-side rendering or client-side data fetching, where data is generally fetched at runtime and at the component level. As a
 result, the content of a page only changes whenever new data comes in. Though this can negatively affect performance and load time of one's
 website, client-side rendering can be useful when SEO is not of importance, and pages need to be updated very frequently based on fetched data.
-For implementing this strategy Next.js offers the React hook library SWR, which stands for stale-while-revalidate, a cache invalidation strategy
+For implementing this strategy Next.js offers the React hook library SWR (stale-while-revalidate), a cache invalidation strategy
 of HTTP. Next.js strongly encourages developers to use it in its documentation, as it handles focus tracking, caching, revalidation, etc. The
-other method of data fetching is ISR, which stands for Incremental Static Regeneration and allows developers to statically generate pages on a
+other method of data fetching is called ISR (Incremental Static Regeneration) and allows developers to statically generate pages on a
 per-page basis, without the need of rebuilding the entire website. In order to use it, a revalidate prop is added to the \emph{getStaticProps} function \cite{NextjsDataFetching}.
 \\
 \subsection{Code splitting}

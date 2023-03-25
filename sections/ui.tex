@@ -68,19 +68,28 @@ that does not particularly draw any attention to it, was chosen.
 \\
 \section{Community page}
 \setauthor{Lasinger Christoph}
-On the community page a discord server specifically created for Animotion is presented along
-with information about said community. This community was envisioned to be a place for people
+On the community page a discord server specifically created for Animotion is presented along with
+general information about said community. This community was envisioned to be a place for people
 to share music and dance videos created by recording a chosen VRM following a person's recorded
-movements on the main page with each other. Additionally, any questions regarding the project
-could be answered and required assistance could be provided. The discord server is shown on the
-web page by embedding a widget through a HTML element named iframe, a concatenation of the words
-inline and frame that essentially puts another window of content on the web page it is used on.
-% go more in depth?
-The widget displays what members of the server are currently online and the
-voice channel they reside in, which can be valuable information to someone who might decide to
-join possible conversations depending on who is participating in them. %[19]
-It works by blablabla
-Here goes a description of figure \ref{fig:communitypage} below.
+movements on the main page with each other. Additionally, any questions regarding the project could
+be answered and required assistance could be provided. \\
+The discord server is shown on the web page by embedding a widget through a HTML element named
+iframe, a combination of the words inline and frame that essentially renders code taken from a
+referenced source as if it was a separate website and places it within the parent page. An iframe
+can independently loaded its own CSS and JavaScript and asynchronously refreshed and reloaded as
+well. As an ordinary HTML element, it is possible to customize iframes by setting its properties,
+such as position, size, source, security context, border, etc. It is recommended to avoid excessive
+usage of them, as they require significant amounts of memory and processing power and can thusly
+negatively impact a website's performance. \\ %source [19]
+The widget on this community page displays what members of the server are currently online and the
+voice channel they reside in, which can be valuable information to someone who might decide to join
+possible conversations depending on who is participating in them.
+The specific iframe and its set properties can be seen in following code snippet shown in listing \ref{lst:iframe}.
+\begin{iframediscord}[language=Python,caption=iframe used for discord widget,label=lst:iframe]
+    <iframe className="discord-iframe" src="https://discord.com/widget?id=1035647726634934382&theme=dark"
+    allowtransparency="true" frameBorder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+\end{iframediscord}
+The usage of said iframe results in the following web page as seen in figure \ref{fig:communitypage}.
 \\
 \\
 \begin{figure}[htb]
@@ -93,27 +102,13 @@ Here goes a description of figure \ref{fig:communitypage} below.
 \\
 \section{About us page}
 \setauthor{Lasinger Christoph}
-Here goes a description of figure \ref{fig:aboutpage} below.
-\\
-\\
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{pics/Animotion_aboutus.png}
-    \caption{About us page of the website}
-    \label{fig:aboutpage}
-\end{figure}
-\\
-\\
+The centre button of the homepage leads to the about-us-page, derived from the commonly seen about-me-page
+made by individual developers and adapted to the fact that Animotion was created by a two-person team. While
+it does not contain particularly important information, it presents a bare minimum amount of information
+about us, the developers of this project. \\
+Additionally, in order to always be legally covered in case Animotion evolves into a larger project in the
+future a legal disclosure can be found on this page as well. It informs the reader of our real names and an
+address, email, and phone number to reach out to. \\
 \section{Mediaplayer page}
 \setauthor{Lasinger Christoph}
-Here goes a description of figure \ref{fig:mediaplayerpage} below.
-\\
-\\
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.8\textwidth]{pics/Animotion_mediaplayer.png}
-    \caption{Mediaplayer page of the website}
-    \label{fig:mediaplayerpage}
-\end{figure}
-\\
-\\
+Lastly, there is the media player page where embedded YouTube videos of VRMs dancing to certain songs are displayed. \\
