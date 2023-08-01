@@ -1,39 +1,136 @@
+\section{Introduction}
+\setauthor{Romeo Bhuiyan}
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.9\textwidth]{pics/systemarchi.png}
+  \caption{System architecture of Animotion}
+  \label{fig:systemarchi}
+\end{figure}
+
+The figure \ref{fig:systemarchi} above shows the system architecture of Animotion which is 
+designed to enable accurate and immersive face and body tracking experiences. 
+The architecture incorporates various components and technologies to achieve seamless 
+integration and efficient processing of movement data.
+
+At the core of the system, the gestures and facial expressions are captured by a camera, typically a webcam. 
+This visual data serves as the input for the tracking process. The captured data is then fed into the Mediapipe AI, 
+as well as other script algorithms, for further analysis and processing. The movement data undergoes filtering 
+processes within the script algorithms to extract the relevant information that will be utilized for tracking. 
+This filtering helps to refine the data, ensuring that only the necessary movement data is used for subsequent stages.
+Next, the processed movement data is applied to the Virtual Reality Model model, which represents the 
+virtual character or avatar. This integration is achieved through the utilization of Three.js, a powerful 
+web-based 3D graphics library, and the Three VRM.js library, which specializes in rendering VRM models. 
+These technologies enable the visualization of the tracked movements on a canvas, providing users 
+with a real-time representation of their gestures and mimics.
+
+To support the web application framework, Animotion has chosen Next.js. 
+This framework offers robust features for building web applications and facilitates seamless server-side 
+rendering and routing. Additionally, the design aspect of Animotion's application is accomplished using Sass, 
+a popular CSS preprocessor that enhances the efficiency and organization of styling code.
+In terms of data loading, Animotion has implemented a locally loaded approach. The data, after being 
+pulled from the web server, is stored and accessed locally. This approach ensures that users can run the 
+application efficiently without relying heavily on continuous server connectivity. Animotion has employed 
+GitHub Pages as the web server, leveraging its capabilities for hosting and serving the application content.
+
 \section{Interactive 3D graphics with Three.js}
 \setauthor{Romeo Bhuiyan}
-\textbf{Three.js}\cite{threejs} is a JavaScript library that allows for the creation of interactive 3D graphics in the web 
-browser. It is designed to work seamlessly with WebGL, which is a web-based 3D graphics API that allows 
-developers to access the hardware-accelerated graphics capabilities of a user's computer. Three.js 
-makes it possible to create rich 3D experiences with JavaScript and HTML, without the need for any plugins or downloads.
-With Three.js, developers can create a wide variety of 3D scenes and animations, including but not limited to: 
-realistic environments with dynamic lighting and shadows, complex 3D models and animations, interactive 3D 
-games and simulations, and virtual reality (VR) and augmented reality (AR) experiences.
+Animotion encountered an initial hurdle in seamlessly integrating the VRM model onto the canvas 
+and achieving smooth rendering. The objective was to accurately represent the tracked facial and 
+body movements in real-time. This posed a significant challenge due to the complex nature of the VRM 
+model and the requirement for seamless integration. To overcome this obstacle, Animotion turned to the 
+powerful combination of Three.js and Three VRM.js libraries.
 
-The library provides a large number of powerful features and abstractions that simplify 
-the process of creating 3D graphics. It includes a number of built-in shapes, such as cubes, 
-spheres, and cylinders, as well as more complex shapes that can be constructed from the 
-vertices and faces of custom 3D models. Three.js also includes a number of materials that 
-allow for realistic shading and texturing of 3D objects, as well as lights and cameras 
-that can be positioned and manipulated to achieve the desired lighting and perspective effects.
-Another important aspect of Three.js is its support for keyframe animations. This allows
-developers to animate objects over time, creating smooth transitions and movements. 
-The library also provides support for physics simulations, making it possible to 
-create complex and interactive 3D experiences that respond to user input.
+Three.js, a widely used web-based 3D graphics library, emerged as the foundation for 
+Animotion's project. It offers an extensive range of tools and features, making it an ideal 
+choice for creating interactive 3D applications within a browser environment. With its capabilities 
+in rendering, animation, geometry manipulation, and material management, Three.js proved to be 
+versatile and well-documented, supported by an active community.
+For Animotion, Three.js played a crucial role in seamlessly integrating the VRM model onto 
+the canvas. It provided a robust framework for rendering the 3D model, managing the scene graph, 
+and handling user interactions. Animotion leveraged the capabilities of Three.js to manipulate and 
+animate the VRM model based on the tracked facial and body movements, resulting in an immersive and interactive user experience. \cite{threejs}
+
+\begin{lstlisting}[language=Python,caption=Loading the VRM onto the canvas,label=lst:vrmloading]
+// VRM Loader
+const loader = new THREE.GLTFLoader();
+loader.crossOrigin = "anonymous";
+// importing model from glitch.io our repo for storing the models
+loader.load(
+  window.localStorage.getItem("vrm"),
+  (gltf) => {
+    THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
+
+    // set the model infornt of user
+    THREE.VRM.from(gltf).then((vrm) => {
+      scene.add(vrm.scene);
+      currentVrm = vrm;
+      currentVrm.scene.rotation.y = Math.PI;
+    });
+  },
+
+  (progress) =>
+    console.log(
+      "Loading model...",
+      100.0 * (progress.loaded / progress.total),
+      "%"
+    ),
+
+  (error) => console.error(error)
+);
+\end{lstlisting}
+
+
+The provided listing above \ref{lst:vrmloading} showcases the implementation of loading and rendering a VRM using the Three.js library. 
+The code addresses the challenges involved in seamlessly integrating the VRM model onto the canvas and accurately rendering it in real-time.
+The first step is the initialization of the \texttt{THREE.GLTFLoader}, a loader specifically designed for handling models in the GLTF format. 
+By setting the \texttt{crossOrigin} property to \emph{anonymous,} potential cross-origin issues when loading the VRM model are addressed.
+Once the loader is set up, the \texttt{loader.load()} function is called to load the VRM model. During the loading process, 
+a progress callback function is utilized to track the progress as a percentage. This provides feedback on how much of the model has been loaded.
+Upon completion of the model loading, the success callback function is triggered. Within this function, 
+the loaded model data is represented as a \texttt{gltf} object. However, before rendering the model, the unnecessary 
+joints are removed using \texttt{THREE.VRMUtils.removeUnnecessaryJoints()}. This step optimizes the 
+rendering process by eliminating any unnecessary components.
+The \texttt{THREE.VRM.from(gltf)} function is then employed to convert the \texttt{gltf} object into a \texttt{VRM} object, 
+suitable for rendering within the Three.js environment. The \texttt{VRM} object is added to the scene using 
+the \texttt{scene.add(vrm.scene)} method, ensuring its integration into the overall scene graph.
+To enable further manipulation, the loaded VRM object is assigned to the \texttt{currentVrm} variable. 
+In the provided code, the rotation of the model is adjusted by setting \texttt{currentVrm.scene.rotation.y} to 
+\texttt{Math.PI}, resulting in a 180-degree rotation around the y-axis.
+
+Throughout the loading process, error handling is implemented with the error callback function. Any encountered errors 
+are logged to the console, providing insight into potential issues that may arise.
+
+While other libraries may offer similar functionalities, Animotion recognized that 
+Three.js stood out as the preferred choice due to its versatility, robust features, 
+and compatibility with the VRM model format. The combination of Three.js and Three VRM.js 
+empowered Animotion to realize their vision and deliver a compelling face and body 
+tracking experience that exceeded expectations.
 
 \subsection{Rendering and manipulating VRM}
 \setauthor{Romeo Bhuiyan}
-\textbf{Three-vrm.js} is a JavaScript library that provides support for rendering 
-and manipulating VRM (Virtual Reality Model) characters in web-based environments. 
-It is built on top of Three.js, a widely-used library for creating 3D graphics and 
-animations in web browsers.
-Three-vrm.js offers a set of tools and APIs for working with VRM models, allowing 
-developers to easily import, manipulate and animate VRM characters in their web-based 
-projects. This includes support for importing VRM files, as well as manipulating and animating 
-individual bones, rigging, morph targets, and materials of the characters as shown below in the figure \ref{fig:threevrmdebug}.
-In addition to basic VRM functionality, three-vrm.js also includes a set of VRM-specific 
-features and extensions. For example, it provides support for VRM's humanoids, which define 
-the structure of a VRM character and allow for easy animation of the character. It also includes 
-support for VRM's blend shapes, which are used to manipulate the shape of the character's 
-face and expressions.
+Three VRM.js is an extension of the Three.js library specifically designed for working with VRM files. 
+It provides a comprehensive set of tools and functionalities that enable developers to load, control, 
+and render VRM models in real-time web applications. At its core, Three VRM.js leverages the capabilities 
+of Three.js, a powerful web-based 3D graphics library. Three.js provides a solid foundation for creating 
+interactive 3D applications, offering a wide range of features such as rendering, animation, and scene management. 
+By building upon Three.js, Three VRM.js enhances its capabilities to handle VRM-specific functionalities and nuances.
+
+The main functionality of Three VRM.js lies in its ability to load and parse VRM files. 
+VRM files are industry-standard 3D model formats that contain information about the geometry, 
+textures, bones, and blend shapes of a character, as shown in the figure below \ref{fig:threevrmdebug}. Three VRM.js streamlines the process of loading 
+these files into a Three.js scene, automatically interpreting and organizing the data within the VRM file.
+Once a VRM model is loaded, Three VRM.js enables developers to manipulate and control the model's 
+behavior in real-time. It provides a variety of tools to handle complex tasks such as facial expression 
+control, bone animation, and blend shape manipulation. Developers can dynamically adjust the model's 
+appearance and behavior based on external input, such as tracking data from facial recognition or body tracking systems.
+Another important feature of Three VRM.js is its support for Inverse Kinematics. \cite{threevrm}
+
+To enhance performance and efficiency, Three VRM.js employs various optimizations. 
+It utilizes the Graphics Processing Unit for hardware-accelerated rendering, 
+ensuring smooth and responsive animations. Additionally, Three VRM.js incorporates 
+techniques like Level of Detail management, which dynamically adjusts the level of detail
+based on the distance between the camera and the model. This optimization improves 
+rendering efficiency, particularly for complex scenes with multiple VRM models. \cite{threevrmgpu}
 \\
 \begin{figure}[htb]
     \centering
@@ -42,6 +139,23 @@ face and expressions.
     \label{fig:threevrmdebug}
 \end{figure}
 \\
+
+\subsection{Realistics movement with Inverse Kinematics}
+\setauthor{Romeo Bhuiyan}
+Inverse Kinematics (IK) is a technique used in computer graphics and animation to simulate realistic
+ joint movement based on the desired position or orientation of an object's end effectors.
+ In the context of Three VRM.js, which is an extension of Three.js for working with VRM models, 
+ IK enables more natural and dynamic animations of the VRM models.
+With IK, the position and rotation of the end effectors, such as hands or feet, are specified, and the IK 
+solver algorithm calculates the appropriate joint angles required to achieve those positions. This allows for 
+smoother and more realistic movements of the VRM model's limbs, making it appear as though the 
+model is reacting to the user's input or the surrounding environment. \cite{whatisik}
+
+By incorporating IK in Three VRM.js, Animotion or developers in general can create more realistic and fluid animations of VRM models. 
+This enhances the overall visual quality and immersive experience of the virtual characters, as their movements 
+closely resemble the natural motion of human limbs. The ability to accurately simulate IK in VRM models adds another 
+layer of realism and expressiveness to the animations and interactions in applications by Three VRM.js. \cite{ikinthree}
+
 \section{Decision between web frameworks}
 \setauthor{Christoph Lasinger}
 The decision to use a web framework at all and not simply vanilla HTML, CSS and JavaScript came from a multitude of reasons.
@@ -338,49 +452,71 @@ unique strengths and weaknesses.
 
 \subsection{WebGL}
 \setauthor{Romeo Bhuiyan}
-\textbf{WebGL} is designed to work seamlessly with other web technologies such as HTML, CSS, and JavaScript, 
-making it easy to integrate 3D graphics into web pages. It allows developers to create a wide range 
-of interactive 3D applications and visualizations, including games, scientific 
-simulations, data visualizations, and more.
-One of the key features of WebGL is its ability to take full advantage of the GPU 
-(graphics processing unit) on the user's device. This allows WebGL applications to 
-run smoothly and efficiently, even on devices with limited resources. Additionally, WebGL provides 
-a high level of compatibility across different browsers and devices, making it a widely accessible technology.
-WebGL is supported by most modern web browsers, including Chrome, Firefox, Safari, and Edge. 
-This means that developers can create WebGL applications that can be easily accessed by 
-users on a wide range of devices and platforms. \cite{WebGL}
+WebGL is a powerful technology that would allow Animotion to harness the capabilities of hardware-accelerated 3D graphics within web browsers. 
+It is an essential tool for creating interactive and visually stunning applications, including the face and body tracking 
+functionalities that Animotion offers. WebGL stands for \emph{Web Graphics Library} and is based on the OpenGL 
+ES standard, adapted to work with the web. \cite{WebGL}
+
+One of the primary benefits of using WebGL for Animotion would be its ability to render complex 3D graphics directly 
+within the browser without the need for plugins or additional software installations. This ensures broad 
+compatibility and accessibility, as most modern web browsers support WebGL. Animotion could leverage this 
+capability to deliver real-time 3D rendering of VRM models, enabling users to visualize and interact 
+with their tracked facial and body movements seamlessly. Another advantage is WebGL's performance benefits are paramount. 
+Utilizing the power of the Graphics Processing Unit, WebGL 
+enables high-performance rendering and computation of 3D graphics, resulting in smooth and responsive visual 
+experiences. This is especially crucial for face and body tracking applications where low latency and real-time 
+responsiveness are vital to maintain a high level of user immersion and engagement. \cite{WebGLAdvantages}
+
+Nevertheless, there are also some disadvantages associated with using WebGL. One notable concern is the potential for performance bottlenecks, 
+especially on older or less powerful devices. While WebGL leverages hardware acceleration, it relies heavily on the Graphics Processing Unit, 
+which can be a limiting factor on devices with weaker graphics capabilities. This could result in lower frame rates or reduced 
+overall performance, affecting the smoothness of the face and body tracking experience. 
+On top of that WebGL imposes certain security considerations. Since it provides access to the Graphics Processing Unit and hardware, 
+malicious code executed through WebGL could potentially harm the user's system. Therefore, 
+Animotion would need to implement proper security measures to prevent unauthorized access and protect users from potential threats. \cite{WebGLSecurity}
 
 \subsection{GLTFLoader}
 \setauthor{Romeo Bhuiyan}
-\textbf{GLTFLoader} is a JavaScript library that allows developers to load and parse 3D models in the GLTF 
-(GL Transmission Format) file format. GLTF is a widely adopted file format for 3D models and is 
-supported by many 3D modeling software, including Blender and SketchUp.
-GLTFLoader provides a simple and easy-to-use API for loading and parsing GLTF models, 
-which can then be displayed using WebGL. The library takes care of all the complex tasks 
-involved in loading and parsing the model data, such as handling binary buffers, parsing 
-JSON data and creating the geometry and materials for the model.
-GLTFLoader also provides support for advanced features such as animations, skinning and morph 
-targets, which are typically found in more complex 3D models. This allows developers to create 
-more advanced and interactive 3D applications and visualizations.
-One of the key benefits of using GLTFLoader is that it greatly simplifies the process of loading and 
-displaying 3D models on the web. By using a standardized file format and a dedicated library, 
-developers can focus on creating the logic and functionality of their application, rather than 
-spending time on complex parsing and loading tasks.
-Additionally, GLTF is a highly efficient format, which means that it can be loaded faster, 
-and also the files are smaller in size, making it a great choice for loading 3D models on the web. \cite{GLTFLoader}
+GLTFLoader would be a valuable component for Animotion's face and body tracking system, enabling the seamless loading 
+and rendering of 3D models in the GLTF format which stands for Graphics Library Transmission Format. GLTFLoader is a JavaScript library specifically designed to handle 
+models in the GLTF format, which is optimized for efficient transmission 
+and loading of 3D scenes and models. 
+A big advantage of using GLTFLoader is the wide range of 3D models and scenes. 
+GLTF is an open standard format that encompasses various types of 3D data, including geometries, materials, textures, 
+animations, and more. This versatility would allow Animotion to integrate a diverse array of VRM models seamlessly 
+into the face and body tracking system, ensuring a rich and immersive user experience.
+Another advantage of GLTFLoader is its efficiency in loading and parsing 3D models. The GLTF format is designed 
+for compactness and fast loading times, making it well-suited for web-based applications like Animotion. 
+By using GLTFLoader, Animotion can minimize the loading times for VRM models, enhancing 
+the overall performance of the face and body tracking system. \cite{GLTFLoader}
+
+Furthermore, GLTFLoader's seamless integration with Three.js, the popular 3D library used by 
+Animotion, streamlines the process of rendering 3D models. Three.js provides a powerful and user-friendly framework 
+for creating 3D graphics within web browsers, and GLTFLoader's compatibility with Three.js ensures that Animotion 
+can easily incorporate VRM models into the overall scene graph. GLTFLoader also supports animations and skeletal animations, allowing Animotion to animate the 
+VRM models in real-time based on the tracked facial and body movements. This would enable Animotion to provide 
+a dynamic and interactive user experience, where users can see their own movements reflected in the 3D models in real-time. \cite{GLTFLoaderWithVRM}
+
+While GLTFLoader offers numerous benefits, it is essential to consider potential disadvantages as well. 
+One potential challenge is the complexity of 3D models and scenes, which could lead to larger file sizes 
+and longer loading times. However, GLTF's optimized format and efficient loading process help mitigate this issue to a large extent.
 
 \subsection{Conclusion}
-In conclusion, GLTFLoader is a powerful tool for creating 3D graphics for the web that 
-offers several advantages over WebGL. One of the main benefits of using GLTFLoader is 
-its ability to handle the loading and parsing of GLTF (GL Transmission Format) files, 
-which are a widely-used format for 3D models. This eliminates the need for developers 
-to write their own code to handle file loading and parsing, saving time and effort. 
-Additionally, GLTFLoader provides a more streamlined and convenient way to work with 
-3D models, as it allows developers to easily import and use pre-existing models rather 
-than having to create them from scratch. Furthermore, GLTFLoader also supports various 
-features such as animations, cameras, lights and many more which can be easily integrated 
-with web pages. Therefore, it is more efficient and convenient for the purpose of Animotion 
-to work with 3D models on the web, GLTFLoader is the best choice as seen below in the figure. \ref{fig:gltfloader}
+In conclusion, GLTFLoader emerges as the optimal solution for Animotion's 3D graphics needs, 
+offering significant advantages over WebGL. By leveraging GLTFLoader, Animotion can efficiently 
+handle the loading and parsing of GLTF files
+eliminating the need for extensive custom code development. This streamlined approach saves valuable 
+time and effort, allowing the team to focus on refining the face and body tracking system.
+The results of using GLTFLoader are highly promising as shown in the figure \ref{fig:gltfloader} below. 
+Animotion can now offer users an immersive and 
+interactive experience where their tracked facial and body movements are mirrored in real-time by 3D models. 
+The efficient loading and rendering of VRM models using GLTFLoader enhance the overall performance and 
+responsiveness of the face and body tracking system, ensuring a smooth and engaging user experience.
+Considering the specific requirements of Animotion's project, the combination of Three.js and Three VRM.js 
+libraries with GLTFLoader proves to be the best choice. This combination enables Animotion to seamlessly 
+load and display VRM models onto the canvas, accurately representing the tracked movements in real-time. 
+By adopting GLTFLoader, Animotion ensures a more efficient and effective utilization of Three.js 
+and Three VRM.js libraries, further elevating the quality of their face and body tracking system.
 \\
 \begin{figure}[htb]
     \centering
@@ -391,29 +527,33 @@ to work with 3D models on the web, GLTFLoader is the best choice as seen below i
 \newpage
 \section{Object interaction with OrbitControls}
 \author{Romeo Bhuiyan}
-\textbf{Orbit-Controls.js} is a JavaScript library used for controlling camera rotations 
+Orbit-Controls.js is a JavaScript library used for controlling camera rotations 
 and movements in 3D graphics applications. This library provides an easy-to-use 
 interface for controlling the camera in a 3D environment, and is commonly used in 
 interactive 3D web applications and other 3D visualizations.
+OrbitControls.js is a critical component in Animotion's 3D graphics system, playing a important role in 
+enabling intuitive camera control and user interaction. This library, built on top of Three.js, allows 
+for smooth and effortless navigation of 3D scenes, offering users the ability to orbit around objects, zoom in and out, and pan the view.
+In Animotion's context, OrbitControls.js is essential for providing users with a dynamic perspective of the tracked 3D models, 
+enhancing their immersion and engagement. By incorporating OrbitControls.js, 
+Animotion enables users to explore the virtual environment from different angles.
 
-The library works by allowing the user to control the camera through mouse 
-and touch inputs, such as panning, zooming, and rotating the camera around a 
-certain point in the 3D space. It uses the Three.js library, which is a popular 
-library for creating 3D graphics in the browser, as a base.
+The usage of Azimuth and Polar angles in OrbitControls.js further enhances the control and customization options available to users.
+The Azimuth angle, also known as the horizontal angle, allows users to rotate the camera horizontally around the tracked 3D 
+model. On the other hand, the Polar angle, or vertical angle, empowers users to adjust the camera's position, 
+providing flexibility in capturing different perspectives.
+The combination of both angles in OrbitControls.js allows Animotion's users to view the 3D models from any desired viewpoint, 
+which is especially crucial for face and body tracking applications. This feature enhances the possibilities of seeing the 
+interactions from another point of view.
 
-Orbit-Controls.js makes it easy to interact with 3D scenes and view them from different 
-perspectives. It provides a simple way to navigate and explore 3D environments, making it a 
-useful tool for a wide range of applications, including scientific simulations, product visualization, architecture, and more.
-
-The Orbit-Controls.js is a JavaScript library that enables user interactivity in 3D scenes built with Three.js. 
-In order to use the library, it is necessary to include it in the HTML file and create an instance of the 
-OrbitControls class. A Three.js camera object and a renderer also need to be passed as parameters. Once initialized, 
-the library will handle user inputs from mouse and touch, allowing for smooth camera control in the 3D scene. 
-This feature makes Orbit-Controls.js a valuable tool for creating interactive and engaging web applications with Three.js. \cite{orbitcontrols}
+The most important advantage is that OrbitControls.js simplifies the implementation of camera control functionalities, 
+reducing the development effort and ensuring a smoother user experience. By using the named libary, 
+Animotion avoids the need to build complex camera control systems from scratch, saving valuable development time and resources.
+\cite{orbitcontrols}
 
 \subsection{Azimuth- and polar angle}
 \setauthor{Romeo Bhuiyan}
-The \textbf{Azimuth angle and the Polar angle} are two important concepts in 3D graphics and visualization. 
+The Azimuth angle and the Polar angle are two important concepts in 3D graphics and visualization. 
 In the context of orbit-controls.js, they are used to control the camera's rotation and position in 3D space.
 
 The Azimuth angle refers to the angle between a reference plane and the position of the camera in 
@@ -430,11 +570,9 @@ of rotation around the vertical axis, measured from the north.
 The equation involves several trigonometric functions, including sin, cos, and tan, which describe the various 
 components of the angle of inclination and rotation. The atan2 function is used to calculate the angle between 
 the positive x-axis and the point (sin(theta), expression in parentheses) in the Cartesian plane.
-
 The azimuth angle is an important parameter in many applications, including navigation, surveying, and satellite communications. 
 It provides a convenient way to describe the direction of an object or location relative to true north, 
 and can be used to determine the angle of elevation and other important parameters.
-
 The Polar angle, on the other hand, refers to the angle between the position of the camera and the 
 positive y-axis. It determines the camera's vertical rotation and the height of the camera relative 
 to the scene. In orbit-controls.js, the Polar angle is controlled by moving the mouse vertically.
@@ -452,11 +590,9 @@ where (x,y) are the Cartesian coordinates of a point in the plane. This equation
 and the line segment connecting the origin and the point (x, y).
 It is important to note that this formula works only when x is positive. If x is negative, 
 then we must add or subtract pi radians (180 degrees) to the result, depending on the sign of y, to find the correct angle.
-
 By controlling both the Azimuth and Polar angles, the orbit-controls.js library allows the user to 
 change the position and orientation of the camera in 3D space. This is especially useful for interactive 
 3D visualizations, where the user needs to be able to explore the scene from different perspectives, as shown below in the figure. \ref{fig:orbitcontrols}
-
 Orbit-controls.js is often used in conjunction with WebGL and Three.js, which are libraries for creating 
 3D graphics and animations in the browser. The combination of these technologies makes it possible to create 
 interactive 3D visualizations that can run in a web browser, without the need for additional software or plugins.
@@ -469,148 +605,224 @@ interactive 3D visualizations that can run in a web browser, without the need fo
   \label{fig:orbitcontrols}
 \end{figure}
 
-\section{Camera utilization using camera utils}
+\section{Camera utilization using Camera utils}
 \setauthor{Romeo Bhuiyan}
-The \textbf{camera utils.js} library is a JavaScript-based tool for controlling camera behavior in web-based applications. 
-This library provides a set of functions and utilities that simplify the process of integrating camera functionality 
-into a web application. By leveraging the camera utils.js library, developers can add camera-based features to 
-their web applications with ease and efficiency.
+Camera utils plays a vital role in Animotion's 3D graphics system, managing user input to effectively 
+visualizing facial and body movements on the VRM model. As the backbone of camera control, Camera utils 
+ensures a seamless and immersive experience for users to interact with the virtual environment.
+This library plays a important role in capturing and representing the tracked movements on the VRM 
+model in real-time. As users interact with the 3D environment, Camera utils records changing camera 
+positions and angles, translating them into corresponding movements of the VRM model. This dynamic 
+representation of the user's tracked facial expressions and body gestures fosters a highly 
+interactive and engaging user experience. It simplifies the implementation of complex camera controls, 
+saving valuable development time and resources for Animotion as shown in the pseudocode \ref{lst:camerautils} below. Its seamless integration into the 3D 
+graphics system ensures a user-friendly experience, allowing users to focus on exploring and 
+understanding their tracked movements without being hindered by technical complexities. \cite{camerautils}
 
-The camera utils.js library provides a simple and intuitive interface for controlling camera movements and behaviors 
-in web-based applications. With this library, developers can specify camera movement and behavior through a simple 
-set of functions and parameters, rather than having to manually manipulate camera coordinates and behaviors. 
-This makes it easier for developers to create rich and immersive camera experiences in their web applications.
+\begin{lstlisting}[language=Python,caption=Camera utilization using CameraUtils,label=lst:camerautils]
+  const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await sendVideoFrame(videoElement);
+  },
+  width: 640,
+  height: 480,
+  });
+  camera.start();
+\end{lstlisting}
 
-One of the key benefits of using the camera utils.js library is that it enables developers to take advantage of 
-modern web-based technologies, such as WebRTC and WebGL, to create camera-based experiences. These technologies 
-allow developers to access the user's camera in real-time, making it possible to create live-streaming and 
-real-time interactive experiences. By using the camera utils.js library, developers can take advantage of these 
-technologies to create engaging and interactive camera-based experiences that work seamlessly across a wide range of devices and browsers.
-In addition to providing a simple and intuitive interface for controlling camera behavior, the camera utils.js 
-library also offers a number of performance and optimization optimizations that help to ensure smooth and fast 
-camera performance. For example, the library implements a number of techniques to reduce latency and ensure 
-smooth camera movement, even when processing large amounts of data in real-time.
+The provided pseudocode \ref{lst:camerautils} above demonstrates the implementation of a camera module to capture video frames from 
+a specified HTML video element \emph{videoEmlement} and process them using an asynchronous 
+function called \texttt{sendVideoFrame}. The camera is set to capture video frames 
+with dimensions of 640 pixels width and 480 pixels height. Upon starting the camera, it continuously captures 
+and processes video frames in real-time, allowing developers to implement functionalities such as real-time video 
+analysis, image recognition, or computer vision tasks. The \texttt{Camera} class provides a flexible and efficient 
+solution for video frame capture and processing within web applications.
 
-\section{Drawing utils}
+\section{Drawing movements with Drawing utils}
 \setauthor{Romeo Bhuiyan}
-\textbf{drawing utils.js} is a JavaScript library designed to simplify and streamline the process of 
-creating and rendering graphics within a web-based environment. The library provides a set of utility 
-functions that enable developers to quickly and easily implement common graphical tasks such as 
-creating 2D shapes, generating text, and creating animations.
+Drawing utils are essential components of Animotion's user interface, using the real-time visualization of user 
+input on the camera window. Their role is critical in displaying tracked facial expressions and body movements as 
+they occur on the camera feed. By utilizing drawing utils, Animotion enhances the interactive nature of the 
+application, providing users with intuitive feedback on their actions in real-time.
+One of the primary reasons Animotion utilizes drawing utils is to overlay visual elements on top of the camera window to 
+indicate the detected facial landmarks and body keypoints as shown in the listing \ref{lst:drawing} below. These visual cues serve as feedback to users, 
+providing them with a clear understanding of how their movements are being tracked and interpreted by the AI system. 
+For example, facial landmarks could be visualized as points on the user's face, while body keypoints could be 
+represented as joints or markers, allowing users to see how their gestures and movements are being captured by the system.
+Through the use of lines and shapes, Animotion provides users with valuable information and guidance during interactions. 
+For example, drawing utils can help users maintain proper posture or movement alignment during exercises, ensuring precise execution. 
+This interactive feature elevates the overall user experience and contributes to the effectiveness of 
+Animotion as a valuable tool for tracking and analyzing movements. \cite{drawingutils}
 
-One of the key benefits of using drawing utils.js is that it abstracts away much of the 
-low-level graphics programming that would otherwise be required to achieve these same results. 
-This means that developers can focus on the high-level aspects of their project and get the 
-desired results more quickly and efficiently. Additionally, the library provides a set of 
-well-documented and easy-to-use APIs that enable developers to implement and customize 
-their graphics with minimal effort.
+\begin{lstlisting}[language=Python,caption=Setting the landmarks on the camera feed,label=lst:drawing]
+  function drawResults(results):
+    guideCanvas.width = videoElement.videoWidth
+    guideCanvas.height = videoElement.videoHeight
+    canvasCtx = guideCanvas.getContext("2d")
+    canvasCtx.save()
+    canvasCtx.clearRect(0, 0, guideCanvas.width, guideCanvas.height)
+    drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: "#a640ff", lineWidth: 4})
+    drawLandmarks(canvasCtx, results.poseLandmarks, {color: "#f67d92", lineWidth: 2})
+    drawConnectors(canvasCtx, results.faceLandmarks, FACEMESH_TESSELATION, {color: "#fcd4db", lineWidth: 1})
+    if (results.faceLandmarks and results.faceLandmarks.length === 478):
+        drawLandmarks(canvasCtx, [results.faceLandmarks[468], results.faceLandmarks[468 + 5]], {color: "#fcd4db", lineWidth: 2})
+    drawConnectors(canvasCtx, results.leftHandLandmarks, HAND_CONNECTIONS, {color: "#FF1493", lineWidth: 5})
+    drawLandmarks(canvasCtx, results.leftHandLandmarks, {color: "#a640ff", lineWidth: 2})
+    drawConnectors(canvasCtx, results.rightHandLandmarks, HAND_CONNECTIONS, {color: "#a640ff", lineWidth: 5})
+    drawLandmarks(canvasCtx, results.rightHandLandmarks, {color: "#f67d92", lineWidth: 2})
+\end{lstlisting}
 
-In terms of its usage, drawing utils.js can be utilized in a variety of web-based projects, 
-including virtual reality (VR) and augmented reality (AR) applications, gaming engines, 
-and data visualization tools. It is particularly useful for those looking to build complex 
-and sophisticated graphics-intensive applications, as it provides a comprehensive set of 
-tools and functions that can help to simplify and optimize the development process.
+The pseudocode \ref{lst:drawing} shown above defines a function called \texttt{drawResults} that is responsible for visualizing the results of a tracking process on a canvas element 
+named \texttt{guideCanvas}. The function takes \texttt{results} as an input parameter, which represents the tracked landmarks and connections from different body parts such as 
+pose, face, left hand, and right hand. The first part of the function sets the width and height of the \texttt{guideCanvas} to 
+match the video dimensions \emph{width and height} obtained from the \texttt{videoElement}.
+The \texttt{canvasCtx} variable is created by obtaining the 2D rendering context from the \texttt{guideCanvas}, which allows drawing on the canvas.
+Then, the \texttt{canvasCtx.save()} function is called to save the current drawing state before any changes are made.
+The function clears the entire canvas by calling \texttt{canvasCtx.clearRect(0, 0, guideCanvas.width, guideCanvas.height)}, effectively removing any previous drawings.
+Next, the function proceeds to draw the tracked landmarks and connections for the pose, face, left hand, and right hand using the \texttt{drawConnectors} 
+and \texttt{drawLandmarks} functions with specific colors and line widths for each body part.
 
-In the context of our VRM model program, drawing utils.js is a valuable tool for 
-creating, manipulating, and visualizing the graphical elements of the VRM model. 
-It enables developers to quickly and easily create and render graphics, such as 
-animations and 3D shapes, that are critical to the functioning and visual appeal 
-of the VRM model. The library also provides a range of performance optimization 
-features, such as caching and the ability to work with multiple GPUs, 
-that can help to ensure that the VRM model runs smoothly and efficiently, even in demanding environments.
+Drawing utils are essential for customizing the visual representation of tracked movements, 
+making the interface more user-friendly and adaptable. Animotion can tailor the appearance of facial landmarks and body keypoints, 
+choosing colors, shapes, and styles that align with the overall design and aesthetics of the application as shown in the figure below %. This customization allows Animotion 
+to create a branded and consistent visual experience that resonates with its target audience.
 
 \section{Screen capture technology}
 \setauthor{Romeo Bhuiyan}
-Screen recording is an important aspect in the world of VRM programs. 
-Screen recording allows for the capture of all the visual and audio elements that are displayed 
-on a computer screen. The recorded content can then be shared, edited, and distributed for various 
-purposes. In the context of Animotion, screen recording can serve several important functions.
+Screen capture technology can be really important in Animotion to record and showcase dance movements on their 
+community site. This technology allows the capturing of visual content displayed on a computer screen, enabling Animotion to 
+record dance performances and other interactions within their application or website. One of the biggest benefits is that Animotion can offer
+its users the ability to record and share their dance performances effortlessly. 
+By integrating screen capture capabilities into their platform, users can easily capture their dance routines, choreography, or creative 
+movements directly from the application's interface. This empowers users to share their recorded dances on the community site, creating a 
+sense of engagement and collaboration among the Animotion community. That technology also serves as a valuable tool for error 
+detection and performance analysis. When users record their dance routines, they can review their movements and assess their 
+performance with a critical eye. By observing the recorded video, dancers can identify areas for improvement, refine their 
+techniques, and enhance their skills over time. This self-evaluation process can be invaluable in helping dancers to 
+hone their craft and achieve higher levels of artistry. Screen capture can also help Animotion's team in finding potential 
+performance errors or issues in the application. It enables developers and designers to record user interactions, including real-time 
+tracking of facial expressions and body movements, which may not be immediately apparent through simple observation. By reviewing screen-captured 
+content, the team can detect any discrepancies, glitches, or performance-related concerns that may go unnoticed by the human eye during regular testing.
+There is also the benefit of sharing instructional content, tutorials, or demonstrations related to dance techniques or 
+application functionalities. Animotion can create and distribute visual guides to assist users in understanding how to make the most of the 
+platform's features and improve their dance recordings. This function can be viewed in the figure \ref{fig:examplevids} below. These instructional materials can elevate 
+the educational aspect of the community site, encouraging a supportive learning environment and empowering users to explore and express their creativity freely.
 
-First and foremost, screen recording can be used to document and showcase the functionality and 
-capabilities of the VRM Model program. This can include recording the different animations, movements, 
-and interactions that are possible within the program. This type of recording can be used to demonstrate 
-the program's features to potential users, stakeholders, or clients, and can help to generate interest 
-and engagement with the VRM Model program.
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/exampleVids.png}
+  \caption{Instructional content provided by Animotion}
+  \label{fig:examplevids}
+\end{figure}
 
-Screen recording can also be used to provide support and training to users of this kind of program. 
-By recording step-by-step instructions or tutorials, users can learn how to use the program effectively, 
-even if they have no prior experience or knowledge. Additionally, if users encounter any issues or 
-difficulties while using the VRM Model program, a screen recording can be created to assist in resolving 
-the problem and provide a visual representation of the issue at hand.
-
-Screen recording can also be used to document bugs or other technical issues that arise during the use 
-of the VRM Model program. By capturing the screen and audio output, developers and technical support 
-teams can more easily diagnose and resolve any problems that may occur.
-Lastly, screen recording can be used for creative purposes, such as creating animations or special 
-effects using the VRM Model program. By capturing and manipulating the recordings, users can explore 
-new ways to use and interact with the VRM Model program, and create new and unique content that 
-can be shared and enjoyed by others.
+This discussed technology contributes to the documentation and archiving of dance performances. Through recorded videos, Animotion can preserve and 
+catalog a diverse range of dance styles, genres, and expressions shared by the community. These recorded performances become an archive of artistic expression, 
+having a sense of cultural preservation and promoting dance as an accessible and inclusive art form.
 
 \subsection{RecordRTC}
 \setauthor{Romeo Bhuiyan}
-\textbf{RTCRecord.js} is a JavaScript library that allows users to perform real-time communication (RTC) 
-recording in the web browser. It uses the WebRTC API, which is a standardized way of enabling 
-real-time communication capabilities in web browsers, to capture audio and video data from a 
-user's microphone and webcam. The captured data can then be saved as a video file for future use.
+RecordRTC.js is a powerful and versatile JavaScript library that Animotion relies on for screen capturing capabilities within their platform.
+This works by capturing the user's screen activity, including visual content displayed on the screen, audio input, 
+and other media streams. The library utilizes the Web Real-Time Communication API, a modern web technology that enables real-time 
+communication and media streaming between web browsers. Through this API, RecordRTC.js can access the user's multimedia devices, 
+such as the microphone and camera, and capture audio and video data in real-time. \cite{rtcrecord}
+When a user starts the screen capturing process on Animotion, RecordRTC.js starts capturing the specified media 
+streams and converts them into a format suitable for recording and playback. The recorded content is then stored as a media file, 
+such as a video or audio file, that can be saved or shared with others. This seamless recording process ensures that users can 
+effortlessly document their dance performances and interactions within the application.
+The library also offers various customization options, allowing Animotion to tailor the recording experience to its specific needs. 
+For example, the library provides settings to control the quality, resolution, and frame rate of the recorded content, ensuring that 
+users can capture high-quality dance performances. Additionally, Animotion can implement features like pausing, resuming, or 
+stopping the recording to give users more control over the capture process. \cite{rtcrecord2}
 
-One of the main use cases for RTCRecord.js is for screen recording in web-based applications, 
-such as video conferencing and online collaboration tools. This allows users to record their 
-screen activity, audio, and webcam footage in real-time, without the need for any additional 
-software. The recorded videos can then be used for training purposes, for documentation, 
-or for sharing information with others.
+\begin{lstlisting}[language=Python,caption=Starting the screen capture process,label=lst:recordrtc]
+  function captureCallback(target):
+    video.srcObject = target
+    recorder = RecordRTC(target, {
+        type: "video",
+        mimeType: "video/webm",
+    })
+    recorder.startRecording()
+    recorder.stopRecording(function):
+        blob = recorder.getBlob()
+        fileUrl = URL.createObjectURL(blob)
+        video.srcObject = null
+        video.src = fileUrl
+        target.stop()
+        recorder.save("screen_recording.webm")
+        recorder.destroy()
+        recorder = null
+    end function
+end function
+\end{lstlisting}
 
-Another use case for RTCRecord.js is for creating educational content, such as tutorials 
-and screencasts. With RTCRecord.js, users can easily record their screen and webcam footage, 
-and share their knowledge with others in a visually engaging way. \cite{rtcrecord}
+The provided pseudocode \ref{lst:recordrtc} which can be viewed above outlines a function called \texttt{captureCallback}
+that performs video capturing and recording tasks. When called, the function sets the media source of a video 
+element to the specified media stream \texttt{target}. It then creates a recorder object using the RecordRTC library, 
+configuring it to record video in the \emph{video/webm} format.
+The function starts the recording process using the created recorder. Upon completing the recording, 
+it executes the defined callback function. Within this callback, the recorded video is converted into a 
+\emph{binary large object, also called blob} and transformed into a URL. The video element's source object is reset, and 
+the recorded video is displayed by setting the video element's source to the created URL.
+The function stops the media stream \texttt{target} to release the resources properly. 
+The recorded video is saved as a \emph{screen\_recording.webm} file, and the recorder object is destroyed and set to null to free up memory.
 
 \subsection{FFmpeg}
 \setauthor{Romeo Bhuiyan}
-\textbf{FFmpeg} is an open-source software library for audio, video and image processing. 
-The library can be used to encode, decode, transcode, mux, demux, stream, filter and play various 
-multimedia files. It is written in the C programming language and is commonly used on a variety of 
-operating systems including Windows, macOS, and Linux.
+FFmpeg.js and FFmpeg.min.js are powerful JavaScript libraries that bring the capabilities 
+of FFmpeg, a renowned multimedia framework, to the web browser environment. These libraries seamlessly complement 
+RecordRTC, another crucial component in Animotion's screen capturing system. RecordRTC is responsible for 
+capturing video streams from user media devices, while FFmpeg.js and FFmpeg.min.js handle the post-processing tasks, 
+such as video compression and format conversion. This combination creates a robust and comprehensive screen capturing 
+solution that offers both real-time recording capabilities and advanced post-processing functionalities.
+One of the key features that Animotion leverages is the ability to display conversion progress during video processing, 
+as shown in the listing \ref{lst:ffmpeg} below. This progress indicator provides users with real-time feedback on the status of their video conversion.
+By using these libraries, Animotion avoids the need for server-side processing, as all multimedia 
+processing tasks are performed directly on the client-side. This approach contributes to a more efficient and 
+responsive user experience, as there is no delay associated with uploading recorded videos to external servers for processing. \cite{ffmpeg}
 
-\texttt{FFmpeg.min.js} is a JavaScript implementation of FFmpeg, which can be used for client-side video 
-processing in web applications. It provides a way for web developers to perform various multimedia 
-operations in real-time within a web browser. With ffmpeg.min.js, developers can leverage the 
-functionality of FFmpeg in their web applications, including video compression, resizing, cropping, and transcoding.
+\begin{lstlisting}[language=Python,caption=Showing the progress of conversion,label=lst:ffmpeg]
+  ffmpeg = createFFmpeg({
+    log: true,
+    progress: showProgress,
+  })
 
-The library can be used for a range of purposes, including creating video editing tools, video 
-compression utilities, and real-time video processing applications. With the rise of cloud computing, 
-ffmpeg.min.js can be used to perform video processing operations in real-time on a server, without requiring 
-the user to have FFmpeg installed on their local machine. This can save both time and resources, and provide 
-a convenient solution for web developers looking to incorporate video processing capabilities into their applications. \cite{ffmpeg}
+  function showProgress(ratio):
+    if ratio is a valid number:
+        Display the progress as a percentage
+        message.innerHTML = "Complete: " + (ratio * 100.0).toFixed(2) + "%"
+    else:
+        Display an animated progress indicator
+        if message.innerHTML is "/":
+            message.innerHTML = "-"
+        else if message.innerHTML is "-":
+            message.innerHTML = "\\"
+        else:
+            message.innerHTML = "/"
+\end{lstlisting}
+
+The pseudocode \ref{lst:ffmpeg} showed above defines a function called \texttt{createFFmpeg()} 
+to create an instance of the FFmpeg library with logging enabled and a progress callback function called \texttt{showProgress}.
+The \texttt{showProgress} function handles the updates during video conversion. It displays the completion percentage if 
+available or an animated progress indicator if the percentage is not yet available. This enables Animotion to show the 
+conversion progress to users in real-time, enhancing the user experience.
 
 \subsection{WebM video format for web-based applications}
 \setauthor{Romeo Bhuiyan}
-The \textbf{WebM video format} is an open, royalty-free, and high-quality video compression format 
-that has been specifically designed for the web. This format was developed by Google and 
-the WebM Project, a community of developers and industry partners, with the goal of 
-providing an alternative to proprietary video formats, such as \gls{h264} and \gls{mpeg}. 
-The WebM format is based on the VP8 video codec and the Vorbis audio codec, 
-which are both open-source and can be freely used without licensing fees.
-
-One of the key benefits of the WebM format is its high-quality video compression, 
-which provides visually lossless video playback without sacrificing file size. 
-This makes WebM an ideal choice for multimedia applications that require 
-high-quality video playback, such as video conferencing, video on demand, and live streaming. The format 
-is also highly scalable and can be used on a wide range of devices, from desktop computers to mobile 
-devices, ensuring compatibility across platforms.
-
-Another important advantage of the WebM format is its compatibility with HTML5. The format is 
-natively supported by most modern browsers, including Google Chrome, Mozilla Firefox, and Opera, 
-and can be easily embedded into web pages without the need for additional plugins or software. 
-This makes it an ideal choice for web-based video applications, as it eliminates the need for 
-users to download and install additional software or plugins.
-
-In addition to its compatibility and high-quality video compression, the WebM format also has 
-a small file size, making it an ideal choice for applications that require fast loading times, 
-such as online video platforms and websites. The format is also highly customizable, and developers 
-can use the WebM SDK to modify and extend the format to meet their specific needs.
-Another key benefit of the WebM format is its ability to support a wide range of video and audio 
-codecs, including VP9, Opus, and VP10, making it a flexible choice for applications that require 
-support for multiple codecs. The format also supports high dynamic range (HDR) video, providing 
-users with a superior viewing experience with enhanced color and brightness. \cite{webm}
+WebM is the ideal video format for Animotion due to its numerous benefits and compatibility with modern web technologies. 
+WebM is an open and royalty-free video format developed by the WebM Project, which is sponsored by Google. It is specifically 
+designed for web usage and is widely supported by popular web browsers, making it a perfect choice for Animotion's screen 
+capturing and video sharing platform. It stands out as the preferred video format 
+for Animotion due to its exceptional compression capabilities. Utilizing the VP8 or VP9 video codecs, WebM ensures 
+efficient compression while preserving video quality at a high standard. This advantage is of paramount importance for Animotion, 
+as it enables users to record and share videos with minimal file sizes, all while maintaining the integrity of visual details. 
+The resulting reduction in file size not only leads to quicker video loading times but also facilitates smooth 
+playback across the web, delivering an unparalleled user experience.
+This video format also supports transparency through the VP8 alpha channel, allowing videos to have 
+transparent backgrounds. This feature is highly beneficial for Animotion, as it enables the integration 
+of screen-captured dance moves or gestures into various video editing software and platforms seamlessly. 
+It also empowers users to overlay their captured content onto different backgrounds or compositions, 
+enhancing the creative possibilities for their videos. \cite{webm}
 
 \section{Calculation of the virtual reality model} 
 \setauthor{Romeo Bhuiyan}
@@ -632,28 +844,25 @@ the movement and interactions of the VR model.
 
 \subsection{Blendshape}
 \setauthor{Romeo Bhuiyan}
-\textbf{Blendshape} is a technique used in 3D animation and computer graphics to create a smooth transition between different shapes or expressions of a 3D model. 
-It works by creating a set of \emph{target} shapes for a 3D model, each representing a different expression or shape, 
-and then using a set of weights or \emph{blend} values to interpolate between these target shapes, creating a 
-smooth transition between them. This allows animators to create a wide range of expressive characters with a 
-limited number of 3D models. Blendshapes are commonly used in animation, film and game industry.
+Blendshape is an important technique that Animotion uses in its 3D animation and computer graphics to 
+achieve seamless transitions between various shapes and expressions of a 3D model. This cutting-edge approach 
+involves creating a collection of \emph{target} shapes for the 3D model, each representing distinct 
+expressions or shapes. By utilizing a set of weight values or \emph{blend} values, Animotion can easily 
+interpolate between these target shapes, resulting in fluid and natural transitions. The importance of this technique 
+lies in enabling Animotion's AI to create a diverse array of expressive characters using a limited number of 3D models.
 
 \subsection{Lerp}
 \label{sec:lerp}
 \setauthor{Romeo Bhuiyan}
-The \textbf{Lerp} function, short for Linear Interpolation, is a mathematical function that is 
-used to smoothly blend between two values. The function takes three arguments: a start value, 
-an end value, and a weight. The weight is a value between 0 and 1 that represents the proportion 
-of the blend between the start and end values.
+The Lerp function, or Linear Interpolation, serves as a fundamental mathematical tool that Animotion 
+utilizes to create smooth and seamless blends between two values. This function takes three essential 
+inputs: a start value, an end value, and a weight. The weight acts as a vital factor, ranging from 0 to 1, 
+signifying the precise proportion of the blend between the start and end values.
 For example, if the weight is set to 0, the function will return the start 
 value, and if the weight is set to 1, the function will return the end value. 
 If the weight is set to 0.5, the function will return the midpoint between the 
 start and end values. By adjusting the weight, the Lerp function can be used to 
 smoothly transition between any two values over time.
-In the context of computer graphics, Lerp function is widely used for 
-interpolating values such as position, rotation, and color, to make the 
-animation smooth. It's also used in physics simulations, game development, 
-and other fields where the smooth transition of values is needed.
 
 Mathematically explained the linear interpolation, or simply interpolation, 
 is a technique used to estimate values between two known data points. In other words, given two data points, 
@@ -668,7 +877,6 @@ which represents the estimated value; y1, the value of the dependent variable (y
 the value of the dependent variable at the second known point (x2, y2); x, the value of the independent variable (x-axis) 
 at which to estimate the value of y; x1, the value of the independent variable at the first known point; and x2, the value 
 of the independent variable at the second known point.
-
 The linear interpolation formula calculates the value of y by first determining the slope of the line connecting the two 
 known points (y1, x1) and (y2, x2), and then extrapolating from that slope to estimate the value of y at the point x. 
 This method is commonly used in scientific research when estimating the value of a variable at a point where it has not 
@@ -731,11 +939,6 @@ and returns a stabilized eye shape.
 Finally, the fourth line of the code sets the Blink value of the Blendshape object to the 
 stabilized left eye shape \texttt{(riggedFace.eye.l)}. This will result in a smooth and stable blinking  
 of the eyes on the VRM model.
-
-In summary, this listing is a code block that animates the eyes of a VRM model by 
-blending the current eye shape with a preset Blink value, stabilizing the blinking animation, 
-and updating the Blink value of the Blendshape object. The code uses the Lerp function, the clamp 
-function, and the stabilizeBlink function to create a smooth and stable blinking animation on the VRM model.
 
 \subsection{Positioning the model}
 \setauthor{Romeo Bhuiyan}
