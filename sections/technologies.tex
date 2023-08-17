@@ -90,6 +90,7 @@ Upon completion of the model loading, the success callback function is triggered
 the loaded model data is represented as a \texttt{gltf} object. However, before rendering the model, the unnecessary 
 joints are removed using \texttt{THREE.VRMUtils.removeUnnecessaryJoints()}. This step optimizes the 
 rendering process by eliminating any unnecessary components.
+
 The \texttt{THREE.VRM.from(gltf)} function is then employed to convert the \texttt{gltf} object into a \texttt{VRM} object, 
 suitable for rendering within the Three.js environment. The \texttt{VRM} object is added to the scene using 
 the \texttt{scene.add(vrm.scene)} method, ensuring its integration into the overall scene graph.
@@ -461,8 +462,9 @@ One of the primary benefits of using WebGL for Animotion would be its ability to
 within the browser without the need for plugins or additional software installations. This ensures broad 
 compatibility and accessibility, as most modern web browsers support WebGL. Animotion could leverage this 
 capability to deliver real-time 3D rendering of VRM models, enabling users to visualize and interact 
-with their tracked facial and body movements seamlessly. Another advantage is WebGL's performance benefits are paramount. 
-Utilizing the power of the Graphics Processing Unit, WebGL 
+with their tracked facial and body movements seamlessly. 
+
+Another advantage is WebGL's performance benefits are paramount. Utilizing the power of the Graphics Processing Unit, WebGL 
 enables high-performance rendering and computation of 3D graphics, resulting in smooth and responsive visual 
 experiences. This is especially crucial for face and body tracking applications where low latency and real-time 
 responsiveness are vital to maintain a high level of user immersion and engagement. \cite{WebGLAdvantages}
@@ -481,6 +483,7 @@ GLTFLoader would be a valuable component for Animotion's face and body tracking 
 and rendering of 3D models in the GLTF format which stands for Graphics Library Transmission Format. GLTFLoader is a JavaScript library specifically designed to handle 
 models in the GLTF format, which is optimized for efficient transmission 
 and loading of 3D scenes and models. 
+
 A big advantage of using GLTFLoader is the wide range of 3D models and scenes. 
 GLTF is an open standard format that encompasses various types of 3D data, including geometries, materials, textures, 
 animations, and more. This versatility would allow Animotion to integrate a diverse array of VRM models seamlessly 
@@ -506,8 +509,9 @@ In conclusion, GLTFLoader emerges as the optimal solution for Animotion's 3D gra
 offering significant advantages over WebGL. By leveraging GLTFLoader, Animotion can efficiently 
 handle the loading and parsing of GLTF files
 eliminating the need for extensive custom code development. This streamlined approach saves valuable 
-time and effort, allowing the team to focus on refining the face and body tracking system.
+time and effort, allowing the Animotion-Team to focus on refining the face and body tracking system.
 The results of using GLTFLoader are highly promising as shown in the figure \ref{fig:gltfloader} below. 
+
 Animotion can now offer users an immersive and 
 interactive experience where their tracked facial and body movements are mirrored in real-time by 3D models. 
 The efficient loading and rendering of VRM models using GLTFLoader enhance the overall performance and 
@@ -531,6 +535,7 @@ Orbit-Controls.js is a JavaScript library used for controlling camera rotations
 and movements in 3D graphics applications. This library provides an easy-to-use 
 interface for controlling the camera in a 3D environment, and is commonly used in 
 interactive 3D web applications and other 3D visualizations.
+
 OrbitControls.js is a critical component in Animotion's 3D graphics system, playing a important role in 
 enabling intuitive camera control and user interaction. This library, built on top of Three.js, allows 
 for smooth and effortless navigation of 3D scenes, offering users the ability to orbit around objects, zoom in and out, and pan the view.
@@ -573,6 +578,7 @@ the positive x-axis and the point (sin(theta), expression in parentheses) in the
 The azimuth angle is an important parameter in many applications, including navigation, surveying, and satellite communications. 
 It provides a convenient way to describe the direction of an object or location relative to true north, 
 and can be used to determine the angle of elevation and other important parameters.
+
 The Polar angle, on the other hand, refers to the angle between the position of the camera and the 
 positive y-axis. It determines the camera's vertical rotation and the height of the camera relative 
 to the scene. In orbit-controls.js, the Polar angle is controlled by moving the mouse vertically.
@@ -591,8 +597,9 @@ and the line segment connecting the origin and the point (x, y).
 It is important to note that this formula works only when x is positive. If x is negative, 
 then we must add or subtract pi radians (180 degrees) to the result, depending on the sign of y, to find the correct angle.
 By controlling both the Azimuth and Polar angles, the orbit-controls.js library allows the user to 
-change the position and orientation of the camera in 3D space. This is especially useful for interactive 
-3D visualizations, where the user needs to be able to explore the scene from different perspectives, as shown below in the figure. \ref{fig:orbitcontrols}
+change the position and orientation of the camera in 3D space. 
+
+This is especially useful for interactive 3D visualizations, where the user needs to be able to explore the scene from different perspectives, as shown below in the figure. \ref{fig:orbitcontrols}
 Orbit-controls.js is often used in conjunction with WebGL and Three.js, which are libraries for creating 
 3D graphics and animations in the browser. The combination of these technologies makes it possible to create 
 interactive 3D visualizations that can run in a web browser, without the need for additional software or plugins.
@@ -612,8 +619,9 @@ visualizing facial and body movements on the VRM model. As the backbone of camer
 ensures a seamless and immersive experience for users to interact with the virtual environment.
 This library plays a important role in capturing and representing the tracked movements on the VRM 
 model in real-time. As users interact with the 3D environment, Camera utils records changing camera 
-positions and angles, translating them into corresponding movements of the VRM model. This dynamic 
-representation of the user's tracked facial expressions and body gestures fosters a highly 
+positions and angles, translating them into corresponding movements of the VRM model. 
+
+This dynamic representation of the user's tracked facial expressions and body gestures fosters a highly 
 interactive and engaging user experience. It simplifies the implementation of complex camera controls, 
 saving valuable development time and resources for Animotion as shown in the pseudocode \ref{lst:camerautils} below. Its seamless integration into the 3D 
 graphics system ensures a user-friendly experience, allowing users to focus on exploring and 
@@ -647,6 +655,7 @@ application, providing users with intuitive feedback on their actions in real-ti
 One of the primary reasons Animotion utilizes drawing utils is to overlay visual elements on top of the camera window to 
 indicate the detected facial landmarks and body keypoints as shown in the listing \ref{lst:drawing} below. These visual cues serve as feedback to users, 
 providing them with a clear understanding of how their movements are being tracked and interpreted by the AI system. 
+
 For example, facial landmarks could be visualized as points on the user's face, while body keypoints could be 
 represented as joints or markers, allowing users to see how their gestures and movements are being captured by the system.
 Through the use of lines and shapes, Animotion provides users with valuable information and guidance during interactions. 
@@ -684,8 +693,15 @@ and \texttt{drawLandmarks} functions with specific colors and line widths for ea
 
 Drawing utils are essential for customizing the visual representation of tracked movements, 
 making the interface more user-friendly and adaptable. Animotion can tailor the appearance of facial landmarks and body keypoints, 
-choosing colors, shapes, and styles that align with the overall design and aesthetics of the application as shown in the figure below %. This customization allows Animotion 
+choosing colors, shapes, and styles that align with the overall design and aesthetics of the application as shown in the figure \ref{fig:lasifacetracking} below. This customization allows Animotion 
 to create a branded and consistent visual experience that resonates with its target audience.
+\\
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=0.5\textwidth]{pics/lasifacetracking.png}
+  \caption{Drawn lines with drawing utils on the face of Christopf Lasinger}
+  \label{fig:lasifacetracking}
+\end{figure}
 
 \section{Screen capture technology}
 \setauthor{Romeo Bhuiyan}
@@ -693,6 +709,7 @@ Screen capture technology can be really important in Animotion to record and sho
 community site. This technology allows the capturing of visual content displayed on a computer screen, enabling Animotion to 
 record dance performances and other interactions within their application or website. One of the biggest benefits is that Animotion can offer
 its users the ability to record and share their dance performances effortlessly. 
+
 By integrating screen capture capabilities into their platform, users can easily capture their dance routines, choreography, or creative 
 movements directly from the application's interface. This empowers users to share their recorded dances on the community site, creating a 
 sense of engagement and collaboration among the Animotion community. That technology also serves as a valuable tool for error 
@@ -701,8 +718,10 @@ performance with a critical eye. By observing the recorded video, dancers can id
 techniques, and enhance their skills over time. This self-evaluation process can be invaluable in helping dancers to 
 hone their craft and achieve higher levels of artistry. Screen capture can also help Animotion's team in finding potential 
 performance errors or issues in the application. It enables developers and designers to record user interactions, including real-time 
-tracking of facial expressions and body movements, which may not be immediately apparent through simple observation. By reviewing screen-captured 
-content, the team can detect any discrepancies, glitches, or performance-related concerns that may go unnoticed by the human eye during regular testing.
+tracking of facial expressions and body movements, which may not be immediately apparent through simple observation. 
+By reviewing screen-captured content, the Animotion-Team can detect any discrepancies, glitches, or performance-related 
+concerns that may go unnoticed by the human eye during regular testing.
+
 There is also the benefit of sharing instructional content, tutorials, or demonstrations related to dance techniques or 
 application functionalities. Animotion can create and distribute visual guides to assist users in understanding how to make the most of the 
 platform's features and improve their dance recordings. This function can be viewed in the figure \ref{fig:examplevids} below. These instructional materials can elevate 
@@ -726,10 +745,12 @@ This works by capturing the user's screen activity, including visual content dis
 and other media streams. The library utilizes the Web Real-Time Communication API, a modern web technology that enables real-time 
 communication and media streaming between web browsers. Through this API, RecordRTC.js can access the user's multimedia devices, 
 such as the microphone and camera, and capture audio and video data in real-time. \cite{rtcrecord}
+
 When a user starts the screen capturing process on Animotion, RecordRTC.js starts capturing the specified media 
 streams and converts them into a format suitable for recording and playback. The recorded content is then stored as a media file, 
 such as a video or audio file, that can be saved or shared with others. This seamless recording process ensures that users can 
 effortlessly document their dance performances and interactions within the application.
+
 The library also offers various customization options, allowing Animotion to tailor the recording experience to its specific needs. 
 For example, the library provides settings to control the quality, resolution, and frame rate of the recorded content, ensuring that 
 users can capture high-quality dance performances. Additionally, Animotion can implement features like pausing, resuming, or 
@@ -775,6 +796,7 @@ RecordRTC, another crucial component in Animotion's screen capturing system. Rec
 capturing video streams from user media devices, while FFmpeg.js and FFmpeg.min.js handle the post-processing tasks, 
 such as video compression and format conversion. This combination creates a robust and comprehensive screen capturing 
 solution that offers both real-time recording capabilities and advanced post-processing functionalities.
+
 One of the key features that Animotion leverages is the ability to display conversion progress during video processing, 
 as shown in the listing \ref{lst:ffmpeg} below. This progress indicator provides users with real-time feedback on the status of their video conversion.
 By using these libraries, Animotion avoids the need for server-side processing, as all multimedia 
@@ -813,11 +835,14 @@ WebM is the ideal video format for Animotion due to its numerous benefits and co
 WebM is an open and royalty-free video format developed by the WebM Project, which is sponsored by Google. It is specifically 
 designed for web usage and is widely supported by popular web browsers, making it a perfect choice for Animotion's screen 
 capturing and video sharing platform. It stands out as the preferred video format 
-for Animotion due to its exceptional compression capabilities. Utilizing the VP8 or VP9 video codecs, WebM ensures 
-efficient compression while preserving video quality at a high standard. This advantage is of paramount importance for Animotion, 
+for Animotion due to its exceptional compression capabilities. 
+
+Utilizing the VP8 or VP9 video codecs, WebM ensures efficient compression while preserving 
+video quality at a high standard. This advantage is of paramount importance for Animotion, 
 as it enables users to record and share videos with minimal file sizes, all while maintaining the integrity of visual details. 
 The resulting reduction in file size not only leads to quicker video loading times but also facilitates smooth 
 playback across the web, delivering an unparalleled user experience.
+
 This video format also supports transparency through the VP8 alpha channel, allowing videos to have 
 transparent backgrounds. This feature is highly beneficial for Animotion, as it enables the integration 
 of screen-captured dance moves or gestures into various video editing software and platforms seamlessly. 
@@ -858,6 +883,7 @@ The Lerp function, or Linear Interpolation, serves as a fundamental mathematical
 utilizes to create smooth and seamless blends between two values. This function takes three essential 
 inputs: a start value, an end value, and a weight. The weight acts as a vital factor, ranging from 0 to 1, 
 signifying the precise proportion of the blend between the start and end values.
+
 For example, if the weight is set to 0, the function will return the start 
 value, and if the weight is set to 1, the function will return the end value. 
 If the weight is set to 0.5, the function will return the midpoint between the 
@@ -877,6 +903,7 @@ which represents the estimated value; y1, the value of the dependent variable (y
 the value of the dependent variable at the second known point (x2, y2); x, the value of the independent variable (x-axis) 
 at which to estimate the value of y; x1, the value of the independent variable at the first known point; and x2, the value 
 of the independent variable at the second known point.
+
 The linear interpolation formula calculates the value of y by first determining the slope of the line connecting the two 
 known points (y1, x1) and (y2, x2), and then extrapolating from that slope to estimate the value of y at the point x. 
 This method is commonly used in scientific research when estimating the value of a variable at a point where it has not 
@@ -905,7 +932,8 @@ The purpose of the loop is to blend the shape of a rigged face's mouth with a pr
 Blendshape object for each of these shapes. The loop starts by setting the value of the Blendshape 
 object to a blended value between the shape of the rigged face's mouth \texttt{(riggedFace.mouth.shape[shape])}
 and the current value of the Blendshape object \texttt{(Blendshape.getValue(PresetName[shape]))}. 
-The blend is done using the lerp function, mentioned in above \ref{sec:lerp}. 
+The blend is done using the lerp function, mentioned in above \ref{sec:lerp}.
+
 Quickly summarized, this function takes three arguments: the start value, the end value, and the weight of blending. 
 In this case, the weight is set to 0.5, resulting in an even blend between the two values.
 Once the blended value is calculated, it is set to the Blendshape object using the PresetName 
@@ -1018,11 +1046,13 @@ The code checks if the \emph{pose2DLandmarks} and \emph{pose3DLandmarks} are ava
 the code calculates the rigged pose using the function \texttt{solvePose} with the \texttt{pose3DLandmarks}, \texttt{pose2DLandmarks}, 
 \texttt{mediapipe}, and \texttt{videoElement} as input parameters. The function \texttt{solvePose} returns the rigged pose, which 
 is then stored in the variable \texttt{riggedPose}.
+
 The code then rotates and positions various body parts of the VRM model based on the values obtained from the 
 rigged pose. For example, the hips are rotated based on the value of \texttt{riggedPose.Hips.rotation} with a weight 
 of 0.7, and their position is changed to \texttt{x: -riggedPose.Hips.position.x, y: riggedPose.Hips.position.y + 1, z: 
 -riggedPose.Hips.position.z} with a weight of 1 and a smoothing factor of 0.07. Similar operations are performed 
 for the chest, spine, arms, and legs.
+
 The rotation and position of each body part is performed using two separate functions: \texttt{rotate} and 
 \texttt{position}. The first parameter of each function specifies the name of the body part to be animated, 
 while the remaining parameters specify the values used for rotation or position, weight, and smoothing factor.
@@ -1059,6 +1089,7 @@ The resulting rotations are then applied to the left hand rig and each of the fi
 bones using the \texttt{rigRotation} function. For the left hand rig, the function is called with 
 the string \texttt{LeftHand} and the rotation values for the x, y, and z axes, obtained from the 
 \texttt{riggedLeftHand} object.
+
 Similarly, the rotations of each finger bone are applied by calling the \texttt{rigRotation} function 
 with the names of the bones, such as \texttt{LeftRingProximal},\texttt{LeftRingIntermediate}, and \texttt{LeftRingDistal}, 
 and the corresponding rotation values obtained from the \texttt{riggedLeftHand} object. The same process is 

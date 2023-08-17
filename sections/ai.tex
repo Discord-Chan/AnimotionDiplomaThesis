@@ -1,6 +1,6 @@
 \section{What is artificial intelligence?}
 \setauthor{Romeo Bhuiyan}
-The concept of \GLS{ai} has a long history that dates back to ancient times,
+The concept of AI has a long history that dates back to ancient times,
 when people first tried to build machines that could mimic human abilities.
 In the modern era, the term \textit{AI}  was first coined in 1956 by computer scientist 
 John McCarthy, who defined it as \textit{the science and engineering of making 
@@ -233,6 +233,7 @@ In \textbf{feature tracking}, the algorithm searches for the corresponding locat
 subsequent frame by analyzing the local image region surrounding the landmark. It uses the brightness 
 constancy assumption, which states that the intensity pattern of a landmark remains unchanged between frames, 
 to estimate its new position.
+
 Once the potential locations of the landmarks are determined in the subsequent frame, the KLT tracker applies 
 the Lucas-Kanade algorithm to calculate the optical flow, which represents the motion vector of each landmark. 
 The algorithm uses a small patch around each landmark and iteratively refines the motion estimation by minimizing 
@@ -362,6 +363,7 @@ A human subject was then positioned in front of the AI system, and a series of g
 These gestures served as the input data for the training process. By observing and analyzing these gestures, 
 the AI system learned to track and accurately capture the movements in real-time.
 Through an iterative process of training and fine-tuning, the AI system gradually improved its tracking capabilities.
+
 Parameters and algorithms were adjusted to optimize the tracking performance based on the observed gestures. 
 This iterative training approach allowed the system to adapt and improve its accuracy over time.
 Once the training phase was completed, the acquired knowledge from tracking the gestures was transferred to a 3D model. 
@@ -383,7 +385,7 @@ efficiently adjust and optimize the parameters and configurations of their face 
 This iterative fine-tuning process allows them to enhance the accuracy and performance of their face tracking system, 
 ensuring more precise and reliable tracking results as shown in the listing below \ref{lst:detectionbox}. 
 
-\begin{lstlisting}[language=Python,caption=detecting the face in a box shaped object,label=lst:detectionbox]
+\begin{lstlisting}[language=Python,caption=Detecting the face in a box shaped object,label=lst:detectionbox]
     def get_face(detector, image, cpu=False):
     if cpu:
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -476,11 +478,11 @@ and more responsive tracking, ultimately enhancing the overall quality of the us
 It is often used as a metric to evaluate the performance of AI systems, particularly
 those that are designed to make predictions or decisions based on data.
 
-
 Animotion has improved the accuracy of its AI performance, particularly in face and body 
 tracking, by employing a strategy that involves tracking a person from different angles 
 to a certain extent. By incorporating multiple perspectives, Animotion aims to enhance the 
 precision and reliability of the tracking process.
+
 It is important to note that excessive rotation or extreme angles can negatively 
 impact accuracy. When the model is rotated too much, the AI may encounter difficulties in 
 visualizing and effectively tracking the user. To address this, Animotion emphasizes the 
