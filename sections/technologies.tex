@@ -264,7 +264,7 @@ code snippet shown in listing \ref{lst:react} serves of an example.
 
 This exported function called About is, besides any imports that occur above it, practically the only code that makes 
 up a so-called page, which exactly translate to a webpage, i.e., what comes up after visiting an URL. This function 
-that shares its name with the file, a JavaScript file to be exact, merely consists of one long return statement that 
+that shares its name with the file, a JavaScript file, merely consists of one long return statement that 
 contains multiple HTML elements making up the webpage \cite{ReactJSX}.
 The empty opening and closing tags at the beginning and end of the statement is the short syntax for a fragment, a 
 feature in React that acts as a container and allows returning multiple child elements in a return statement 
@@ -311,6 +311,30 @@ Moreover, while we had some previous experience with JavaScript, we had never wo
 to understand Angular even more difficult than it needed to be. The comparatively better scalability of Angular was also not needed
 for our project as it not likely to expand and therefore need for resources in the future.
 
+\documentclass{article}
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{18pt}
+\renewcommand{\arraystretch}{1.5}
+\begin{document}
+\begin{tabular}{ |p{3cm}|p{3cm}|p{3cm}|  }
+\hline
+\multicolumn{3}{|c|}{List of criteria} \\
+\hline
+Criteria& Angular &React &Weighting\\
+\hline
+Functional scope & 1 &4 &1x \\
+Performance & 1   & 2 &1.5x \\
+Long-term support &1 & 1 &1x \\
+Programming language    &3 & 1 &1.5x \\
+Time to learn & 4 & 2 &2x \\
+Popularity & 3 & 1 &1.5x   \\
+Previous experience & 5 & 5 &0.25x \\
+Flexibility & 3 & 1 &1x \\
+Result & 24.75 & 17.25 &0 \\
+\hline
+\end{tabular}
+\end{document}
+
 \section{Next.js}
 \setauthor{Christoph Lasinger}
 Next.js is a React framework, meaning that, while React provides functions and features to build user interface elements
@@ -350,8 +374,8 @@ been thoroughly explained, the focus of this paragraph lies on the other two met
 exporting a function called \emph{getServerSideProps} or \emph{getStaticProps} respectively.
 
 In contrast to server-side rendering, Next.js also offers the
-option of client-side rendering or client-side data fetching, where data is generally fetched at runtime and at the component level. As a
-result, the content of a page only changes whenever new data comes in. Though this can negatively affect performance and load time of one's
+option of client-side rendering or client-side data fetching, where data is generally fetched at runtime and at component level. As a
+result, the content of a page only changes whenever new data comes in. Though this can negatively affect performance and load time of the
 website, client-side rendering can be useful when SEO is not of importance, and pages need to be updated very frequently based on fetched data.
 For implementing this strategy Next.js offers the React hook library SWR (stale-while-revalidate), a cache invalidation strategy
 of HTTP. Next.js strongly encourages developers to use it in its documentation, as it handles focus tracking, caching, revalidation, etc. The
@@ -434,7 +458,7 @@ that is not to be converted to a CSS file, and can be used in any other Sass fil
 Other, smaller features of Sass include nesting, where multiple CSS selectors can be written under one, overarching selector creating a
 clear visual hierarchy like in HTML, and the ability to use mathematical operators when for example calculating the width of a HTML
 element, making the CSS more readable and the thought process behind certain values clearer, than simply using a specific number, like
-575 pixels. There are also so-called mixins, basically reusable CSS selectors that can be customized in a specific instance by passing it
+575 pixels. There are also mixins, basically reusable CSS selectors that can be customized in a specific instance by passing it
 variables as parameters, that can be created using the @mixin rule and used with the @include rule \cite{SassFeatures}.
 \\
 \subsection{Conclusion}
