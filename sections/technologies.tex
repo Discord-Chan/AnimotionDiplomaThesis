@@ -32,131 +32,6 @@ pulled from the web server, is stored and accessed locally. This approach ensure
 application efficiently without relying heavily on continuous server connectivity. Animotion has employed 
 GitHub Pages as the web server, leveraging its capabilities for hosting and serving the application content.
 
-\section{Interactive 3D graphics with Three.js}
-\setauthor{Romeo Bhuiyan}
-Animotion encountered an initial hurdle in seamlessly integrating the VRM model onto the canvas 
-and achieving smooth rendering. The objective was to accurately represent the tracked facial and 
-body movements in real-time. This posed a significant challenge due to the complex nature of the VRM 
-model and the requirement for seamless integration. To overcome this obstacle, Animotion turned to the 
-powerful combination of Three.js and Three VRM.js libraries.
-
-Three.js, a widely used web-based 3D graphics library, emerged as the foundation for 
-Animotion's project. It offers an extensive range of tools and features, making it an ideal 
-choice for creating interactive 3D applications within a browser environment. With its capabilities 
-in rendering, animation, geometry manipulation, and material management, Three.js proved to be 
-versatile and well-documented, supported by an active community.
-For Animotion, Three.js played a crucial role in seamlessly integrating the VRM model onto 
-the canvas. It provided a robust framework for rendering the 3D model, managing the scene graph, 
-and handling user interactions. Animotion leveraged the capabilities of Three.js to manipulate and 
-animate the VRM model based on the tracked facial and body movements, resulting in an immersive and interactive user experience. \cite{threejs}
-
-\begin{lstlisting}[language=Python,caption=Loading the VRM onto the canvas,label=lst:vrmloading]
-// VRM Loader
-const loader = new THREE.GLTFLoader();
-loader.crossOrigin = "anonymous";
-// importing model from glitch.io our repo for storing the models
-loader.load(
-  window.localStorage.getItem("vrm"),
-  (gltf) => {
-    THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
-
-    // set the model infornt of user
-    THREE.VRM.from(gltf).then((vrm) => {
-      scene.add(vrm.scene);
-      currentVrm = vrm;
-      currentVrm.scene.rotation.y = Math.PI;
-    });
-  },
-
-  (progress) =>
-    console.log(
-      "Loading model...",
-      100.0 * (progress.loaded / progress.total),
-      "%"
-    ),
-
-  (error) => console.error(error)
-);
-\end{lstlisting}
-
-
-The provided listing above \ref{lst:vrmloading} showcases the implementation of loading and rendering a VRM using the Three.js library. 
-The code addresses the challenges involved in seamlessly integrating the VRM model onto the canvas and accurately rendering it in real-time.
-The first step is the initialization of the \texttt{THREE.GLTFLoader}, a loader specifically designed for handling models in the GLTF format. 
-By setting the \texttt{crossOrigin} property to \emph{anonymous,} potential cross-origin issues when loading the VRM model are addressed.
-Once the loader is set up, the \texttt{loader.load()} function is called to load the VRM model. During the loading process, 
-a progress callback function is utilized to track the progress as a percentage. This provides feedback on how much of the model has been loaded.
-Upon completion of the model loading, the success callback function is triggered. Within this function, 
-the loaded model data is represented as a \texttt{gltf} object. However, before rendering the model, the unnecessary 
-joints are removed using \texttt{THREE.VRMUtils.removeUnnecessaryJoints()}. This step optimizes the 
-rendering process by eliminating any unnecessary components.
-
-The \texttt{THREE.VRM.from(gltf)} function is then employed to convert the \texttt{gltf} object into a \texttt{VRM} object, 
-suitable for rendering within the Three.js environment. The \texttt{VRM} object is added to the scene using 
-the \texttt{scene.add(vrm.scene)} method, ensuring its integration into the overall scene graph.
-To enable further manipulation, the loaded VRM object is assigned to the \texttt{currentVrm} variable. 
-In the provided code, the rotation of the model is adjusted by setting \texttt{currentVrm.scene.rotation.y} to 
-\texttt{Math.PI}, resulting in a 180-degree rotation around the y-axis.
-
-Throughout the loading process, error handling is implemented with the error callback function. Any encountered errors 
-are logged to the console, providing insight into potential issues that may arise.
-
-While other libraries may offer similar functionalities, Animotion recognized that 
-Three.js stood out as the preferred choice due to its versatility, robust features, 
-and compatibility with the VRM model format. The combination of Three.js and Three VRM.js 
-empowered Animotion to realize their vision and deliver a compelling face and body 
-tracking experience that exceeded expectations.
-
-\subsection{Rendering and manipulating VRM}
-\setauthor{Romeo Bhuiyan}
-Three VRM.js is an extension of the Three.js library specifically designed for working with VRM files. 
-It provides a comprehensive set of tools and functionalities that enable developers to load, control, 
-and render VRM models in real-time web applications. At its core, Three VRM.js leverages the capabilities 
-of Three.js, a powerful web-based 3D graphics library. Three.js provides a solid foundation for creating 
-interactive 3D applications, offering a wide range of features such as rendering, animation, and scene management. 
-By building upon Three.js, Three VRM.js enhances its capabilities to handle VRM-specific functionalities and nuances.
-
-The main functionality of Three VRM.js lies in its ability to load and parse VRM files. 
-VRM files are industry-standard 3D model formats that contain information about the geometry, 
-textures, bones, and blend shapes of a character, as shown in the figure below \ref{fig:threevrmdebug}. Three VRM.js streamlines the process of loading 
-these files into a Three.js scene, automatically interpreting and organizing the data within the VRM file.
-Once a VRM model is loaded, Three VRM.js enables developers to manipulate and control the model's 
-behavior in real-time. It provides a variety of tools to handle complex tasks such as facial expression 
-control, bone animation, and blend shape manipulation. Developers can dynamically adjust the model's 
-appearance and behavior based on external input, such as tracking data from facial recognition or body tracking systems.
-Another important feature of Three VRM.js is its support for Inverse Kinematics. \cite{threevrm}
-
-To enhance performance and efficiency, Three VRM.js employs various optimizations. 
-It utilizes the Graphics Processing Unit for hardware-accelerated rendering, 
-ensuring smooth and responsive animations. Additionally, Three VRM.js incorporates 
-techniques like Level of Detail management, which dynamically adjusts the level of detail
-based on the distance between the camera and the model. This optimization improves 
-rendering efficiency, particularly for complex scenes with multiple VRM models. \cite{threevrmgpu}
-\\
-\begin{figure}[htb]
-    \centering
-    \includegraphics[width=0.9\textwidth]{pics/threevrmdebug.PNG}
-    \caption{Three-vrm.js debug mode}
-    \label{fig:threevrmdebug}
-\end{figure}
-\\
-
-\subsection{Realistics movement with Inverse Kinematics}
-\setauthor{Romeo Bhuiyan}
-Inverse Kinematics (IK) is a technique used in computer graphics and animation to simulate realistic
- joint movement based on the desired position or orientation of an object's end effectors.
- In the context of Three VRM.js, which is an extension of Three.js for working with VRM models, 
- IK enables more natural and dynamic animations of the VRM models.
-With IK, the position and rotation of the end effectors, such as hands or feet, are specified, and the IK 
-solver algorithm calculates the appropriate joint angles required to achieve those positions. This allows for 
-smoother and more realistic movements of the VRM model's limbs, making it appear as though the 
-model is reacting to the user's input or the surrounding environment. \cite{whatisik}
-
-By incorporating IK in Three VRM.js, Animotion or developers in general can create more realistic and fluid animations of VRM models. 
-This enhances the overall visual quality and immersive experience of the virtual characters, as their movements 
-closely resemble the natural motion of human limbs. The ability to accurately simulate IK in VRM models adds another 
-layer of realism and expressiveness to the animations and interactions in applications by Three VRM.js. \cite{ikinthree}
-
 \section{Decision between web frameworks}
 \setauthor{Christoph Lasinger}
 The decision to use a web framework at all and not simply vanilla HTML, CSS and JavaScript came from a multitude of reasons.
@@ -310,7 +185,7 @@ the npm trends website \cite{AngularReactPopularity}.
 Moreover, while we had some previous experience with JavaScript, we had never worked with TypeScript before, which made the attempt 
 to understand Angular even more difficult than it needed to be. The comparatively better scalability of Angular was also not needed
 for our project as it not likely to expand and therefore need for resources in the future.
-
+\\
 \begin{table}[]
 \begin{tabular}{llll}
 \textbf{Criteria}    & \textbf{Angular} & \textbf{React} & \textbf{Weighting} \\
@@ -325,7 +200,7 @@ Flexibility          & 3                & 1              & 1x                 \\
 Score                & 24.75            & 17.25          &                    \\
 \end{tabular}
 \end{table}
-
+\\
 \section{Next.js}
 \setauthor{Christoph Lasinger}
 Next.js is a React framework, meaning that, while React provides functions and features to build user interface elements
@@ -458,6 +333,131 @@ Overall, Sass has many useful features that in some cases can make a very big di
 convenience when writing CSS with no real downsides. Since Next.js has built-in support for Sass it is very simple to install and use right
 away. For these reasons we decided to use Sass, specifically the SCSS syntax, for our project Animotion \cite{NextjsCSSSupport}.
 \\
+
+\section{Interactive 3D graphics with Three.js}
+\setauthor{Romeo Bhuiyan}
+Animotion encountered an initial hurdle in seamlessly integrating the VRM model onto the canvas 
+and achieving smooth rendering. The objective was to accurately represent the tracked facial and 
+body movements in real-time. This posed a significant challenge due to the complex nature of the VRM 
+model and the requirement for seamless integration. To overcome this obstacle, Animotion turned to the 
+powerful combination of Three.js and Three VRM.js libraries.
+
+Three.js, a widely used web-based 3D graphics library, emerged as the foundation for 
+Animotion's project. It offers an extensive range of tools and features, making it an ideal 
+choice for creating interactive 3D applications within a browser environment. With its capabilities 
+in rendering, animation, geometry manipulation, and material management, Three.js proved to be 
+versatile and well-documented, supported by an active community.
+For Animotion, Three.js played a crucial role in seamlessly integrating the VRM model onto 
+the canvas. It provided a robust framework for rendering the 3D model, managing the scene graph, 
+and handling user interactions. Animotion leveraged the capabilities of Three.js to manipulate and 
+animate the VRM model based on the tracked facial and body movements, resulting in an immersive and interactive user experience. \cite{threejs}
+
+\begin{lstlisting}[language=Python,caption=Loading the VRM onto the canvas,label=lst:vrmloading]
+// VRM Loader
+const loader = new THREE.GLTFLoader();
+loader.crossOrigin = "anonymous";
+// importing model from glitch.io our repo for storing the models
+loader.load(
+  window.localStorage.getItem("vrm"),
+  (gltf) => {
+    THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
+
+    // set the model infornt of user
+    THREE.VRM.from(gltf).then((vrm) => {
+      scene.add(vrm.scene);
+      currentVrm = vrm;
+      currentVrm.scene.rotation.y = Math.PI;
+    });
+  },
+
+  (progress) =>
+    console.log(
+      "Loading model...",
+      100.0 * (progress.loaded / progress.total),
+      "%"
+    ),
+
+  (error) => console.error(error)
+);
+\end{lstlisting}
+
+The provided listing above \ref{lst:vrmloading} showcases the implementation of loading and rendering a VRM using the Three.js library. 
+The code addresses the challenges involved in seamlessly integrating the VRM model onto the canvas and accurately rendering it in real-time.
+The first step is the initialization of the \texttt{THREE.GLTFLoader}, a loader specifically designed for handling models in the GLTF format. 
+By setting the \texttt{crossOrigin} property to \emph{anonymous,} potential cross-origin issues when loading the VRM model are addressed.
+Once the loader is set up, the \texttt{loader.load()} function is called to load the VRM model. During the loading process, 
+a progress callback function is utilized to track the progress as a percentage. This provides feedback on how much of the model has been loaded.
+Upon completion of the model loading, the success callback function is triggered. Within this function, 
+the loaded model data is represented as a \texttt{gltf} object. However, before rendering the model, the unnecessary 
+joints are removed using \texttt{THREE.VRMUtils.removeUnnecessaryJoints()}. This step optimizes the 
+rendering process by eliminating any unnecessary components.
+
+The \texttt{THREE.VRM.from(gltf)} function is then employed to convert the \texttt{gltf} object into a \texttt{VRM} object, 
+suitable for rendering within the Three.js environment. The \texttt{VRM} object is added to the scene using 
+the \texttt{scene.add(vrm.scene)} method, ensuring its integration into the overall scene graph.
+To enable further manipulation, the loaded VRM object is assigned to the \texttt{currentVrm} variable. 
+In the provided code, the rotation of the model is adjusted by setting \texttt{currentVrm.scene.rotation.y} to 
+\texttt{Math.PI}, resulting in a 180-degree rotation around the y-axis.
+
+Throughout the loading process, error handling is implemented with the error callback function. Any encountered errors 
+are logged to the console, providing insight into potential issues that may arise.
+
+While other libraries may offer similar functionalities, Animotion recognized that 
+Three.js stood out as the preferred choice due to its versatility, robust features, 
+and compatibility with the VRM model format. The combination of Three.js and Three VRM.js 
+empowered Animotion to realize their vision and deliver a compelling face and body 
+tracking experience that exceeded expectations.
+
+\subsection{Rendering and manipulating VRM}
+\setauthor{Romeo Bhuiyan}
+Three VRM.js is an extension of the Three.js library specifically designed for working with VRM files. 
+It provides a comprehensive set of tools and functionalities that enable developers to load, control, 
+and render VRM models in real-time web applications. At its core, Three VRM.js leverages the capabilities 
+of Three.js, a powerful web-based 3D graphics library. Three.js provides a solid foundation for creating 
+interactive 3D applications, offering a wide range of features such as rendering, animation, and scene management. 
+By building upon Three.js, Three VRM.js enhances its capabilities to handle VRM-specific functionalities and nuances.
+
+The main functionality of Three VRM.js lies in its ability to load and parse VRM files. 
+VRM files are industry-standard 3D model formats that contain information about the geometry, 
+textures, bones, and blend shapes of a character, as shown in the figure below \ref{fig:threevrmdebug}. Three VRM.js streamlines the process of loading 
+these files into a Three.js scene, automatically interpreting and organizing the data within the VRM file.
+Once a VRM model is loaded, Three VRM.js enables developers to manipulate and control the model's 
+behavior in real-time. It provides a variety of tools to handle complex tasks such as facial expression 
+control, bone animation, and blend shape manipulation. Developers can dynamically adjust the model's 
+appearance and behavior based on external input, such as tracking data from facial recognition or body tracking systems.
+Another important feature of Three VRM.js is its support for Inverse Kinematics. \cite{threevrm}
+
+To enhance performance and efficiency, Three VRM.js employs various optimizations. 
+It utilizes the Graphics Processing Unit for hardware-accelerated rendering, 
+ensuring smooth and responsive animations. Additionally, Three VRM.js incorporates 
+techniques like Level of Detail management, which dynamically adjusts the level of detail
+based on the distance between the camera and the model. This optimization improves 
+rendering efficiency, particularly for complex scenes with multiple VRM models. \cite{threevrmgpu}
+\\
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pics/threevrmdebug.PNG}
+    \caption{Three-vrm.js debug mode}
+    \label{fig:threevrmdebug}
+\end{figure}
+\\
+
+\subsection{Realistics movement with Inverse Kinematics}
+\setauthor{Romeo Bhuiyan}
+Inverse Kinematics (IK) is a technique used in computer graphics and animation to simulate realistic
+ joint movement based on the desired position or orientation of an object's end effectors.
+ In the context of Three VRM.js, which is an extension of Three.js for working with VRM models, 
+ IK enables more natural and dynamic animations of the VRM models.
+With IK, the position and rotation of the end effectors, such as hands or feet, are specified, and the IK 
+solver algorithm calculates the appropriate joint angles required to achieve those positions. This allows for 
+smoother and more realistic movements of the VRM model's limbs, making it appear as though the 
+model is reacting to the user's input or the surrounding environment. \cite{whatisik}
+
+By incorporating IK in Three VRM.js, Animotion or developers in general can create more realistic and fluid animations of VRM models. 
+This enhances the overall visual quality and immersive experience of the virtual characters, as their movements 
+closely resemble the natural motion of human limbs. The ability to accurately simulate IK in VRM models adds another 
+layer of realism and expressiveness to the animations and interactions in applications by Three VRM.js. \cite{ikinthree}
+
 \section{Comparison of 3D rendering technologies}
 \setauthor{Romeo Bhuiyan}
 In order to display a virtual model on a canvas, a 3D rendering technology was required. Two libraries, 
