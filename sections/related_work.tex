@@ -40,11 +40,6 @@ In conclusion, AlterEcho manages to produce a virtual model that is vastly super
 realistically replicate human behaviour far more than simple video data is necessary, which naturally comes with lots more issues and needed fine tuning. However, as the authors
 found out when conducting their user study, perhaps an avatar that perfectly mirrors a human is not to be desired as it sometimes defeats the purpose of the avatar itself.
 
-\section{Covariance scaled sampling}
-\setauthor{Christoph Lasinger}
-An even older paper dating back to 2003 covering monocular three-dimensional body tracking goes in depth about methods such as robust image matching, no-self-intersection
-constraints and new sample-and-refine search strategies. It mentions the problematic fact that in any given image about one third of … \cite{Covariance-scaled-sampling}
-
 \section{Adaptive Background Models and Mean-Shift Analysis}
 \setauthor{Christoph Lasinger}
 What distinguishes the full-body motion capture systems described in this paper from others is a feature the authors call three-dimensional pose detection, which they are using
@@ -52,3 +47,16 @@ in combination with ordinary three-dimensional body tracking. It is supposed to 
 Another benefit of this approach to tracking is that it is highly parallel and therefore functions well on a GPU. \cite{Adaptive-background-models}
 
 To evaluate the performance of their method the authors decided to compare this system to the competitor Kinect, a popular and effective body tracking system developed by Microsoft.
+Even though Kinect boast many other advantages, it is not able to accurately track full-body movement in case of a significant occurrence of occlusions. The system presented in
+this paper intends to circumvent this flaw while still maintaining the same advantages as Kinect.
+
+The main component of this system is a hybrid motion capture system that automatically alternates between three-dimensional pose detection and pose tracking. The pose detection
+works by labelling each pixel captured by the camera and associating them with a particular bone segment using randomized decision trees. By combining these two features
+they negate each other's disadvantages and generally improve the quality of body tracking. Moreover, in its initiation process the system calibrates the skeleton structure
+of the user in order to create a model of bone segments. This process is only necessary once per user and makes it possible for the system to better accommodate different body
+types.
+
+Through practical tests the authors show that in comparison to other three-dimensional tracking systems the system described in this paper achieves state-of-the-art accuracy.
+This success can largely be attributed to the features that separates this system from other. It can be concluded that a combination of pose tracking and detection in addition
+to skeleton calibration overall improves the accuracy and robustness of full body tracking systems. Therefore, adding similar features to Animotion in the future should be
+noted as an option.
